@@ -1,0 +1,130 @@
+.comments_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 155px;
+    padding: 0 11.1vw 0 13.1vw;
+    position: relative;
+}
+
+.comments_title {
+    font-size: 36px;
+    color: var(--text-color-black);
+    text-transform: uppercase;
+}
+
+.comments_items {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-top: 73px;
+}
+
+.item_container {
+    /* width: 50%; */
+}
+
+.comments_item {
+    width: 50%;
+}
+
+.item_container {
+    display: flex;
+}
+
+.comment_content {
+    max-width: 400px;
+    padding-top: 27px;
+    padding-left: 36px;
+}
+
+.user_name {
+    font-size: 24px;
+    color: var(--text-color-black);
+    font-weight: 700;
+}
+
+.user_comment {
+    padding-top: 20px;
+    font-size: 18px;
+    font-weight: lighter;
+    font-style: italic;
+    color: var(--user-comment-color);
+}
+
+.comments_pages {
+    display: flex;
+    position: absolute;
+    bottom: -47%;
+    left: 46%;
+}
+
+.page_item {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    content: "";
+    display: block;
+    border-radius: 100%;
+    background-color: gray;
+    opacity: 0.1;
+}
+
+.page_active {
+    opacity: 1
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .comments_container {
+        margin: auto;
+        margin-top: 80px;
+        padding: 0;
+        align-items: center;
+    }
+
+    .comments_items {
+        flex-direction: column;
+    }
+
+    .comments_item {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .comments_pages {
+        margin: auto;
+        position: static;
+    }
+}
+
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .comments_container {
+        margin: auto;
+        margin-top: 80px;
+        padding: 25px;
+        align-items: center;
+    }
+
+    .comments_items {
+        flex-direction: column;
+    }
+
+    .comments_item {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .comments_pages {
+        margin: auto;
+        position: static;
+    }
+
+    .user_photo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .user_comment {
+        font-size: 16px;
+    }
+}

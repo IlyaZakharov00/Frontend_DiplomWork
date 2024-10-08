@@ -1,0 +1,116 @@
+.hdtw_header {
+    display: flex;
+    align-items: center;
+    width: 74.3%;
+    margin: auto;
+    padding-top: 62px;
+}
+
+.hdtw_container {
+    margin-top: 4.9%;
+    min-height: 575px;
+    background-image: url('../../static-files/images/background-image_2.png')
+}
+
+.hdtw_logo {
+    font-size: 1.9vw;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin-right: 52%;
+    text-align: center;
+}
+
+.btn_findMore {
+    font-size: 1.25vw;
+    font-weight: 700;
+    background-color: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    padding: 15px 74px;
+    text-align: center;
+}
+
+.steps_container {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 97px;
+    padding: 0 26.3vw;
+    column-gap: 40px;
+}
+
+.hdtw_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hdtw_image {
+    width: 162px;
+    height: 162px;
+}
+
+.hdtw_item_text {
+    font-size: 1.25vw;
+    color: var(--text-color);
+    text-align: center;
+    padding-top: 30px;
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hdtw_header {
+        width: 90%;
+        justify-content: space-between;
+    }
+
+    .hdtw_logo {
+        font-size: 30px;
+        margin-right: 0;
+    }
+
+    .btn_findMore,
+    .hdtw_item_text {
+        font-size: 24px;
+    }
+
+    .steps_container {
+        padding: 0;
+    }
+
+    .hdtw_item {
+        width: 33.3%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .hdtw_header {
+        width: 85%;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .hdtw_logo {
+        font-size: 30px;
+        margin-right: 0;
+    }
+
+    .btn_findMore,
+    .hdtw_item_text {
+        font-size: 24px;
+    }
+
+    .btn_findMore {
+        margin-top: 30px;
+    }
+
+    .steps_container {
+        flex-wrap: wrap;
+        row-gap: 30px;
+    }
+
+    .hdtw_item {
+        width: 100%;
+    }
+}
