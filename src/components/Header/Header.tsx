@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom"
-import { SearchTicketsForm } from "../SearchTicketsForm/SearchTicketsForm"
 import './Header.css'
 
 export const Header = () => {
