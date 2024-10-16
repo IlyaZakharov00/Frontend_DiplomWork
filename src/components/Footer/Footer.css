@@ -76,12 +76,13 @@
 .input_email {
     width: 448px;
     height: 62px;
+    padding-left: 20px;
     margin-right: 30px;
+    color: var(--text-color-black);
 }
 
 .input_email::placeholder {
-    font-size: 0.8em;
-    padding-left: 15px;
+    font-size: 24px;
 }
 
 .form_submit {
@@ -98,6 +99,19 @@
     border: 2px solid var(--text-color);
     border-radius: 2px;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.btn_submit:hover {
+    border: 0;
+    background-color: var(--hover-color);
+    color: var(--text-color-black);
+}
+
+.btn_submit:active {
+    border: 0;
+    color: var(--text-color-black);
+    background-color: var(--active-color);
 }
 
 .links_container {
@@ -113,6 +127,15 @@
 
 .link_item {
     margin-right: 49px;
+}
+
+.footer_svg:hover>.link_item_icon {
+    fill: var(--hover-color);
+    cursor: pointer;
+}
+
+.footer_svg:hover>.svg_arrowUp_arrow {
+    fill: black;
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {

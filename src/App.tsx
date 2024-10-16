@@ -6,6 +6,7 @@ import { Footer } from './components/Footer/Footer'
 import { HowDoesThisWork } from './components/HowDoesThisWork/HowDoesThisWork'
 import { Comments } from './components/Comments/Comments'
 import { Contacts } from './components/Contacts/Contacts'
+import { ChoiceTrain } from './components/ChoiceTrain/ChoiceTrain'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/how-does-this-work' element={<HowDoesThisWork />} />
         <Route path='/comments' element={<Comments />} />
         <Route path='/contacts' element={<Contacts />} />
+        <Route path='/Frontend_DiplomWork/choiceTrain' element={<ChoiceTrain />} />
       </Routes>
 
       <Footer />

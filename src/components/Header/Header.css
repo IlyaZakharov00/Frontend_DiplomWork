@@ -122,22 +122,18 @@
     height: 3.2vw;
     border: 0;
     border-radius: 3px;
+    padding-left: 25px;
 }
 
 .input_form_tickets::placeholder {
     font-size: 18px;
-    padding-left: 25px;
     color: var(--placeholder-color);
 }
-/* 
-input[type=date]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    width: 100%;
-} */
 
 .search_tickets_btn {
     color: black;
     background-color: var(--main-color);
+    cursor: pointer;
     font-size: 1.2vw;
     font-weight: 700;
     text-transform: uppercase;
@@ -148,6 +144,17 @@ input[type=date]::-webkit-calendar-picker-indicator {
     margin: 4.85vw 0 0 18.9vw;
 }
 
+.search_tickets_btn:hover {
+    box-shadow: 0px 5px 10px 0px var(--text-color-black);
+    border: 1px solid var(--text-color-black);
+}
+
+.search_tickets_btn:active {
+    background-color: var(--text-color);
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+}
+
 
 .input_calendar,
 .input_local {
@@ -156,22 +163,32 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 .input_calendar {
-    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_calendar.png);
+    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_calendar.svg);
     width: 47%;
 }
 
+input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
 .input_local {
-    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_local.png);
+    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_local.svg);
 }
 
 .btn_local_change {
     width: 24px;
     height: 24px;
     background-color: transparent;
-    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_change.png);
+    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_change.svg);
     background-repeat: no-repeat;
     background-position: center center;
     border: 0;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.btn_local_change:hover {
+    transform: rotate(-180deg);
 }
 
 .slogan {
@@ -185,7 +202,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
     font-weight: 700;
 }
 
-/******/
 .burger-menu {
     display: none;
     position: relative;
@@ -198,7 +214,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     position: absolute;
     height: 5.5px;
     width: 30px;
-    background-color: white;
+    background-color: var(--text-color);
     left: 5px;
 }
 
@@ -255,7 +271,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 
     .header_body {
         margin: 0 auto;
-        /* margin-top: 70px; */
         padding: 0;
         flex-direction: column;
         align-items: center;

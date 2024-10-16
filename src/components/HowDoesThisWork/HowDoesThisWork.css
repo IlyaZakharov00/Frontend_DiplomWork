@@ -29,6 +29,19 @@
     border-radius: 5px;
     padding: 15px 74px;
     text-align: center;
+    cursor: pointer;
+}
+
+.btn_findMore:hover {
+    border: 2px solid var(--hover-color);
+    background-color: var(--hover-color);
+    color: var(--text-color-black);
+}
+
+.btn_findMore:active {
+    border: 2px solid var(--active-color);
+    color: var(--text-color-black);
+    background-color: var(--active-color);
 }
 
 .steps_container {

@@ -67,6 +67,11 @@
     border-radius: 100%;
     background-color: gray;
     opacity: 0.1;
+    cursor: pointer;
+}
+
+.page_item:hover {
+    opacity: 0.3;
 }
 
 .page_active {
