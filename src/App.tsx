@@ -16,9 +16,9 @@ function App() {
 
       <Routes>
         <Route path='/Frontend_DiplomWork' element={<MainPage />} />
-        <Route path='/about-us' element={<AboutUs />} />
+        <Route path='/Frontend_DiplomWork/about-us' element={<AboutUs />} />
         <Route path='/how-does-this-work' element={<HowDoesThisWork />} />
-        <Route path='/comments' element={<Comments />} />
+        <Route path='/Frontend_DiplomWork/comments' element={<Comments />} />
         <Route path='/contacts' element={<Contacts />} />
         <Route path='/Frontend_DiplomWork/choiceTrain' element={<ChoiceTrain />} />
       </Routes>

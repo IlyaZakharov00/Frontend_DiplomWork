@@ -109,6 +109,7 @@
 }
 
 .input-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     padding-top: 15px;
@@ -117,17 +118,13 @@
 }
 
 .input_form_tickets {
+    position: relative;
     color: var(--text-color-black);
     width: 17vw;
     height: 3.2vw;
     border: 0;
     border-radius: 3px;
     padding-left: 25px;
-}
-
-.input_form_tickets::placeholder {
-    font-size: 18px;
-    color: var(--placeholder-color);
 }
 
 .search_tickets_btn {
@@ -155,7 +152,6 @@
     color: var(--main-color);
 }
 
-
 .input_calendar,
 .input_local {
     background-repeat: no-repeat;
@@ -165,10 +161,6 @@
 .input_calendar {
     background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_calendar.svg);
     width: 47%;
-}
-
-input::-webkit-calendar-picker-indicator {
-    opacity: 0;
 }
 
 .input_local {
@@ -228,6 +220,25 @@ input::-webkit-calendar-picker-indicator {
 
 .burger-line:nth-child(3) {
     transform: translateY(20px);
+}
+
+::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    background: none;
+    background-size: contain;
+}
+
+.input_form_tickets::placeholder {
+    font-size: 18px;
+    opacity: 1;
+    color: var(--placeholder-color);
+}
+
+
+.dropdown-container {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {

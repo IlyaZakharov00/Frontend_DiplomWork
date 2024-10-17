@@ -1,13 +1,15 @@
 import { applyMiddleware, combineReducers, compose } from "redux";
 import { thunk } from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
-import searchTickets from "./slices/searchTicketsSlice";
+import searchTicketsSlice from "./slices/searchTicketsSlice";
+import sortedCitiesListSlice from "./slices/sortedCitiesList";
 
 const ReactReduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 
 
 const rootReducer = combineReducers({
-  searchTicketsState: searchTickets.reducer,
+  searchTicketsState: searchTicketsSlice.reducer,
+  sortedCitiesList: sortedCitiesListSlice.reducer,
 })
 
 const myMiddleware = [compose(applyMiddleware(thunk), ReactReduxDevTools)];
