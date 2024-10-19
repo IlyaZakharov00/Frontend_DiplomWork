@@ -52,6 +52,7 @@ const initialState: IState = {
     limit: "",
     offset: "",
     sort: "",
+    openSearchTicketsPage: false,
 }
 
 const searchTicketsSlice = createSlice({
@@ -61,6 +62,7 @@ const searchTicketsSlice = createSlice({
 
         addCities: (state, action: PayloadAction<any>) => {
             state.cities = action.payload
+            state.openSearchTicketsPage = true;
         },
 
         addDates: (state, action: PayloadAction<any>) => {
@@ -94,6 +96,10 @@ const searchTicketsSlice = createSlice({
         addSort: (state, action: PayloadAction<any>) => {
             state.sort = action.payload
         },
+
+        closeSearchTicketsPage: (state) => {
+            state.openSearchTicketsPage = false;
+        }
     },
     //     extraReducers: (builder) => {
     //         builder

@@ -11,60 +11,7 @@
     position: relative;
 }
 
-.logo {
-    position: relative;
-    text-align: left;
-    padding-top: 0.75%;
-    padding-left: 13.4%;
-    height: 64px;
-}
 
-.logo_text {
-    position: relative;
-    text-decoration: none;
-    font-size: 36px;
-    font-weight: 900;
-    z-index: 2;
-}
-
-.logo::after {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.6;
-    background-color: black;
-    z-index: 1;
-}
-
-.navbar_container {
-    background-color: var(--background-color);
-    padding: 1% 0 1.4% 0%;
-    padding-left: 13.4%;
-}
-
-.nav_list {
-    display: flex;
-    list-style: none;
-}
-
-.nav_item {
-    margin-right: 5.3%;
-}
-
-.nav_item_text {
-    text-decoration: none;
-    font-size: 30px;
-    font-weight: 300;
-    line-height: 48px;
-}
-
-.nav_item_text:hover,
-.logo :hover {
-    color: var(--main-color);
-}
 
 .header_body {
     display: flex;
@@ -85,7 +32,7 @@
 
 .form-content {
     width: 100%;
-    padding: 0 25px 0 20px;
+    padding: 0 25px 0 15px;
 }
 
 .direction_ticket {
@@ -236,9 +183,25 @@
 
 
 .dropdown-container {
+    width: 48%;
+    margin-top: 10px;
     display: flex;
     position: absolute;
     flex-direction: column;
+    background-color: var(--text-color);
+    color: var(--text-color-black);
+    z-index: 10;
+}
+
+.dropdown-item {
+    text-transform: uppercase;
+    color: var(--text-color-black);
+    padding: 13px 0 22px 25px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    opacity: 0.5;
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -349,4 +312,172 @@
         height: 12vw;
         margin: 5vw 0 5vw 0vw;
     }
+}
+
+/*/////////////////////////*/
+
+.header_container-choiceTrain {
+    max-width: 1920px;
+    min-height: 596px;
+    border-bottom: 8px solid var(--main-color);
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../static-files/images/background-image-2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+}
+
+.header_body-choiceTrain {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 30px;
+    padding: 5.8vw 11.2vw 0px 11.2vw;
+}
+
+.search_tickets_menu-choiceTrain {
+    height: 322px;
+    background-color: var(--background-color);
+}
+
+/* .search_tickets_container {
+    display: flex;
+    justify-content: space-between;
+} */
+
+.direction_ticket-choiceTrain,
+.data_ticket-choiceTrain {
+    width: 35.8vw;
+}
+
+.form-content-choiceTrain {
+    display: flex;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    padding: 1.5vw 2.2vw 0px 2.3vw;
+    column-gap: 1.5vw;
+}
+
+.change {
+    width: 24px;
+    height: 24px;
+}
+
+.direction_title,
+.data_title {
+    font-size: 30px;
+    font-weight: 300;
+    padding-left: 8px;
+}
+
+.input-container-choiceTrain {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    align-items: center;
+
+}
+
+.input_form_tickets-choiceTrain {
+    position: relative;
+    color: var(--text-color-black);
+    width: 17vw;
+    height: 3.2vw;
+    border: 0;
+    border-radius: 3px;
+    /* padding-left: 25px; */
+}
+
+.search_tickets_btn-choiceTrain {
+    color: black;
+    background-color: var(--main-color);
+    cursor: pointer;
+    font-size: 1.2vw;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 5px;
+    width: 16.8vw;
+    height: 3vw;
+    margin: 2.55vw 0 0 18.9vw;
+}
+
+.search_tickets_btn:hover {
+    box-shadow: 0px 5px 10px 0px var(--text-color-black);
+    border: 1px solid var(--text-color-black);
+}
+
+.search_tickets_btn:active {
+    background-color: var(--text-color);
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.input_calendar,
+.input_local {
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+}
+
+.input_calendar {
+    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_calendar.svg);
+    width: 47%;
+}
+
+.input_local {
+    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_local.svg);
+}
+
+.btn_local_change {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_change.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 0;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.btn_local_change:hover {
+    transform: rotate(-180deg);
+}
+
+::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    background: none;
+    background-size: contain;
+}
+
+.input_form_tickets::placeholder {
+    font-size: 18px;
+    opacity: 1;
+    color: var(--placeholder-color);
+}
+
+
+.dropdown-container {
+    width: 48%;
+    margin-top: 10px;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background-color: var(--text-color);
+    color: var(--text-color-black);
+    z-index: 10;
+}
+
+.dropdown-item {
+    text-transform: uppercase;
+    color: var(--text-color-black);
+    padding: 13px 0 22px 25px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    opacity: 0.5;
 }

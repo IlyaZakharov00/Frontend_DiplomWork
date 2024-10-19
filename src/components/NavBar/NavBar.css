@@ -1,0 +1,54 @@
+.logo {
+    position: relative;
+    text-align: left;
+    padding-top: 0.75%;
+    padding-left: 13.4%;
+    height: 64px;
+}
+
+.logo_text {
+    position: relative;
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: 900;
+    z-index: 2;
+}
+
+.logo::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+    background-color: black;
+    z-index: 1;
+}
+
+.navbar_container {
+    background-color: var(--background-color);
+    padding: 1% 0 1.4% 0%;
+    padding-left: 13.4%;
+}
+
+.nav_list {
+    display: flex;
+    list-style: none;
+}
+
+.nav_item {
+    margin-right: 5.3%;
+}
+
+.nav_item_text {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 48px;
+}
+
+.nav_item_text:hover,
+.logo :hover {
+    color: var(--main-color);
+}

@@ -1,20 +1,21 @@
 import "./Header.css";
-import { NavLink } from "react-router-dom";
-import { FormEvent } from "react";
+import React, { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchCities } from "../redux/async action/searchCities";
 import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
 import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
+import { NavBar } from "../NavBar/NavBar";
 
 export const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
+	
+	const openSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.openSearchTicketsPage)
 	const sortedListFrom = useSelector((state: any) => state.sortedCitiesList.sortedListFrom)
 	const sortedListTo = useSelector((state: any) => state.sortedCitiesList.sortedListTo)
-
-	console.log('render')
+	const from_city = useSelector((state: any) => state.sortedCitiesList.from_city)
+	const to_city = useSelector((state: any) => state.sortedCitiesList.to_city)
 
 	const searchTickets = async (e: FormEvent) => {
 		e.preventDefault();
@@ -45,7 +46,6 @@ export const Header = () => {
 
 		dispatch(searchTicketsSlice.actions.addCities(formDataCities));
 		dispatch(searchTicketsSlice.actions.addDates(formDataDates));
-
 		navigate("/Frontend_DiplomWork/choiceTrain");
 	};
 
@@ -69,78 +69,83 @@ export const Header = () => {
 		dispatch(sortedCitiesListSlice.actions.addCities({ type: typeAction, payload: sortCityList }))
 	}
 
+	const changleCitiesHedler = () => {
+		dispatch(sortedCitiesListSlice.actions.changeCitites());
+		const from_city_input = document.getElementById("from_city") as HTMLInputElement;
+		const to_city_input = document.getElementById("to_city") as HTMLInputElement;
+
+		let tmp = from_city.name;
+		from_city_input.value = to_city.name;
+		to_city_input.value = tmp;
+	}
+
+	const choiceCityHedler = (e: any) => {
+		const input = e.target.closest('.input-with-dropdown').querySelector('.input_form_tickets')
+		const idCity = e.target.getAttribute('id') as string;
+		const typeAction = input.getAttribute('id') as string;
+		input.value = e.target.textContent.toUpperCase();
+
+		dispatch(sortedCitiesListSlice.actions.choiceCity({
+			type: typeAction,
+			payload: {
+				_id: idCity,
+				name: e.target.textContent.toUpperCase(),
+			},
+		}))
+	}
+
 	return (
 		<header className="header">
-			<div className="header_container">
-				<h1 className="logo" id="logo">
-					<NavLink className={"logo_text"} to="/Frontend_DiplomWork">Лого</NavLink>
-				</h1>
-				<nav className="navbar_container">
-					<nav className="nav_list">
-						<li className="nav_item" id="about-us">
-							<NavLink className={"nav_item_text"} to="/Frontend_DiplomWork/about">О нас</NavLink>
-						</li>
-						<li className="nav_item" id="how_work">
-							<NavLink className={"nav_item_text"} to="/how-does-this-work">Как это работает</NavLink>
-						</li>
-						<li className="nav_item" id="comments">
-							<NavLink className={"nav_item_text"} to="/Frontend_DiplomWork/comments">Отзывы</NavLink>
-						</li>
-						<li className="nav_item" id="contacts">
-							<NavLink className={"nav_item_text"} to="/Frontend_DiplomWork/contacts">Контакты</NavLink>
-						</li>
-					</nav>
-					<nav className="burger-menu">
-						<span className="burger-line"></span>
-						<span className="burger-line"></span>
-						<span className="burger-line"></span>
-					</nav>
-				</nav>
-				<div className="header_body">
-					<h2 className="slogan">
-						<span className="light_text">Вся жизнь - </span>
-						<span className="bold_text">путешествие!</span>
-					</h2>
-					<div className="search_tickets_menu">
-						<form className="form-content" id="formSearch" onSubmit={searchTickets}>
-							<div className="direction_ticket">
+			<div className={openSearchTicketsPage ? "header_container-choiceTrain" : "header_container"}>
+				<NavBar />
+				<div className={openSearchTicketsPage ? "header_body-choiceTrain" : 'header_body'}>
+					{openSearchTicketsPage ? <></> :
+						<h2 className="slogan">
+							<span className="light_text">Вся жизнь - </span>
+							<span className="bold_text">путешествие!</span>
+						</h2>
+					}
+					<div className={openSearchTicketsPage ? "search_tickets_menu-choiceTrain" : 'search_tickets_menu'}>
+						<form className={openSearchTicketsPage ? "form-content-choiceTrain" : "form-content"} id="formSearch" onSubmit={searchTickets}>
+							<div className={openSearchTicketsPage ? 'direction_ticket-choiceTrain' : 'direction_ticket'}>
 								<div className="direction_title">Направление</div>
-								<div className="input-container">
-									<div className="input-with-dropdown">
-										<input type="text" id="from_city" className="input_form_tickets input_local" placeholder="Откуда" onChange={changeInputCity} required autoComplete='off' />
-										<div className="dropdown-container">
-											{sortedListFrom.map((item: { _id: string, name: string }) => {
-												return (
-													<div className="dropdown-item">{item.name}</div>
-												)
-											})}
-										</div>
+								<div className={openSearchTicketsPage ? "input-container-choiceTrain" : "input-container"}>
+									<div className={openSearchTicketsPage ? 'input_form_tickets-choiceTrain from_city' : 'input-with-dropdown from_city'}>
+										<input type="text" id="from_city" className={openSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Откуда" onChange={changeInputCity} required autoComplete="off" />
+										{sortedListFrom.length !== 0 ?
+											<div className="dropdown-container">
+												{sortedListFrom.map((item: { _id: string, name: string }) => {
+													return (
+														<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
+													)
+												})}
+											</div> : <></>}
 									</div>
-									<button className="btn_local_change"></button>
-									<div className="input-with-dropdown">
-										<input type="text" id="to_city" className="input_form_tickets input_local" placeholder="Куда" onChange={changeInputCity} required />
+									<button className="btn_local_change" onClick={changleCitiesHedler}></button>
+									<div className={openSearchTicketsPage ? 'input_form_tickets-choiceTrain to_city' : 'input-with-dropdown to_city'}>
+										<input type="text" id="to_city" className={openSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Куда" onChange={changeInputCity} required autoComplete="off" />
 										<div className="dropdown-container">
 											{sortedListTo.map((item: { _id: string, name: string }) => {
 												return (
-													<div className="dropdown-item">{item.name}</div>
+													<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
 												)
 											})}
 										</div>
 									</div>
 								</div>
 							</div>
-							<div className="data_ticket">
+							<div className={openSearchTicketsPage ? "data_ticket-choiceTrain" : "data_ticket"}>
 								<div className="data_title">Дата</div>
-								<div className="input-container">
-									<input type="date" id="data_start" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" />
-									<input type="date" id="data_end" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" />
+								<div className={openSearchTicketsPage ? 'input-container-choiceTrain' : 'input-container'}>
+									<input type="date" id="data_start" className={openSearchTicketsPage ? "input_form_tickets-choiceTrain input_calendar" : "input_form_tickets input_calendar"} placeholder="ДД/ММ/ГГ" />
+									<input type="date" id="data_end" className={openSearchTicketsPage ? "input_form_tickets-choiceTrain input_calendar" : "input_form_tickets input_calendar"} placeholder="ДД/ММ/ГГ" />
 								</div>
+								<button className={openSearchTicketsPage ? "search_tickets_btn-choiceTrain" : "search_tickets_btn"} type="submit">Найти билеты</button>
 							</div>
-							<button className="search_tickets_btn" type="submit">Найти билеты</button>
 						</form>
 					</div>
 				</div>
-			</div>
-		</header>
+			</div >
+		</header >
 	);
 };

@@ -15,4 +15,5 @@ export type IState = {
     limit: string,
     offset: string,
     sort: string,
+    openSearchTicketsPage: boolean,
 }
