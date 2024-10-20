@@ -78,6 +78,10 @@
     opacity: 1
 }
 
+.page_active:hover {
+    opacity: 1
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .comments_container {
         margin: auto;

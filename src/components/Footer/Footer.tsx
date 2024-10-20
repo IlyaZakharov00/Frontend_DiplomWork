@@ -12,7 +12,7 @@ import icon_email from "../../static-files/icons/icon_email.svg"
 
 export const Footer = () => {
   return (
-    <footer className='footer'>
+    <footer className='footer' id='contacts-section'>
       <div className='footer_content_container'>
         <div className='contactUs'>
           <h2 className='contactUs_title'>Свяжитесь с нами</h2>

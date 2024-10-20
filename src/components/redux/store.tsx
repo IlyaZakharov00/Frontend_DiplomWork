@@ -6,7 +6,6 @@ import sortedCitiesListSlice from "./slices/sortedCitiesList";
 
 const ReactReduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 
-
 const rootReducer = combineReducers({
   searchTicketsState: searchTicketsSlice.reducer,
   sortedCitiesList: sortedCitiesListSlice.reducer,
@@ -25,6 +24,5 @@ const store = configureStore({
       serializableCheck: false,
     }),
 })
-
 
 export default store

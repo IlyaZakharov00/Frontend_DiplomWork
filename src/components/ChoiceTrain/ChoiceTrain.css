@@ -1,17 +1,53 @@
-.aboutTrainSection {
-    border-bottom: 1px solid;
+.choiceTrain_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5vw 58vw 0 13.5vw;
 }
 
 .choiceTrain_aside {
     background-color: var(--aside-background-color);
-    max-width: 360px;
-    padding: 43px 34px 34px 30px;
+    max-width: 364px;
+    height: 1012px;
+}
+
+.aboutTrainSection {
+    border-bottom: 1px solid;
+}
+
+.aboutTrain_dates {
+    padding: 41px 35px 10px 28px;
+}
+
+.aboutTrain_functionsList {
+    padding: 30px 30px 10px 65px;
+}
+
+.aboutTrain_price {
+    padding: 35px 35px 135px 32px;
+}
+
+.aboutTrain_cityFirst {
+    padding: 35px 35px 135px 32px;
+}
+
+.aboutTrain_citySecond {
+    padding: 35px 35px 135px 32px;
+}
+
+
+.aboutTrain_title,
+.price_title,
+.cityFirst_title,
+.citySecond_title {
+    font-size: 30px;
+    margin-bottom: 10px;
 }
 
 .aboutTrain_input {
-    /* width: 100%; */
+    width: 15.5vw;
     height: 45px;
     max-width: 295px;
+    margin-bottom: 23px;
 }
 
 .aboutTrain_functionsList {
@@ -22,4 +58,67 @@
 .function_item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 34px;
+    width: 100%;
+}
+
+.function_item:last-child {
+    margin-bottom: 12px;
+}
+
+.function_item_title {
+    font-size: 18px;
+    width: 45%;
+}
+
+.icon_Func {
+    width: 9%;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 67px;
+    height: 16px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: -4px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 28px;
+    width: 28px;
+    left: -10px;
+    bottom: -5px;
+    background-color: #C4C4C4;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #FCDC9D;
+}
+
+input:checked+.slider:before {
+    background-color: #FFA800;
+    transform: translateX(55px);
+}
+
+.checkbox {
+    opacity: 0;
 }

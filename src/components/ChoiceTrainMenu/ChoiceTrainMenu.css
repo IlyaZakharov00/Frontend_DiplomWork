@@ -1,0 +1,27 @@
+.choiceTrain_menu_list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    list-style: none;
+}
+
+.choiceTrain_menu_item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    height: 98px;
+    background-color: var(--background-color);
+    /* padding: 0 50px; */
+    cursor: pointer;
+}
+
+.choiceTrain_menu_item:hover{
+    opacity: 0.5;
+}
+
+.active_item {
+    width: 50%;
+    background-color: var(--main-color);
+}

@@ -52,7 +52,7 @@ const initialState: IState = {
     limit: "",
     offset: "",
     sort: "",
-    openSearchTicketsPage: false,
+    isOpenSearchTicketsPage: false,
 }
 
 const searchTicketsSlice = createSlice({
@@ -62,7 +62,7 @@ const searchTicketsSlice = createSlice({
 
         addCities: (state, action: PayloadAction<any>) => {
             state.cities = action.payload
-            state.openSearchTicketsPage = true;
+            state.isOpenSearchTicketsPage = true;
         },
 
         addDates: (state, action: PayloadAction<any>) => {
@@ -70,11 +70,21 @@ const searchTicketsSlice = createSlice({
         },
 
         addClass: (state, action: PayloadAction<any>) => {
-            state.class = action.payload
+            const keys = Object.keys(state.class);
+            const obj = state.class as any;
+
+            keys.forEach((key) => {
+                if (key === action.payload.id) obj[key] = action.payload.isChecked
+            })
         },
 
         addComfortOptions: (state, action: PayloadAction<any>) => {
-            state.comfortOptions = action.payload
+            const keys = Object.keys(state.comfortOptions);
+            const obj = state.comfortOptions as any;
+
+            keys.forEach((key) => {
+                if (key === action.payload.id) obj[key] = action.payload.isChecked
+            })
         },
 
         addPrices: (state, action: PayloadAction<any>) => {
@@ -98,7 +108,7 @@ const searchTicketsSlice = createSlice({
         },
 
         closeSearchTicketsPage: (state) => {
-            state.openSearchTicketsPage = false;
+            state.isOpenSearchTicketsPage = false;
         }
     },
     //     extraReducers: (builder) => {
