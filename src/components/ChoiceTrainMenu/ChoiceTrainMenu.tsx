@@ -3,7 +3,7 @@ import icon_vector from '../../static-files/icons/icon_vector.svg'
 
 export const ChoiceTrainMenu = () => {
 
-    const onClickHendler = (e) => {
+    const onClickHendler = (e: any) => {
         e.target.classList.add('active_item')
     }
 
