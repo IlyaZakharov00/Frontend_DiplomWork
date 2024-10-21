@@ -1,56 +1,36 @@
+import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FormEvent } from "react";
-import "./Header.css";
 import { searchCities } from "../redux/async action/searchCities";
-import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
-import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
 import { NavBar } from "../NavBar/NavBar";
 import { ChoiceTrainMenu } from "../ChoiceTrainMenu/ChoiceTrainMenu";
+import { searchDirections } from "../redux/async action/searchDirections";
+import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
+import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
 
 export const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const isOpenSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.isOpenSearchTicketsPage)
+
 	const sortedListFrom = useSelector((state: any) => state.sortedCitiesList.sortedListFrom)
 	const sortedListTo = useSelector((state: any) => state.sortedCitiesList.sortedListTo)
+
 	const from_city = useSelector((state: any) => state.sortedCitiesList.from_city)
 	const to_city = useSelector((state: any) => state.sortedCitiesList.to_city)
 
+	const state = useSelector((state: any) => state.searchTicketsState);
+
+
 	const searchTickets = async (e: FormEvent) => {
 		e.preventDefault();
-
-		const form = e.target as HTMLFormElement;
-
-		const from_city = form.querySelector('[id = "from_city"]') as HTMLInputElement;
-
-		const to_city = form.querySelector('[id = "to_city"]') as HTMLInputElement;
-
-		const date_start = form.querySelector('[id = "data_start"]') as HTMLInputElement;
-
-		const date_end = form.querySelector('[id = "data_end"]') as HTMLInputElement;
-
-
-		const cityFrom = await dispatch(searchCities(from_city.value));
-		const cityTo = await dispatch(searchCities(to_city.value));
-
-		const formDataCities = {
-			from_city: cityFrom.payload[0],
-			to_city: cityTo.payload[0],
-		};
-
-		const formDataDates = {
-			date_start: date_start.value,
-			date_end: date_end.value,
-		}
-
-		dispatch(searchTicketsSlice.actions.addCities(formDataCities));
-		dispatch(searchTicketsSlice.actions.addDates(formDataDates));
+		dispatch(searchDirections(state));
 		navigate("/Frontend_DiplomWork/choiceTrain");
 	};
 
-	const changeInputCity = async (e: React.ChangeEvent<HTMLInputElement>) => {
+	const changeInputCityHendler = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const sortCityList: string[] = [];
 		const typeAction = e.target.getAttribute('id') as string;
 
@@ -70,8 +50,11 @@ export const Header = () => {
 		dispatch(sortedCitiesListSlice.actions.addCities({ type: typeAction, payload: sortCityList }))
 	}
 
-	const changleCitiesHedler = () => {
+	const changeCitiesHedler = (e: React.MouseEvent) => {
+		e.preventDefault()
 		dispatch(sortedCitiesListSlice.actions.changeCitites());
+		dispatch(searchTicketsSlice.actions.changeCitites());
+
 		const from_city_input = document.getElementById("from_city") as HTMLInputElement;
 		const to_city_input = document.getElementById("to_city") as HTMLInputElement;
 
@@ -81,7 +64,7 @@ export const Header = () => {
 	}
 
 	const choiceCityHedler = (e: any) => {
-		const input = e.target.closest('.input-with-dropdown').querySelector('.input_form_tickets')
+		const input = e.target.closest('.input-with-dropdown').querySelector('.input_local')
 		const idCity = e.target.getAttribute('id') as string;
 		const typeAction = input.getAttribute('id') as string;
 		input.value = e.target.textContent.toUpperCase();
@@ -93,6 +76,14 @@ export const Header = () => {
 				name: e.target.textContent.toUpperCase(),
 			},
 		}))
+
+		dispatch(searchTicketsSlice.actions.addCities({
+			type: typeAction,
+			payload: {
+				_id: idCity,
+				name: e.target.textContent.toUpperCase(),
+			},
+		}));
 	}
 
 	return (
@@ -112,7 +103,7 @@ export const Header = () => {
 								<div className="direction_title">Направление</div>
 								<div className={isOpenSearchTicketsPage ? "input_container-choiceTrain" : "input_container"}>
 									<div className='input-with-dropdown from_city'>
-										<input type="text" id="from_city" className={isOpenSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Откуда" onChange={changeInputCity} required autoComplete="off" />
+										<input type="text" id="from_city" className={isOpenSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Откуда" onChange={changeInputCityHendler} required autoComplete="off" />
 										{sortedListFrom.length !== 0 ?
 											<div className="dropdown-container">
 												{sortedListFrom.map((item: { _id: string, name: string }) => {
@@ -124,9 +115,9 @@ export const Header = () => {
 											<></>
 										}
 									</div>
-									<button className="btn_local_change" onClick={changleCitiesHedler}></button>
+									<button className="btn_local_change" onClick={changeCitiesHedler}></button>
 									<div className='input-with-dropdown to_city'>
-										<input type="text" id="to_city" className={isOpenSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Куда" onChange={changeInputCity} required autoComplete="off" />
+										<input type="text" id="to_city" className={isOpenSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Куда" onChange={changeInputCityHendler} required autoComplete="off" />
 										{sortedListTo.length !== 0 ?
 											<div className="dropdown-container">
 												{sortedListTo.map((item: { _id: string, name: string }) => {

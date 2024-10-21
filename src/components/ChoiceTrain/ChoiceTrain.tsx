@@ -1,22 +1,22 @@
+import './ChoiceTrain.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import './ChoiceTrain.css'
 import icon_coupe from '../../static-files/icons/aside_coupe.svg'
 import icon_plac from '../../static-files/icons/aside_plac.svg'
 import icon_sit from '../../static-files/icons/aside_sit.svg'
 import icon_lux from '../../static-files/icons/aside_lux.svg'
 import icon_wifi from '../../static-files/icons/aside_wifi.svg'
 import icon_boost from '../../static-files/icons/aside_boost.svg'
-import { searchDirections } from '../redux/async action/searchDirections'
 import searchTicketsSlice from '../redux/slices/searchTicketsSlice'
+import { Ticket } from '../Ticket/Ticket'
 
 export const ChoiceTrain = () => {
-    const state = useSelector((state: any) => state.searchTicketsState);
     const dispatch = useDispatch();
+    const state = useSelector((state: any) => state.searchTicketsState);
 
     useEffect(() => {
-        dispatch(searchDirections(state));
-    })
+        dispatch(searchTicketsSlice.actions.openSearchTicketsPage())
+    }, [])
 
     const onChangeHdnler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const id = e.target.getAttribute('id')
@@ -50,9 +50,9 @@ export const ChoiceTrain = () => {
                 <div className="aboutTrain">
                     <div className='aboutTrain_dates aboutTrainSection'>
                         <h2 className='aboutTrain_title'>Дата поездки</h2>
-                        <input type="date" className='aboutTrain_input date_travel' />
+                        <input type="date" className='aboutTrain_input date_travel' value={state.dates.date_start} readOnly />
                         <h2 className='aboutTrain_title'>Дата возвращения</h2>
-                        <input type="date" className='aboutTrain_input date_back' />
+                        <input type="date" className='aboutTrain_input date_back' value={state.dates.date_end} readOnly />
                     </div>
                     <ul className='aboutTrain_functionsList aboutTrainSection'>
                         <li className='function_item'>
@@ -141,20 +141,27 @@ export const ChoiceTrain = () => {
                 </div>
             </aside>
             <main className="choiceTrain_main">
-                <div className="settings_Tickets">
-                    <div className="searched_tickets">20</div>
-                    <select>
-                        <option value='time'>времени</option>
-                        <option value='price'>стоимости</option>
-                        <option value='duration'>длительности</option>
-                    </select>
+                <div className="settings_tickets">
+                    <div className="searched_tickets">Найдено: {state.responseFromServer.total_count}</div>
+                    <label className='select_options'>
+                        <div className="sorting_by">Сортировать по:</div>
+                        <select className='select_option_input'>
+                            <option value='time'>времени</option>
+                            <option value='price'>стоимости</option>
+                            <option value='duration'>длительности</option>
+                        </select>
+                    </label>
                     <div className="show">
-                        <div>5</div>
-                        <div>10</div>
-                        <div>20</div>
+                        <div className='show_by'>Показывать по:</div>
+                        <div className='show_number'>5</div>
+                        <div className='show_number'>10</div>
+                        <div className='show_number'>20</div>
                     </div>
                 </div>
-                <div className="tickets_container"></div>
+                <div className="tickets_container">
+                    {state.responseFromServer.items.length !== 0 ? state.responseFromServer.items.map((item: any, index: number) => <Ticket item={item} key={index} />) : <></>}
+
+                </div>
                 <div className="pages"></div>
             </main>
         </div>

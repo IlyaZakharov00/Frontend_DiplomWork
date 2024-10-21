@@ -55,10 +55,14 @@
     border-top: 1px solid white;
 }
 
-.footer_logo {
+.footer_logo_text {
     font-size: 1.2em;
     font-weight: 900;
     text-decoration: none;
+}
+
+.footer_logo_text:hover {
+    color: var(--main-color);
 }
 
 .footer_year {

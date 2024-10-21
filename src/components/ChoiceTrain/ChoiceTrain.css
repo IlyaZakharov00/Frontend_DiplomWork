@@ -1,7 +1,7 @@
 .choiceTrain_container {
     display: flex;
     justify-content: space-between;
-    padding: 5vw 58vw 0 13.5vw;
+    padding: 5vw 13.3vw 0 13.5vw;
 }
 
 .choiceTrain_aside {
@@ -48,6 +48,7 @@
     height: 45px;
     max-width: 295px;
     margin-bottom: 23px;
+    color: var(--text-color-black);
 }
 
 .aboutTrain_functionsList {
@@ -121,4 +122,54 @@ input:checked+.slider:before {
 
 .checkbox {
     opacity: 0;
+}
+
+.choiceTrain_main {
+    width: 50vw;
+}
+
+.settings_tickets {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 0 0 0;
+}
+
+.searched_tickets,
+.sorting_by,
+.show_by,
+.show_number {
+    font-size: 18px;
+    color: red;
+}
+
+.select_options {
+    display: flex;
+}
+
+.sorting_by {
+    padding-right: 10px;
+}
+
+.show_by {
+    padding-right: 5px;
+}
+
+.show_number:not(:last-child) {
+    padding-right: 0.8vw;
+}
+
+.searched_tickets {
+    padding-right: 18vw;
+}
+
+.select_option_input {
+    color: black;
+    background-color: transparent;
+    border: 0;
+    font-weight: bold;
+}
+
+.show {
+    display: flex;
 }

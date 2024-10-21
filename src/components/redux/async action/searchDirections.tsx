@@ -3,7 +3,6 @@ import { IState } from "../types/state";
 import { baseServer } from "./server";
 
 export const searchDirections: any = createAsyncThunk('searchDirections',
-
 	async (options: IState) => {
 
 		const server = `${baseServer + '/routes?'
@@ -43,8 +42,8 @@ export const searchDirections: any = createAsyncThunk('searchDirections',
 
 		const response = await fetch(server)
 			.then(response => response.json())
-			.then(data => console.log(data))
 			.catch(error => console.log(error));
+
 		return response;
 	}
 );

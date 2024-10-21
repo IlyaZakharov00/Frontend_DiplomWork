@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IState } from "../types/state";
+import { searchDirections } from "../async action/searchDirections";
 
 const initialState: IState = {
     cities: {
@@ -53,6 +54,13 @@ const initialState: IState = {
     offset: "",
     sort: "",
     isOpenSearchTicketsPage: false,
+
+    responseFromServer: {
+        total_count: 0,
+        items: []
+    },
+    loading: false,
+    error: null,
 }
 
 const searchTicketsSlice = createSlice({
@@ -61,8 +69,18 @@ const searchTicketsSlice = createSlice({
     reducers: {
 
         addCities: (state, action: PayloadAction<any>) => {
-            state.cities = action.payload
-            state.isOpenSearchTicketsPage = true;
+            switch (action.payload.type) {
+                case 'from_city':
+                    state.cities.from_city = action.payload.payload;
+                    break;
+
+                case 'to_city':
+                    state.cities.to_city = action.payload.payload;
+                    break;
+
+                default:
+                    break;
+            }
         },
 
         addDates: (state, action: PayloadAction<any>) => {
@@ -109,23 +127,36 @@ const searchTicketsSlice = createSlice({
 
         closeSearchTicketsPage: (state) => {
             state.isOpenSearchTicketsPage = false;
+
+        },
+
+        openSearchTicketsPage: (state) => {
+            state.isOpenSearchTicketsPage = true;
+
+        },
+
+        changeCitites: (state) => {
+            let tmp = state.cities.from_city;
+            state.cities.from_city = state.cities.to_city
+            state.cities.to_city = tmp;
         }
     },
-    //     extraReducers: (builder) => {
-    //         builder
-    //             .addCase(fetchBestSellers.pending, (state) => {
-    //                 state.loading = true;
-    //                 state.error = null;
-    //             })
-    //             .addCase(fetchBestSellers.fulfilled, (state, action) => {
-    //                 state.loading = false;
-    //                 state.bestSellersArray = action.payload;
-    //             })
-    //             .addCase(fetchBestSellers.rejected, (state) => {
-    //                 state.loading = false;
-    //                 state.error = true;
-    //             })
-    //     }
+
+    extraReducers: (builder) => {
+        builder
+            .addCase(searchDirections.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(searchDirections.fulfilled, (state, action) => {
+                state.loading = false;
+                state.responseFromServer = action.payload;
+            })
+            .addCase(searchDirections.rejected, (state) => {
+                state.loading = false;
+                state.error = true;
+            })
+    }
 },
 );
 

@@ -1,0 +1,27 @@
+.ticket_container {
+    display: flex;
+}
+
+.infoTrain {
+    background-color: gray;
+    width: 197px;
+}
+
+.infoTicket {
+    width: 479px;
+    background-color: red;
+}
+
+.infoPrice {
+    background-color: green;
+    width: 283px;
+}
+
+.time_to,
+.time_back {
+    display: flex;
+}
+
+.seatInfo {
+    display: flex;
+}
