@@ -20,8 +20,9 @@ export const NavBar = () => {
 
     return (
         <>
+
             <h1 className="logo" id="logo">
-                <NavLink className={"logo_text"} to="/Frontend_DiplomWork">Лого</NavLink>
+                <NavLink className={"logo_text "} to="/Frontend_DiplomWork">Лого</NavLink>
             </h1>
             <nav className="navbar_container">
                 <nav className="nav_list">

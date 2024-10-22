@@ -18,7 +18,7 @@
 }
 
 .choiceTrain_menu_item:hover{
-    opacity: 0.5;
+    /* opacity: 0.5; */
 }
 
 .active_item {

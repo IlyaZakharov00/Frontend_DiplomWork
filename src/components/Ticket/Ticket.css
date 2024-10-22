@@ -1,27 +1,152 @@
+.tickets_container {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.ticket_text {
+    color: var(--text-color-black);
+    text-transform: capitalize;
+}
+
 .ticket_container {
     display: flex;
+    box-shadow: 0px 2px 0px 0px rgba(34, 60, 80, 0.3);
+    /* height: 354px; */
 }
+
+/***************************************/
 
 .infoTrain {
-    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E4E0E9;
     width: 197px;
+    padding: 60px 10px;
 }
+
+.train_icon {
+    width: 86px;
+    height: 86px;
+    margin-bottom: 17px;
+}
+
+.train_number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.icon_arrow_travel_city {
+    margin-left: 10px;
+}
+
+
+/**********************************/
+
 
 .infoTicket {
+    display: flex;
     width: 479px;
-    background-color: red;
+    background-color: var(--active-color);
+    border-right: 2px dashed var(--placeholder-color);
+    border-top: 2px solid var(--placeholder-color);
 }
+
+.departure {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 70%;
+}
+
+.ticket_time {
+    color: var(--text-color-black);
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.ticket_city_name {
+    text-transform: capitalize;
+    color: var(--text-color-black);
+    font-size: 18px;
+}
+
+.ticket_railway_station {
+    text-transform: capitalize;
+    color: var(--user-comment-color);
+}
+
+.time_travel {
+    text-align: center;
+}
+
+.time_travel_text {
+    font-size: 18px;
+    color: #C4C4C4;
+}
+
+/*********************/
 
 .infoPrice {
-    background-color: green;
-    width: 283px;
-}
-
-.time_to,
-.time_back {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 20px;
+    border-top: 2px solid var(--placeholder-color);
+    border-right: 2px solid var(--placeholder-color);
+    background-color: var(--text-color);
+    width: 283px;
+    row-gap: 30px;
 }
 
 .seatInfo {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.seatName {
+    width: 35%;
+}
+
+.seatCount {
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+.seatPrice {
+    color: var(--text-color-black);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.text_price {
+    color: var(--user-comment-color);
+}
+
+.footer_ticket_price {
+    display: flex;
+    flex-direction: column;
+}
+
+.available_functions {
+    text-align: end;
+    margin-bottom: 15px;
+}
+
+.choiceSeatsBtn {
+    background-color: var(--main-color);
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: transparent;
+    padding: 6px 14px 9px 10px;
+}
+
+/********************/

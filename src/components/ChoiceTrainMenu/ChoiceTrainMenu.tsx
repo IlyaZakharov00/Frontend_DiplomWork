@@ -9,7 +9,7 @@ export const ChoiceTrainMenu = () => {
 
     return (
         <ul className='choiceTrain_menu_list'>
-            <li className='choiceTrain_menu_item' onClick={onClickHendler}>
+            <li className='choiceTrain_menu_item active_item' onClick={onClickHendler}>
                 <div className='item_number'>1</div>
                 <h3 className='item_title'>Билеты</h3>
                 <svg width="38" height="99" viewBox="0 0 38 99" fill="none" xmlns={icon_vector}>
