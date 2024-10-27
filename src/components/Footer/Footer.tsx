@@ -22,11 +22,11 @@ export const Footer = () => {
   }
 
   return (
-    <footer className='footer' id='contacts-section'>
-      <div className='footer_content_container'>
-        <div className='contactUs'>
+    <footer className='footer-container bg-black' id='contacts-section'>
+      <div className="row d-flex flex-xl-row flex-column justify-content-evenly m-auto w-75 pt-4">
+        <div className="col-xl-4 col-lg-12 p-0 pt-3 ps-xl-3 d-flex flex-column align-items-xl-baseline  align-items-lg-center ">
           <h2 className='contactUs_title'>Свяжитесь с нами</h2>
-          <ul className='contacts_container'>
+          <ul className='contacts_container p-0 pt-2 mt-3'>
             <li className="contact_item">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns={icon_phone} className='contact_icon'>
                 <path d="M5.98759 12.9341C8.53112 17.8306 12.1588 21.4352 16.9957 23.9772C18.0589 22.9146 19.1639 21.8728 20.2064 20.7476C20.9778 19.9142 21.77 19.7266 22.8958 19.9975C24.5637 20.4142 26.2942 20.6434 28.0037 20.8101C29.3798 20.956 29.9635 21.4352 29.9844 22.7896C30.0052 24.5606 30.0052 26.3317 29.9844 28.1028C29.9635 29.3946 29.3381 29.978 28.0454 29.9989C14.744 30.1239 2.50587 19.7475 0.421007 6.55819C0.191672 5.01631 0.0874286 3.4536 0.00403403 1.91172C-0.0585119 0.682385 0.608644 0.0364633 1.83871 0.0156271C3.67339 -0.00520904 5.50807 -0.00520904 7.3636 0.0156271C8.53112 0.0364633 9.05234 0.661549 9.17743 1.82837C9.40677 3.68279 9.65695 5.53721 10.0531 7.34996C10.2407 8.24592 10.1365 8.91267 9.51101 9.51692C8.32264 10.6629 7.15511 11.7881 5.98759 12.9341Z" fill="#E5E5E5" />
@@ -46,25 +46,24 @@ export const Footer = () => {
               <span className='contact_link'>tu.train.tickets</span>
             </li>
             <li className="contact_item">
-              <svg width="21" height="30" viewBox="0 0 21 30" fill="none" xmlns={icon_local} className='contact_icon'>
+              <svg width="21" height="30" viewBox="0 0 21 30" fill="none" xmlns={icon_local} className='contact_icon contact_icon_local'>
                 <path d="M10.4669 30C7.57111 26.692 5.0677 23.2905 2.99398 19.59C1.76095 17.4034 0.696068 15.1606 0.229013 12.6936C-0.574321 8.41378 0.733433 4.82543 4.18964 2.20891C7.66452 -0.407596 11.5131 -0.706626 15.3429 1.3492C19.2101 3.40503 21.0597 6.8065 20.8541 11.1798C20.7981 12.5254 20.4245 13.8898 19.9387 15.1606C17.865 20.7301 14.3341 25.365 10.4669 30ZM10.4295 6.8065C8.37445 6.8065 6.69305 8.48854 6.71173 10.5444C6.71173 12.6002 8.39313 14.2822 10.4482 14.2822C12.5032 14.2822 14.1846 12.6002 14.1846 10.5444C14.1659 8.48854 12.5032 6.8065 10.4295 6.8065Z" fill="#E5E5E5" />
               </svg>
-              <span className='contact_link'>г. Москва<br></br>
-                ул. Московская 27-35<br></br>
-                555 555</span>
+              <span className='contact_link contact_link_local'>г. Москва<br></br>
+                ул. Московская 27-35-555 555</span>
             </li>
           </ul>
         </div>
-        <div className='subscribe'>
+        <div className="col-xl-6 col-lg-12 p-0 pt-4 ps-xl-5 d-flex flex-column align-items-lg-center align-items-xl-baseline">
           <h2 className='subscribe_title'>Подписка</h2>
-          <h3 className='form_title'>Будьте в курсе событий</h3>
-          <form action="submit" className='form_submit'>
-            <input type="text" placeholder='email' className='input_email' />
+          <h3 className='form_title mt-4'>Будьте в курсе событий</h3>
+          <form action="submit" className='form_submit d-lg-flex align-items-center flex-wrap w-100 gx-30' onSubmit={(e) => e.preventDefault()}>
+            <input type="text" placeholder='email' className='input_email flex-grow-1' />
             <button className='btn_submit'>Отправить</button>
           </form>
-          <div className='links_container'>
+          <div className='links_container d-flex flex-column align-items-lg-center align-items-xl-baseline'>
             <h2 className='subscribe_title'>Подписывайтесь на нас</h2>
-            <ul className='links_list'>
+            <ul className='links_list d-flex flex-wrap p-0 flex-lg-row text-sm-center flex-column align-items-center w-100 justify-content-lg-evenly justify-content-xl-between'>
               <li className='link_item'>
                 <svg width="38" height="30" viewBox="0 0 38 30" fill="none" xmlns={icon_youtube} className='footer_svg'>
                   <path className='link_item_icon' d="M18.5241 0C22.8289 0.174864 26.7823 0.324748 30.7231 0.512103C31.5138 0.549573 32.317 0.661986 33.1077 0.81187C35.2036 1.19907 36.672 2.62296 36.9983 4.78379C37.287 6.74477 37.4501 8.74321 37.5631 10.7417C37.7764 14.2889 37.7137 17.8237 37.4627 21.3709C37.3623 22.8323 37.1991 24.2936 36.923 25.73C36.5214 27.7909 35.0028 29.2148 32.8943 29.4272C30.2713 29.7019 27.6483 29.9393 25.0127 29.9767C20.0302 30.0392 15.0351 29.9642 10.0526 29.8893C8.44616 29.8643 6.82716 29.7019 5.22071 29.5146C2.45963 29.1774 0.966132 27.691 0.57707 24.9307C-0.0127984 20.7089 -0.0881007 16.4622 0.0750543 12.2155C0.162907 9.89232 0.363713 7.58162 0.58962 5.25842C0.765326 3.43483 1.6062 1.94849 3.35071 1.21156C4.20413 0.849341 5.15796 0.661986 6.08669 0.612025C10.3538 0.362219 14.6084 0.187355 18.5241 0ZM15.1104 21.5833C18.8755 19.4224 22.5904 17.2866 26.3807 15.1008C22.5779 12.915 18.863 10.7791 15.1104 8.6308C15.1104 12.9774 15.1104 17.2491 15.1104 21.5833Z" fill="#E5E5E5" />
@@ -97,15 +96,22 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className='footer_logo_container'>
-        <h3 className="footer_logo" id="logo" onClick={scrollUp}>
-          <NavLink className={"footer_logo_text"} to="/Frontend_DiplomWork">Лого</NavLink>
-        </h3>
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns={icon_arrowUp} className='footer_svg' onClick={scrollUp}>
-          <circle className='link_item_icon svg_arrowUp_circle' cx="18" cy="18" r="17.5" stroke="#E5E5E5" />
-          <path className='link_item_icon svg_arrowUp_arrow' d="M18.3 16.7569C19.9256 18.3882 21.4531 19.9325 22.9667 21.4552C23.3758 21.8668 24.0742 21.835 24.4853 21.4256C24.8978 21.0149 24.8646 20.3803 24.4521 19.9696C22.6174 18.1427 20.7773 16.3107 18.9612 14.5024C18.571 14.114 17.9403 14.1139 17.5503 14.5026C15.8016 16.2458 13.9963 18.0515 12.1839 19.8493C11.7543 20.2753 11.7195 20.9344 12.1606 21.3485C12.579 21.7412 13.272 21.7659 13.6799 21.3622C15.1455 19.912 16.6793 18.383 18.3 16.7569Z" fill="#E5E5E5" />
-        </svg>
-        <div className='footer_year'>2018 WEB</div>
+      <div className="row d-flex flex-row justify-content-between align-items-center gx-0 mt-4">
+        <div className='footer_logo_container d-flex justify-content-evenly'>
+          <div className="col-lg-1 col-3">
+            <h3 className="footer_logo" id="logo" onClick={scrollUp}>
+              <NavLink className={"footer_logo_text"} to="/Frontend_DiplomWork">Лого</NavLink>
+            </h3>
+          </div>
+          <div className="col-lg-1 col-3 text-center">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns={icon_arrowUp} className='footer_svg' onClick={scrollUp}>
+              <circle className='link_item_icon svg_arrowUp_circle' cx="18" cy="18" r="17.5" stroke="#E5E5E5" />
+              <path className='link_item_icon svg_arrowUp_arrow' d="M18.3 16.7569C19.9256 18.3882 21.4531 19.9325 22.9667 21.4552C23.3758 21.8668 24.0742 21.835 24.4853 21.4256C24.8978 21.0149 24.8646 20.3803 24.4521 19.9696C22.6174 18.1427 20.7773 16.3107 18.9612 14.5024C18.571 14.114 17.9403 14.1139 17.5503 14.5026C15.8016 16.2458 13.9963 18.0515 12.1839 19.8493C11.7543 20.2753 11.7195 20.9344 12.1606 21.3485C12.579 21.7412 13.272 21.7659 13.6799 21.3622C15.1455 19.912 16.6793 18.383 18.3 16.7569Z" fill="#E5E5E5" />
+            </svg></div>
+          <div className="col-lg-1 col-3">
+            <div className='footer_year'>2024 WEB</div>
+          </div>
+        </div>
       </div>
     </footer >
   );

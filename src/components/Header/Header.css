@@ -1,26 +1,25 @@
-.header_container {
-    max-width: 1920px;
-    min-height: 985px;
-    border-bottom: 8px solid var(--main-color);
-    display: flex;
-    flex-direction: column;
+.header {
     background-image: url('../../static-files/images/background-image.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.header_container {
+    max-width: 1920px;
+    min-height: 825px;
+    border-bottom: 8px solid var(--main-color);
+    display: flex;
+    flex-direction: column;
     position: relative;
 }
 
 .header_body {
     display: flex;
     justify-content: space-between;
-    column-gap: 30px;
-    padding: 13.2vw 12vw 0px 18vw;
 }
 
 .search_tickets_menu {
-    width: 38vw;
-    height: 567px;
     background-color: var(--background-color);
 }
 
@@ -29,16 +28,15 @@
 }
 
 .form_content {
-    width: 100%;
-    padding: 0 25px 0 15px;
+    padding: 0 1.2vw 0 1.1vw;
 }
 
 .direction_ticket {
-    margin-top: 79px;
+    padding-top: 72px;
 }
 
 .data_ticket {
-    margin-top: 57px;
+    padding-top: 55px;
 }
 
 .change {
@@ -54,36 +52,45 @@
 }
 
 .input_container {
-    position: relative;
     display: flex;
     justify-content: space-between;
-    padding-top: 15px;
+    padding-top: 11px;
     align-items: center;
+    row-gap: 20px;
+}
 
+.input-with-dropdown {
+    width: 100%;
 }
 
 .input_form_tickets {
-    position: relative;
     color: var(--text-color-black);
-    width: 17vw;
-    height: 3.2vw;
+    width: 100%;
+    height: 60px;
     border: 0;
     border-radius: 3px;
     padding-left: 25px;
+}
+
+.input_form_tickets:focus-visible {
+    outline: solid var(--main-color);
+}
+
+.btn-container {
+    padding: 93px 0 52px 0;
 }
 
 .search_tickets_btn {
     color: black;
     background-color: var(--main-color);
     cursor: pointer;
-    font-size: 1.2vw;
+    font-size: calc(20px + 4 * (100vw - 360px) / 1560);
     font-weight: 700;
     text-transform: uppercase;
     border: 0;
     border-radius: 5px;
-    width: 16.8vw;
-    height: 3vw;
-    margin: 4.85vw 0 0 18.9vw;
+    width: 323px;
+    height: 60px;
 }
 
 .search_tickets_btn:hover {
@@ -105,7 +112,6 @@
 
 .input_calendar {
     background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_calendar.svg);
-    width: 47%;
 }
 
 .input_local {
@@ -113,6 +119,7 @@
 }
 
 .btn_local_change {
+    padding: 0 30px;
     width: 24px;
     height: 24px;
     background-color: transparent;
@@ -128,51 +135,24 @@
     transform: rotate(-180deg);
 }
 
-.slogan {
-    max-width: 506px;
+.light_text {
     font-weight: 100;
-    font-size: 3.75vw;
-    padding-top: 8.2vw;
+    font-size: calc(28px + 44 * (100vw - 360px) / 1560);
 }
 
 .bold_text {
+    font-size: calc(28px + 44 * (100vw - 360px) / 1560);
+    ;
     font-weight: 700;
-}
-
-.burger-menu {
-    display: none;
-    position: relative;
-    width: 40px;
-    height: 35px;
-    z-index: 10;
-}
-
-.burger-line {
-    position: absolute;
-    height: 5.5px;
-    width: 30px;
-    background-color: var(--text-color);
-    left: 5px;
-}
-
-.burger-line:nth-child(1) {
-    transform: translateY(0px);
-}
-
-.burger-line:nth-child(2) {
-    transform: translateY(10px);
-}
-
-.burger-line:nth-child(3) {
-    transform: translateY(20px);
 }
 
 ::-webkit-calendar-picker-indicator {
     opacity: 1;
-    padding-right: 130px;
     background: none;
+    width: 40%;
     background-size: contain;
 }
+
 
 .input_form_tickets::placeholder {
     font-size: 18px;
@@ -182,7 +162,7 @@
 
 
 .dropdown-container {
-    width: 48%;
+    /* width: 17.8%; */
     margin-top: 10px;
     display: flex;
     position: absolute;
@@ -203,168 +183,65 @@
     opacity: 0.5;
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-
-    .nav_item_text {
-        font-size: 24px;
-    }
-
-    .header_body {
-        text-align: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .slogan {
-        font-size: 50px;
-        max-width: 865px;
-        padding-top: 0;
-        margin-bottom: 50px;
-    }
-
-    .search_tickets_menu {
-        width: 60vw;
-        height: 500px;
-    }
-
-    .input_form_tickets {
-        width: 25vw;
-        height: 7vw;
-    }
-
-    .search_tickets_btn {
-        font-size: 14px;
-        width: 20vw;
-        height: 5vw;
-        margin: 4.85vw 0 0 32vw;
-    }
-}
-
-@media (min-width: 320px) and (max-width: 768px) {
-
-    .header_body {
-        margin: 0 auto;
-        padding: 0;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .navbar_container {
-        background-color: transparent;
-    }
-
-    .nav_list {
-        display: none;
-    }
-
-    .nav_item_text {
-        font-size: 16px;
-    }
-
-    .slogan {
-        font-size: 12vw;
-        margin-bottom: 10vw;
-        max-width: 100%;
-    }
-
-    .burger-menu {
-        display: block;
-        top: -50px;
-        left: 70vw
-    }
-
-    .search_tickets_menu {
-        width: 85vw;
-        height: 100%;
-    }
-
-    .input_container {
-        flex-direction: column;
-    }
-
-    .input_form_tickets {
-        width: 70vw;
-        height: 15vw;
-    }
-
-    .input_calendar {
-        margin-bottom: 20px;
-    }
-
-    .btn_local_change {
-        width: 50px;
-        height: 50px;
-    }
-
-    .direction_ticket {
-        margin-top: 10vw;
-    }
-
-    .data_ticket {
-        margin-top: 10vw;
-    }
-
-    .search_tickets_btn {
-        font-size: 17px;
-        width: 65vw;
-        height: 12vw;
-        margin: 5vw 0 5vw 0vw;
-    }
+.hidden {
+    overflow: hidden;
+    opacity: 0;
 }
 
 /*/////////////////////////*/
 
-.header_container-choiceTrain {
-    max-width: 1920px;
-    min-height: 596px;
-    display: flex;
-    flex-direction: column;
+.header-choiceTrain {
     background-image: url('../../static-files/images/background-image-2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    position: relative;
 }
 
-.header_body-choiceTrain {
+/* .header_container-choiceTrain {
+    max-width: 1920px;
+    min-height: 596px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+} */
+
+/* .header_body-choiceTrain {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     column-gap: 30px;
     padding: 5.8vw 11.2vw 0px 11.2vw;
-}
+} */
 
-.search_tickets_menu-choiceTrain {
+/* .search_tickets_menu-choiceTrain {
     height: 322px;
     background-color: var(--background-color);
-}
+} */
 
-.direction_ticket-choiceTrain,
+/* .direction_ticket-choiceTrain,
 .data_ticket-choiceTrain {
     width: 35.8vw;
-}
+} */
 
-.form_content-choiceTrain {
+/* .form_content-choiceTrain {
     display: flex;
     justify-content: space-between;
-    /* flex-wrap: wrap; */
     width: 100%;
     padding: 1.5vw 2.2vw 0px 2.3vw;
     column-gap: 1.5vw;
-}
+} */
 
-.input_container-choiceTrain {
+/* .input_container-choiceTrain {
     position: relative;
     display: flex;
     justify-content: space-between;
     padding-top: 15px;
     align-items: center;
 
-}
+} */
 
-.input_form_tickets-choiceTrain {
+/* .input_form_tickets-choiceTrain {
     position: relative;
     color: var(--text-color-black);
     width: 17vw;
@@ -372,9 +249,9 @@
     border: 0;
     border-radius: 3px;
     padding-left: 25px;
-}
+} */
 
-.search_tickets_btn-choiceTrain {
+/* .search_tickets_btn-choiceTrain {
     color: black;
     background-color: var(--main-color);
     cursor: pointer;
@@ -386,4 +263,4 @@
     width: 16.8vw;
     height: 3vw;
     margin: 2.55vw 0 0 18.9vw;
-}
+} */

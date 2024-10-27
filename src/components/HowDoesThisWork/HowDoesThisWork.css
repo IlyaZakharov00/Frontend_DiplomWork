@@ -1,129 +1,53 @@
-.hdtw_header {
-    display: flex;
-    align-items: center;
-    width: 74.3%;
-    margin: auto;
-    padding-top: 62px;
+.hdtw-header-container {
+    padding: 3.3vw 14vw 0 13vw;
 }
 
-.hdtw_container {
-    margin-top: 4.9%;
+.hdtw-container {
+    margin-top: 6.1%;
     min-height: 575px;
     background-image: url('../../static-files/images/background-image_2.png')
 }
 
 .hdtw_logo {
-    font-size: 1.9vw;
+    font-size: 36px;
     color: var(--text-color);
     text-transform: uppercase;
-    margin-right: 52%;
     text-align: center;
 }
 
 .btn_findMore {
-    font-size: 1.25vw;
+    font-size: 24px;
     font-weight: 700;
     background-color: transparent;
     border: 2px solid var(--text-color);
     color: var(--text-color);
     border-radius: 5px;
-    padding: 15px 74px;
+    padding: 9px 75px;
     text-align: center;
     cursor: pointer;
 }
 
-.btn_findMore:hover {
-    border: 2px solid var(--hover-color);
-    background-color: var(--hover-color);
-    color: var(--text-color-black);
-}
-
-.btn_findMore:active {
-    border: 2px solid var(--active-color);
-    color: var(--text-color-black);
-    background-color: var(--active-color);
-}
-
 .steps_container {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
+    list-style: none;
     margin-top: 97px;
-    padding: 0 26.3vw;
-    column-gap: 40px;
-}
-
-.hdtw_item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hdtw_image {
-    width: 162px;
-    height: 162px;
+    row-gap: 70px;
 }
 
 .hdtw_item_text {
-    font-size: 1.25vw;
+    font-size: 24px;
     color: var(--text-color);
     text-align: center;
-    padding-top: 30px;
+    padding-top: 32px;
 }
 
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hdtw_header {
-        width: 90%;
-        justify-content: space-between;
-    }
-
-    .hdtw_logo {
-        font-size: 30px;
-        margin-right: 0;
-    }
-
-    .btn_findMore,
-    .hdtw_item_text {
-        font-size: 24px;
-    }
-
-    .steps_container {
-        padding: 0;
-    }
-
-    .hdtw_item {
-        width: 33.3%;
-    }
+.first_text {
+    line-height: 29px;
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
-    .hdtw_header {
-        width: 85%;
-        justify-content: space-between;
-        flex-direction: column;
-    }
+.second_text {
+    line-height: 29px;
+}
 
-    .hdtw_logo {
-        font-size: 30px;
-        margin-right: 0;
-    }
-
-    .btn_findMore,
-    .hdtw_item_text {
-        font-size: 24px;
-    }
-
-    .btn_findMore {
-        margin-top: 30px;
-    }
-
-    .steps_container {
-        flex-wrap: wrap;
-        row-gap: 30px;
-    }
-
-    .hdtw_item {
-        width: 100%;
-    }
+.third_text {
+    line-height: 27px;
 }

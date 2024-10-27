@@ -87,63 +87,68 @@ export const Header = () => {
 	}
 
 	return (
-		<header className="header">
-			<div className={isOpenSearchTicketsPage ? "header_container-choiceTrain" : "header_container"}>
-				<NavBar />
-				<div className={isOpenSearchTicketsPage ? "header_body-choiceTrain" : 'header_body'}>
-					{isOpenSearchTicketsPage ? <></> :
-						<h2 className="slogan">
-							<span className="light_text">Вся жизнь - </span>
-							<span className="bold_text">путешествие!</span>
-						</h2>
-					}
-					<div className={isOpenSearchTicketsPage ? "search_tickets_menu-choiceTrain" : 'search_tickets_menu'}>
-						<form className={isOpenSearchTicketsPage ? "form_content-choiceTrain" : "form_content"} id="formSearch" onSubmit={searchTickets}>
-							<div className={isOpenSearchTicketsPage ? 'direction_ticket-choiceTrain' : 'direction_ticket'}>
-								<div className="direction_title">Направление</div>
-								<div className={isOpenSearchTicketsPage ? "input_container-choiceTrain" : "input_container"}>
-									<div className='input-with-dropdown from_city'>
-										<input type="text" id="from_city" className={isOpenSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Откуда" onChange={changeInputCityHendler} required autoComplete="off" />
-										{sortedListFrom.length !== 0 ?
-											<div className="dropdown-container">
-												{sortedListFrom.map((item: { _id: string, name: string }) => {
-													return (
-														<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
-													)
-												})}
-											</div> :
-											<></>
-										}
-									</div>
-									<button className="btn_local_change" onClick={changeCitiesHedler}></button>
-									<div className='input-with-dropdown to_city'>
-										<input type="text" id="to_city" className={isOpenSearchTicketsPage ? 'input_form_tickets-choiceTrain input_local' : 'input_form_tickets input_local'} placeholder="Куда" onChange={changeInputCityHendler} required autoComplete="off" />
-										{sortedListTo.length !== 0 ?
-											<div className="dropdown-container">
-												{sortedListTo.map((item: { _id: string, name: string }) => {
-													return (
-														<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
-													)
-												})}
-											</div> :
-											<></>
-										}
+		<header className={isOpenSearchTicketsPage ? 'header-choiceTrain' : 'header'}>
+			<NavBar />
+			<div className={isOpenSearchTicketsPage ? "header_container-choiceTrain" : "justify-content-lg-end justify-content-center header_container"}>
+				<div className="row m-0 d-flex">
+					<div className="d-flex justify-content-evenly wrapper-body p-0 align-items-center flex-lg-row flex-column ">
+						{isOpenSearchTicketsPage ? <></> :
+							<div className="col-lg-4 col-12 pt-lg-0 pt-5">
+								<h2 className="slogan">
+									<span className="light_text">Вся жизнь - </span>
+									<span className="bold_text">путешествие!</span>
+								</h2>
+							</div>
+						}
+						<div className={isOpenSearchTicketsPage ? 'col-lg-9 col-12 m-auto col-7 mt-lg-5 mt-5 search_tickets_menu bg-black bg-opacity-75' : 'col-lg-5 col-7 mt-lg-5 mt-5 search_tickets_menu bg-black bg-opacity-75'}>
+							<form className={isOpenSearchTicketsPage ? "form_content d-flex justify-content-xl-between align-items-baseline gap-5 flex-xl-nowrap flex-lg-nowrap flex-wrap justify-content-center" : "form_content"} id="formSearch" onSubmit={searchTickets}>
+								<div className={isOpenSearchTicketsPage ? 'direction_ticket w-50' : 'direction_ticket'}>
+									<div className="direction_title">Направление</div>
+									<div className="input_container flex-lg-row flex-column">
+										<div className='input-with-dropdown from_city'>
+											<input type="text" id="from_city" className='input_form_tickets input_local' placeholder="Откуда" onChange={changeInputCityHendler} required autoComplete="off" />
+											{sortedListFrom.length !== 0 ?
+												<div className="dropdown-container">
+													{sortedListFrom.map((item: { _id: string, name: string }) => {
+														return (
+															<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
+														)
+													})}
+												</div> : <></>
+											}
+										</div>
+										<button className="btn_local_change" onClick={changeCitiesHedler}></button>
+										<div className='input-with-dropdown to_city'>
+											<input type="text" id="to_city" className='input_form_tickets input_local' placeholder="Куда" onChange={changeInputCityHendler} required autoComplete="off" />
+											{sortedListTo.length !== 0 ?
+												<div className="dropdown-container">
+													{sortedListTo.map((item: { _id: string, name: string }) => {
+														return (
+															<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
+														)
+													})}
+												</div> : <></>
+											}
+										</div>
 									</div>
 								</div>
-							</div>
-							<div className={isOpenSearchTicketsPage ? "data_ticket-choiceTrain" : "data_ticket"}>
-								<div className="data_title">Дата</div>
-								<div className={isOpenSearchTicketsPage ? 'input_container-choiceTrain' : 'input_container'}>
-									<input type="date" id="data_start" className={isOpenSearchTicketsPage ? "input_form_tickets-choiceTrain input_calendar" : "input_form_tickets input_calendar"} placeholder="ДД/ММ/ГГ" />
-									<input type="date" id="data_end" className={isOpenSearchTicketsPage ? "input_form_tickets-choiceTrain input_calendar" : "input_form_tickets input_calendar"} placeholder="ДД/ММ/ГГ" />
+								<div className={isOpenSearchTicketsPage ? "data_ticket w-50" : "data_ticket"}>
+									<div className="data_title">Дата</div>
+									<div className='flex-lg-row flex-column input_container'>
+										<input type="date" id="data_start" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" />
+										<button className="btn_local_change hidden" disabled></button>
+										<input type="date" id="data_end" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" />
+									</div>
+									<div className="btn-container d-flex justify-content-end">
+										<button className="search_tickets_btn" type="submit">Найти билеты</button>
+									</div>
 								</div>
-								<button className={isOpenSearchTicketsPage ? "search_tickets_btn-choiceTrain" : "search_tickets_btn"} type="submit">Найти билеты</button>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
 				</div>
-				{isOpenSearchTicketsPage ? <ChoiceTrainMenu /> : <></>}
 			</div >
+			{isOpenSearchTicketsPage ? <ChoiceTrainMenu /> : <></>}
 		</header >
 	);
 };

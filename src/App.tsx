@@ -6,7 +6,6 @@ import { Comments } from './components/Comments/Comments'
 import { Contacts } from './components/Contacts/Contacts'
 import { ChoiceTrain } from './components/ChoiceTrain/ChoiceTrain'
 import { Layout } from './components/Layout/Layout'
-// import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
 

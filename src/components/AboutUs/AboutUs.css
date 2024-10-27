@@ -1,15 +1,14 @@
-.about_us_container {
-    margin-top: 142px;
-    margin-left: 258px;
+.section_aboutUs {
+    padding: 7.4vw 6vw 0vw 13.4vw;
 }
 
-.about_us_text_container {
-    display: flex;
-    padding-top: 28px;
+.about-us-container {
+    margin-top: 1.1vw;
+    border-left: 10px solid var(--main-color);
 }
 
-.about_us_content_container {
-    width: 70%;
+.about_us_textContainer {
+    padding-left: 1vw;
 }
 
 .about_us_title {
@@ -20,46 +19,22 @@
 
 .about_us_text {
     color: var(--text-color-black);
-    margin-bottom: 25px;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 29px;
 }
 
 .left-line {
-    /* height: 230px; */
+    height: 91%;
     width: 10px;
-    margin-right: 18px;
+    margin-right: 19px;
     background-color: var(--main-color);
 }
 
-.about_us_text {
-    font-size: 24px;
+.about_us_text:last-child {
+    margin-bottom: 7px;
 }
 
 .text_bold {
     font-weight: 700;
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .about_us_container {
-        padding: 50px;
-        margin: 0;
-    }
-
-    .about_us_content_container {
-        width: 100%;
-    }
-}
-
-@media (min-width: 320px) and (max-width: 768px) {
-    .about_us_container {
-        padding: 20px;
-        margin: 0;
-    }
-
-    .about_us_content_container {
-        width: 100%;
-    }
-
-    .about_us_text {
-        font-size: 20px;
-    }
 }

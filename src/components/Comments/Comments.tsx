@@ -11,40 +11,43 @@ export const Comments = () => {
     }
 
     return (
-        <section className="comments_container" id='comments-section'>
-            <h2 className="comments_title">Отзывы</h2>
-            <ul className="comments_items">
-                <li className="comments_item">
-                    <div className="item_container">
-                        <img src={user_1} alt="user_photo" className="user_photo" />
-                        <div className="comment_content">
-                            <div className="user_name">Екатерина Вальнова</div>
-                            <p className="user_comment">"Доброжелательные подсказки
-                                на всех этапах помогут правильно заполнить поля и без затруднений купить авиа или ж/д билет, даже если вы заказываете онлайн билет впервые."
-                            </p>
-                        </div>
-                    </div>
-                </li>
-                <li className="comments_item">
-                    <div className="item_container">
-                        <img src={user_2} alt="user_photo" className="user_photo" />
-                        <div className="comment_content">
-                            <div className="user_name">Евгений Стрыкало</div>
-                            <div className="user_comment">
-                                "СМС-сопровождение до посадки
-                                Сразу после оплаты ж/д билетов
-                                и за 3 часа до отправления мы пришлем вам СМС-напоминание о поездке."
+        <section className="comments_container d-flex flex-column text-center gx-0 pt-lg-5 px-lg-5 mx-lg-5" id="comments-section">
+            <div className="row pt-lg-5 pt-5 ps-lg-5 ms-lg-3 gx-0">
+                <div className="col-xl-2 col-lg-3 col-12 pt-lg-5 px-0">
+                    <h2 className="comments_title pt-lg-2 ps-lg-4">Отзывы</h2>
+                </div>
+            </div>
+            <div className="row gx-0">
+                <div className="col-xl-10 col-12 pt-lg-5 pt-5 mt-lg-3 m-auto p-0 mt-sm-5">
+                    <ul className="comments_items d-flex flex-xl-row flex-lg-column flex-column align-items-center p-0 mx-4">
+                        <li className="item_container d-lg-flex align-items-center flex-xl-row">
+                            <img src={user_1} alt="user_photo" className="user_photo user_photo_first" />
+                            <div className="comment_content d-flex flex-column text-start ps-lg-4 w-xl-50 w-100">
+                                <div className="user_name">Екатерина Вальнова</div>
+                                <p className="user_comment">"Доброжелательные подсказки на всех этапах помогут правильно заполнить поля и без затруднений купить авиа или ж/д билет, даже если вы заказываете онлайн билет впервые."
+                                </p>
                             </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div className="comments_pages">
-                <div className="page_item page_active" onClick={clickPageHendler}></div>
-                <div className="page_item" onClick={clickPageHendler}></div>
-                <div className="page_item" onClick={clickPageHendler}></div>
-                <div className="page_item" onClick={clickPageHendler}></div>
-                <div className="page_item" onClick={clickPageHendler}></div>
+                        </li>
+                        <li className="item_container d-lg-flex align-items-center flex-xl-row">
+                            <img src={user_2} alt="user_photo" className="user_photo user_photo_second" />
+                            <div className="comment_content d-flex flex-column  text-start px-lg-4 w-xl-50 w-100">
+                                <div className="user_name">Евгений Стрыкало</div>
+                                <p className="user_comment">
+                                    "СМС-сопровождение до посадки сразу после оплаты ж/д билетов и за 3 часа до отправления мы пришлем вам СМС-напоминание о поездке."
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row mx-lg-0 mt-lg-5 pt-lg-5 pt-5 gx-0 ">
+                <div className="col-xl-2 col-5  m-auto d-flex comments_pages justify-content-evenly pt-lg-4 px-0">
+                    <div className="page_item page_active" onClick={clickPageHendler}></div>
+                    <div className="page_item" onClick={clickPageHendler}></div>
+                    <div className="page_item" onClick={clickPageHendler}></div>
+                    <div className="page_item" onClick={clickPageHendler}></div>
+                    <div className="page_item" onClick={clickPageHendler}></div>
+                </div>
             </div>
         </section>
     )

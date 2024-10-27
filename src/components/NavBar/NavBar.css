@@ -1,54 +1,43 @@
-.logo {
-    position: relative;
-    text-align: left;
-    padding-top: 0.75%;
-    padding-left: 13.4%;
-    height: 64px;
+.logo_container {
+    padding-top: 0.45%;
+    padding-left: 13%;
 }
 
 .logo_text {
-    position: relative;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 36px;
     font-weight: 900;
-    z-index: 2;
-}
-
-.logo::after {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.6;
-    background-color: black;
-    z-index: 1;
 }
 
 .navbar_container {
     background-color: var(--background-color);
-    padding: 1% 0 1.4% 0%;
-    padding-left: 13.4%;
+    padding: 0.5% 0 0.3% 0%;
 }
 
-.nav_list {
-    display: flex;
+.navList {
     list-style: none;
+    padding-left: 13.4vw;
 }
 
-.nav_item {
+.nav_item:nth-child(-n+2) {
     margin-right: 5.3%;
 }
 
+.nav_item:nth-child(3) {
+    margin-right: 4.5%;
+}
+
 .nav_item_text {
+    color: var(--text-color);
     text-decoration: none;
     font-size: 30px;
     font-weight: 300;
     line-height: 48px;
+    white-space: nowrap;
 }
 
 .nav_item_text:hover,
-.logo :hover {
+.logo_container :hover {
     color: var(--main-color);
 }

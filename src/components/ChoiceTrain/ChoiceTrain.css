@@ -1,39 +1,14 @@
-.choiceTrain_container {
-    display: flex;
-    justify-content: space-between;
-    padding: 5vw 13.3vw 0 13.5vw;
-}
-
 .choiceTrain_aside {
     background-color: var(--aside-background-color);
-    max-width: 364px;
-    height: 1012px;
+}
+
+.choiceTrain_container {
+    margin-bottom: 123px;
 }
 
 .aboutTrainSection {
     border-bottom: 1px solid;
 }
-
-.aboutTrain_dates {
-    padding: 41px 35px 10px 28px;
-}
-
-.aboutTrain_functionsList {
-    padding: 30px 30px 10px 65px;
-}
-
-.aboutTrain_price {
-    padding: 35px 35px 135px 32px;
-}
-
-.aboutTrain_cityFirst {
-    padding: 35px 35px 135px 32px;
-}
-
-.aboutTrain_citySecond {
-    padding: 35px 35px 135px 32px;
-}
-
 
 .aboutTrain_title,
 .price_title,
@@ -44,7 +19,6 @@
 }
 
 .aboutTrain_input {
-    width: 15.5vw;
     height: 45px;
     max-width: 295px;
     margin-bottom: 23px;
@@ -124,10 +98,6 @@ input:checked+.slider:before {
     opacity: 0;
 }
 
-.choiceTrain_main {
-    width: 50vw;
-}
-
 .settings_tickets {
     display: flex;
     justify-content: space-between;
@@ -140,11 +110,22 @@ input:checked+.slider:before {
 .show_by,
 .show_number {
     font-size: 18px;
-    color: red;
+    color: var(--user-comment-color);
 }
 
 .select_options {
     display: flex;
+}
+
+select {
+    padding: 0 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select option {
+    color: black;
 }
 
 .sorting_by {
@@ -155,12 +136,16 @@ input:checked+.slider:before {
     padding-right: 5px;
 }
 
-.show_number:not(:last-child) {
-    padding-right: 0.8vw;
+.show_number {
+    cursor: pointer;
 }
 
-.searched_tickets {
-    padding-right: 18vw;
+.show_number:hover {
+    opacity: 0.5;
+}
+
+.show_number:not(:last-child) {
+    padding-right: 0.8vw;
 }
 
 .select_option_input {
