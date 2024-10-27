@@ -1,5 +1,5 @@
 import './ChoiceTrainMenu.css'
-import icon_vector from '../../static-files/icons/icon_vector.svg'
+// import icon_vector from '../../static-files/icons/icon_vector.svg'
 
 export const ChoiceTrainMenu = () => {
 
