@@ -7,7 +7,6 @@
 .comments_items {
     list-style: none;
     row-gap: 50px;
-    /* column-gap: 50px; */
 }
 
 .user_name {

@@ -7,7 +7,6 @@ import { StyledEngineProvider } from '@mui/material';
 import { useEffect } from 'react';
 import './SliderTime.css'
 
-
 export default function SliderTimeArrival() {
     const dispatch = useDispatch();
     const state = useSelector((state: any) => state.searchTicketsState);

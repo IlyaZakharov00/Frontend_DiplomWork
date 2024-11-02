@@ -167,15 +167,9 @@ select option {
     font-weight: bold;
 }
 
-/* .lastTickets {} */
-
 .lastTickets_title {
     font-size: 30px;
     color: var(--text-color-black);
-}
-
-.pages {
-    column-gap: 30px;
 }
 
 .page-number,
@@ -198,7 +192,7 @@ select option {
     color: var(--user-comment-color);
     margin: auto;
     align-content: center;
-    font-size: 30px;
+    font-size: calc(14px + 16 * (100vw - 360px) / 1560);
     font-weight: 700;
 }
 

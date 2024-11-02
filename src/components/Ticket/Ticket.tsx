@@ -1,10 +1,10 @@
 import './Ticket.css'
+import moment from 'moment';
 import icon_train from '../../static-files/icons/icon_train.svg'
 import icon_arrow_travel from '../../static-files/icons/icon_arrow_travel.svg'
 import icon_arrow_travel_city from '../../static-files/icons/icon_arrow_travel_city.svg'
 import icon_rub from '../../static-files/icons/icon_rub.svg'
 import icon_sprite_functions from '../../static-files/icons/icon_sprite_functions.svg'
-import moment from 'moment';
 
 export const Ticket = (props: any) => {
     const { item } = props;

@@ -7,7 +7,6 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-
 export default function SliderPrice() {
     const dispatch = useDispatch();
     const state = useSelector((state: any) => state.searchTicketsState);

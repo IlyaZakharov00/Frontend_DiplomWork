@@ -60,6 +60,7 @@
 }
 
 .input-with-dropdown {
+    position: relative;
     width: 100%;
 }
 
@@ -142,7 +143,6 @@
 
 .bold_text {
     font-size: calc(28px + 44 * (100vw - 360px) / 1560);
-    ;
     font-weight: 700;
 }
 
@@ -153,16 +153,14 @@
     background-size: contain;
 }
 
-
 .input_form_tickets::placeholder {
     font-size: 18px;
     opacity: 1;
     color: var(--placeholder-color);
 }
 
-
 .dropdown-container {
-    /* width: 17.8%; */
+    width: 100%;
     margin-top: 10px;
     display: flex;
     position: absolute;
@@ -196,71 +194,3 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
-
-/* .header_container-choiceTrain {
-    max-width: 1920px;
-    min-height: 596px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-} */
-
-/* .header_body-choiceTrain {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    column-gap: 30px;
-    padding: 5.8vw 11.2vw 0px 11.2vw;
-} */
-
-/* .search_tickets_menu-choiceTrain {
-    height: 322px;
-    background-color: var(--background-color);
-} */
-
-/* .direction_ticket-choiceTrain,
-.data_ticket-choiceTrain {
-    width: 35.8vw;
-} */
-
-/* .form_content-choiceTrain {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1.5vw 2.2vw 0px 2.3vw;
-    column-gap: 1.5vw;
-} */
-
-/* .input_container-choiceTrain {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 15px;
-    align-items: center;
-
-} */
-
-/* .input_form_tickets-choiceTrain {
-    position: relative;
-    color: var(--text-color-black);
-    width: 17vw;
-    height: 3.2vw;
-    border: 0;
-    border-radius: 3px;
-    padding-left: 25px;
-} */
-
-/* .search_tickets_btn-choiceTrain {
-    color: black;
-    background-color: var(--main-color);
-    cursor: pointer;
-    font-size: 1.2vw;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: 0;
-    border-radius: 5px;
-    width: 16.8vw;
-    height: 3vw;
-    margin: 2.55vw 0 0 18.9vw;
-} */
