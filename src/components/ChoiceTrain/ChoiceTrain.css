@@ -1,4 +1,4 @@
-.choiceTrain_aside {
+.aboutTrain {
     background-color: var(--aside-background-color);
 }
 
@@ -11,11 +11,15 @@
 }
 
 .aboutTrain_title,
-.price_title,
-.cityFirst_title,
-.citySecond_title {
+.price_title {
     font-size: 30px;
     margin-bottom: 10px;
+}
+
+.cityFirst_title,
+.citySecond_title {
+    margin-bottom: 0;
+    margin-left: 10px;
 }
 
 .aboutTrain_input {
@@ -69,7 +73,6 @@
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 34px;
-
 }
 
 .slider:before {
@@ -157,4 +160,83 @@ select option {
 
 .show {
     display: flex;
+}
+
+.active_showNumber {
+    color: var(--text-color-black);
+    font-weight: bold;
+}
+
+/* .lastTickets {} */
+
+.lastTickets_title {
+    font-size: 30px;
+    color: var(--text-color-black);
+}
+
+.pages {
+    column-gap: 30px;
+}
+
+.page-number,
+.arrow-left,
+.arrow-right {
+    border-radius: 5px;
+    width: 85px;
+    height: 75px;
+    border: 2px solid #C4C4C4;
+    cursor: pointer;
+}
+
+.page-number:hover,
+.arrow-left:hover,
+.arrow-right:hover {
+    opacity: 0.5;
+}
+
+.page-number {
+    color: var(--user-comment-color);
+    margin: auto;
+    align-content: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.arrow-left,
+.arrow-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-active {
+    color: var(--text-color);
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+/*********/
+.accordion {
+    --bs-accordion-bg: transparent;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent;
+}
+
+.cityFirst_title,
+.citySecond_title {
+    color: var(--text-color);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    background-image: url('../../static-files/icons/accordion_arrow_plus.svg');
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url('../../static-files/icons/accordion_arrow_minus.svg');
 }

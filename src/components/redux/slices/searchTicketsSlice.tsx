@@ -59,6 +59,7 @@ const initialState: IState = {
         total_count: 0,
         items: []
     },
+    activePage: 1,
     loading: false,
     error: null,
 }
@@ -84,7 +85,27 @@ const searchTicketsSlice = createSlice({
         },
 
         addDates: (state, action: PayloadAction<any>) => {
-            state.dates = action.payload
+            console.log(action)
+            switch (action.payload.type) {
+                case 'data_start':
+                    state.dates.date_start = action.payload.payload
+                    break;
+
+                case 'data_end':
+                    state.dates.date_end = action.payload.payload
+                    break;
+
+                case 'date_start_arrival':
+                    state.dates.date_start_arrival = action.payload.payload
+                    break;
+
+                case 'date_end_arrival':
+                    state.dates.date_end_arrival = action.payload.payload
+                    break;
+
+                default:
+                    break;
+            }
         },
 
         addClass: (state, action: PayloadAction<any>) => {
@@ -106,11 +127,39 @@ const searchTicketsSlice = createSlice({
         },
 
         addPrices: (state, action: PayloadAction<any>) => {
-            state.prices = action.payload
+            state.prices.price_from = action.payload[0]
+            state.prices.price_to = action.payload[1]
         },
 
         addTimes: (state, action: PayloadAction<any>) => {
-            state.times = action.payload
+            switch (action.payload.type) {
+                case 'start_departure':
+                    state.times.start_departure_hour_from = action.payload.payload[0];
+                    state.times.start_departure_hour_to = action.payload.payload[1];
+                    break;
+
+                case 'end_departure':
+                    state.times.end_departure_hour_from = action.payload.payload[0];
+                    state.times.end_departure_hour_to = action.payload.payload[1];
+                    break;
+
+                case 'start_arrival':
+                    state.times.start_arrival_hour_from = action.payload.payload[0];
+                    state.times.start_arrival_hour_to = action.payload.payload[1];
+                    break;
+
+                case 'end_arrival':
+                    state.times.end_arrival_hour_from = action.payload.payload[0];
+                    state.times.end_arrival_hour_to = action.payload.payload[1];
+                    break;
+
+                case 'back':
+                    console.log(action.payload)
+                    break;
+
+                default:
+                    break;
+            }
         },
 
         addLimit: (state, action: PayloadAction<any>) => {
@@ -139,6 +188,19 @@ const searchTicketsSlice = createSlice({
             let tmp = state.cities.from_city;
             state.cities.from_city = state.cities.to_city
             state.cities.to_city = tmp;
+        },
+
+        addActivePage: (state, action: PayloadAction<any>) => {
+            state.activePage = action.payload
+        },
+
+        nextPage: (state) => {
+            state.activePage++
+        },
+
+        prevPage: (state) => {
+            if (state.activePage == 1) return;
+            state.activePage--
         }
     },
 

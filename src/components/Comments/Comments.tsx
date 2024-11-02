@@ -4,10 +4,11 @@ import './Comments.css'
 
 export const Comments = () => {
 
-    const clickPageHendler = (e: any) => {
+    const clickPageHendler = (e: React.MouseEvent<HTMLElement>) => {
         const activeNow = document.querySelector('.page_active');
+        const page = e.target as HTMLDivElement;
         activeNow?.classList.remove('page_active')
-        e.target.classList.add('page_active')
+        page.classList.add('page_active')
     }
 
     return (

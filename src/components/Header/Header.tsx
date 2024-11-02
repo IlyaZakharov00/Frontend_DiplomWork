@@ -23,7 +23,6 @@ export const Header = () => {
 
 	const state = useSelector((state: any) => state.searchTicketsState);
 
-
 	const searchTickets = async (e: FormEvent) => {
 		e.preventDefault();
 		dispatch(searchDirections(state));
@@ -41,7 +40,7 @@ export const Header = () => {
 			return;
 		}
 
-		const reg = new RegExp('^' + e.target.value, 'g')
+		const reg = new RegExp('^' + e.target.value.toLowerCase(), 'g')
 
 		for (const city of cityListResponse.payload) {
 			if (city.name.match(reg)) sortCityList.push(city)
@@ -63,17 +62,20 @@ export const Header = () => {
 		to_city_input.value = tmp;
 	}
 
-	const choiceCityHedler = (e: any) => {
-		const input = e.target.closest('.input-with-dropdown').querySelector('.input_local')
-		const idCity = e.target.getAttribute('id') as string;
+	const choiceCityHedler = (e: React.MouseEvent<HTMLElement>) => {
+		const div_city = e.target as HTMLDivElement;
+		const input_with_dropdown = div_city.closest('.input-with-dropdown') as HTMLDivElement
+		const input = input_with_dropdown.querySelector('.input_local') as HTMLInputElement;
+		const idCity = div_city.getAttribute('id') as string;
 		const typeAction = input.getAttribute('id') as string;
-		input.value = e.target.textContent.toUpperCase();
+		const name_city = div_city.textContent as string;
+		input.value = name_city.toUpperCase();
 
 		dispatch(sortedCitiesListSlice.actions.choiceCity({
 			type: typeAction,
 			payload: {
 				_id: idCity,
-				name: e.target.textContent.toUpperCase(),
+				name: name_city.toUpperCase(),
 			},
 		}))
 
@@ -81,9 +83,16 @@ export const Header = () => {
 			type: typeAction,
 			payload: {
 				_id: idCity,
-				name: e.target.textContent.toUpperCase(),
+				name: name_city.toUpperCase(),
 			},
 		}));
+	}
+
+	const hendlerChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const dataId = e.target.getAttribute('id')
+		const data = e.target.value
+		console.log(data)
+		dispatch(searchTicketsSlice.actions.addDates({ type: dataId, payload: data }))
 	}
 
 	return (
@@ -135,9 +144,9 @@ export const Header = () => {
 								<div className={isOpenSearchTicketsPage ? "data_ticket w-50" : "data_ticket"}>
 									<div className="data_title">Дата</div>
 									<div className='flex-lg-row flex-column input_container'>
-										<input type="date" id="data_start" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" />
+										<input type="date" id="data_start" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" onChange={hendlerChangeDate} />
 										<button className="btn_local_change hidden" disabled></button>
-										<input type="date" id="data_end" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" />
+										<input type="date" id="data_end" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" onChange={hendlerChangeDate} />
 									</div>
 									<div className="btn-container d-flex justify-content-end">
 										<button className="search_tickets_btn" type="submit">Найти билеты</button>

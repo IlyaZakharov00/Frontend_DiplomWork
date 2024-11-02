@@ -1,16 +1,18 @@
 import { NavLink } from 'react-router-dom'
 import './NavBar.css'
 import { useSelector } from 'react-redux'
+import React from 'react'
 
 export const NavBar = () => {
 
     const isOpenSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.isOpenSearchTicketsPage)
 
-    const scrollFromContainer = (e: any) => {
-        if (isOpenSearchTicketsPage) return
-        const id = e.target.getAttribute('data-id')
+    const scrollFromContainer = (e: React.MouseEvent<HTMLElement>) => {
+        if (isOpenSearchTicketsPage) return;
+        const section = e.target as HTMLElement;
+        const id = section.getAttribute('data-id') as string;
         const element = document.getElementById(id)
-        console.log(id, element)
+
         element?.scrollIntoView({
             behavior: 'smooth',
             block: 'start',

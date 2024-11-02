@@ -17,6 +17,7 @@ export type IState = {
     sort: string,
     isOpenSearchTicketsPage: boolean,
     responseFromServer: {total_count: number, items:[]},
+    activePage: number,
     loading: boolean,
     error: boolean | null,
 }

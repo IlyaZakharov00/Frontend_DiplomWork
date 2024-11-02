@@ -1,0 +1,23 @@
+.ticket-item {
+    border: 1px solid #C4C4C4;
+}
+
+.city-name {
+    font-size: 20px;
+    color: var(--text-color-black);
+    text-transform: capitalize;
+}
+
+.railway-name {
+    color: var(--user-comment-color);
+}
+
+.price-from-word {
+    color: var(--user-comment-color);
+}
+
+.price-ticket {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--main-color);
+}

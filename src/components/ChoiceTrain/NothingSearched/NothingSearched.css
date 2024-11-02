@@ -1,0 +1,6 @@
+.text-noSearched {
+    color: var(--text-color-black);
+    font-size: 40px;
+    margin: auto;
+    text-align: center;
+}

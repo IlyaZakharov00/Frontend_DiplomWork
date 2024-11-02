@@ -22,7 +22,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className='footer-container bg-black' id='contacts-section'>
+    <footer className='footer-container bg-black  mt-5' id='contacts-section'>
       <div className="row d-flex flex-xl-row flex-column justify-content-evenly m-auto w-75 pt-4">
         <div className="col-xl-4 col-lg-12 p-0 pt-3 ps-xl-3 d-flex flex-column align-items-xl-baseline  align-items-lg-center ">
           <h2 className='contactUs_title'>Свяжитесь с нами</h2>
