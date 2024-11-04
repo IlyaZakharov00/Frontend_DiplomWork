@@ -41,7 +41,7 @@ export const Comments = () => {
                     </ul>
                 </div>
             </div>
-            <div className="row mx-lg-0 mt-lg-5 pt-lg-5 pt-5 gap-0 ">
+            <div className="row mx-lg-0 mt-lg-5 pt-lg-5 pt-5 gap-0 mb-5">
                 <div className="col-xl-2 col-5  m-auto d-flex comments_pages justify-content-evenly pt-lg-4 px-0">
                     <div className="page_item page_active" onClick={clickPageHendler}></div>
                     <div className="page_item" onClick={clickPageHendler}></div>

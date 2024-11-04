@@ -1,18 +1,51 @@
 import './Ticket.css'
 import moment from 'moment';
-import icon_train from '../../static-files/icons/icon_train.svg'
-import icon_arrow_travel from '../../static-files/icons/icon_arrow_travel.svg'
-import icon_arrow_travel_city from '../../static-files/icons/icon_arrow_travel_city.svg'
-import icon_rub from '../../static-files/icons/icon_rub.svg'
-import icon_sprite_functions from '../../static-files/icons/icon_sprite_functions.svg'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import icon_train from '../../static-files/icons/ticket/train.svg'
+import icon_arrow_travel from '../../static-files/icons/ticket/arrow_travel.svg'
+import icon_arrow_travel_city from '../../static-files/icons/ticket/arrow_travel_city.svg'
+import icon_rub from '../../static-files/icons/ticket/rub.svg'
+import icon_sprite_functions from '../../static-files/icons/ticket/sprite_functions.svg'
+import { searchSeats } from '../redux/async action/searchSeats';
+import searchSeatsSlice from '../redux/slices/searchSeatsSlice';
 
 export const Ticket = (props: any) => {
     const { item } = props;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const state = useSelector((state: any) => state.searchTicketsState);
+
+    const choiceSeatsHendler = async (e: React.MouseEvent<HTMLElement>) => {
+        const button = e.target as HTMLButtonElement;
+        const ticket = button.closest('.ticket_container');
+        const departureID = ticket?.getAttribute('id');
+
+        const infoAboutTrain = {
+            trainNumber: item.departure.train.name,
+            fromCity: item.departure.from.city.name,
+            toCity: item.departure.to.city.name,
+            departureTimeStart: moment.unix(item.departure.from.datetime).format('HH:mm'),
+            durationTime: moment.utc(item.departure.duration * 1000).format('HH:mm'),
+            departureTimeEnd: moment.unix(item.departure.to.datetime).format('HH:mm'),
+            departureFromRailwayStation: item.departure.from.railway_station_name,
+            departureToRailwayStation: item.departure.to.railway_station_name,
+        }
+
+        const resp = await dispatch(searchSeats({ state, departureID }))
+        dispatch(searchSeatsSlice.actions.choiceSeats(resp))
+        dispatch(searchSeatsSlice.actions.addDepartureID(departureID))
+        dispatch(searchSeatsSlice.actions.addTrain(infoAboutTrain))
+        navigate(`/Frontend_DiplomWork/choiceSeats/${departureID}`);
+    }
 
     return (
-        <div className="ticket_container d-flex flex-xl-row flex-lg-row flex-column">
+        <div className="ticket_container d-flex flex-xl-row flex-lg-row flex-column" id={item.departure._id}>
             <div className="infoTrain flex-grow-1">
-                <img src={icon_train} alt="img train" className='train_icon' />
+                <svg width="86" height="86" viewBox="0 0 86 86" fill="none" xmlns={icon_train}>
+                    <path d="M55.7879 63.7038C56.7164 65.6856 59.433 66.369 59.5361 69C48.4635 69 37.5284 69 26.4557 69C26.6277 66.4031 29.2755 65.6856 30.2727 63.7379C29.3786 63.5329 28.5534 63.3962 27.7625 63.157C23.8423 61.9611 21.057 58.3392 21.057 54.2047C20.9882 45.389 20.9882 36.6416 21.0226 27.8601C21.0226 23.794 22.9139 20.7187 26.7308 19.3861C29.8257 18.3269 33.1268 17.6777 36.3936 17.3701C42.7896 16.7893 49.22 16.7893 55.5472 18.1219C57.1634 18.4636 58.7452 19.0444 60.1895 19.762C63.2843 21.2996 64.9005 23.9306 64.9349 27.3134C65.0037 36.3683 65.0381 45.4232 64.9349 54.478C64.9005 58.6467 61.8057 62.2003 57.748 63.2254C57.129 63.4304 56.4757 63.5329 55.7879 63.7038ZM40.1762 28.1676C35.5683 28.1676 31.0636 28.1676 26.6277 28.1676C26.6277 32.7463 26.6277 37.1884 26.6277 41.6304C31.2012 41.6304 35.6371 41.6304 40.1762 41.6304C40.1762 37.12 40.1762 32.7122 40.1762 28.1676ZM59.433 28.1676C54.8251 28.1676 50.3204 28.1676 45.8844 28.1676C45.8844 32.7463 45.8844 37.1884 45.8844 41.6304C50.4579 41.6304 54.8939 41.6304 59.433 41.6304C59.433 37.12 59.433 32.7122 59.433 28.1676ZM34.743 54.068C34.7774 51.8128 32.8861 49.9335 30.6166 49.9335C28.4158 49.9335 26.5589 51.7103 26.4901 53.8972C26.4214 56.1523 28.2439 58.0658 30.5134 58.1342C32.8174 58.1683 34.7086 56.3232 34.743 54.068ZM59.5017 53.9997C59.5017 51.7445 57.5761 49.8993 55.3065 49.9335C53.1057 49.9677 51.2832 51.7787 51.2488 53.9655C51.2144 56.2207 53.0713 58.1 55.3409 58.1342C57.6448 58.1342 59.5017 56.2548 59.5017 53.9997Z" fill="white" />
+                    <circle cx="43" cy="43" r="42" stroke="white" strokeWidth="2" />
+                </svg>
                 <div className="train_number ticket_text">{item.departure.train.name}</div>
                 <div className="train_diraction">
                     <div className="train_direction_from_city  ticket_text">
@@ -33,7 +66,7 @@ export const Ticket = (props: any) => {
                     </div>
 
                     <div className='time_travel'>
-                        <div className='time_travel_text'>{moment.unix(item.departure.duration).format('HH:mm')}</div>
+                        <div className='time_travel_text'>{moment.utc(item.departure.duration * 1000).format('HH:mm')}</div>
                         <svg width="30" height="20" viewBox="0 0 30 20" fill="none" xmlns={icon_arrow_travel} className='icon_arrow_travel'>
                             <path d="M19.3627 20C19.3627 17.8073 19.3627 15.3821 19.3627 12.8239C12.8621 12.8239 6.46582 12.8239 0 12.8239C0 11.0299 0 9.36877 0 7.57475C6.32677 7.57475 12.7231 7.57475 19.3279 7.57475C19.3279 4.91694 19.3279 2.42525 19.3279 0C22.9432 3.3887 26.5238 6.77741 30 10.0664C26.5585 13.2558 22.9432 16.6445 19.3627 20Z" fill="#FFA800" fillOpacity="0.79" />
                         </svg>
@@ -111,7 +144,7 @@ export const Ticket = (props: any) => {
                             <path className="sprite_food" d="M89.955 17.0709C89.955 17.7223 89.955 18.3486 89.955 18.9999C83.9616 18.9999 77.9933 18.9999 72 18.9999C72 18.3486 72 17.7348 72 17.0709C77.9683 17.0709 83.9366 17.0709 89.955 17.0709Z" fill="#C4C4C4" />
                         </svg>
                     </div>
-                    <button className='choiceSeatsBtn'>Выбрать места</button>
+                    <button className='choiceSeatsBtn' onClick={choiceSeatsHendler}>Выбрать места</button>
                 </div>
             </div>
         </div>

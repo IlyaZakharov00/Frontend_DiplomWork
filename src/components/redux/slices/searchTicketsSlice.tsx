@@ -22,16 +22,16 @@ const initialState: IState = {
     },
 
     class: {
-        have_first_class: false,
-        have_second_class: false,
-        have_third_class: false,
-        have_fourth_class: false,
+        have_first_class: undefined,
+        have_second_class: undefined,
+        have_third_class: undefined,
+        have_fourth_class: undefined,
     },
 
     comfortOptions: {
-        have_wifi: false,
-        have_air_conditioning: false,
-        have_express: false,
+        have_wifi: undefined,
+        have_air_conditioning: undefined,
+        have_express: undefined,
     },
 
     prices: {
@@ -59,6 +59,7 @@ const initialState: IState = {
         total_count: 0,
         items: []
     },
+
     activePage: 1,
     loading: false,
     error: null,
@@ -132,6 +133,7 @@ const searchTicketsSlice = createSlice({
         },
 
         addTimes: (state, action: PayloadAction<any>) => {
+            console.log(action)
             switch (action.payload.type) {
                 case 'start_departure':
                     state.times.start_departure_hour_from = action.payload.payload[0];
@@ -151,10 +153,6 @@ const searchTicketsSlice = createSlice({
                 case 'end_arrival':
                     state.times.end_arrival_hour_from = action.payload.payload[0];
                     state.times.end_arrival_hour_to = action.payload.payload[1];
-                    break;
-
-                case 'back':
-                    console.log(action.payload)
                     break;
 
                 default:

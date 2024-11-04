@@ -3,7 +3,7 @@
 }
 
 .slider_price .css-1xcmt9q-MuiSlider-thumb {
-    background-color: white;
+    background-color: var(--text-color);
     width: 24px;
     height: 24px;
 }

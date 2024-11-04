@@ -112,11 +112,11 @@
 }
 
 .input_calendar {
-    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_calendar.svg);
+    background-image: url('../../static-files/icons/header/calendar.svg');
 }
 
 .input_local {
-    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_local.svg);
+    background-image: url('../../static-files/icons/header/local.svg');
 }
 
 .btn_local_change {
@@ -124,7 +124,7 @@
     width: 24px;
     height: 24px;
     background-color: transparent;
-    background-image: url(/Frontend_DiplomWork/src/static-files/icons/icon_change.svg);
+    background-image: url('../../static-files/icons/header/change.svg');
     background-repeat: no-repeat;
     background-position: center center;
     border: 0;

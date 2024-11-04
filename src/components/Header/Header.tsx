@@ -8,6 +8,7 @@ import { ChoiceTrainMenu } from "../ChoiceTrainMenu/ChoiceTrainMenu";
 import { searchDirections } from "../redux/async action/searchDirections";
 import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
 import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
+import searchSeatsSlice from "../redux/slices/searchSeatsSlice";
 
 export const Header = () => {
 	const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export const Header = () => {
 	const searchTickets = async (e: FormEvent) => {
 		e.preventDefault();
 		dispatch(searchDirections(state));
+		dispatch(searchSeatsSlice.actions.closeChoiceSeats())
 		navigate("/Frontend_DiplomWork/choiceTrain");
 	};
 

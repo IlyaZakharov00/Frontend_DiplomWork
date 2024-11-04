@@ -228,9 +228,9 @@ select option {
 }
 
 .accordion-button::after {
-    background-image: url('../../static-files/icons/accordion_arrow_plus.svg');
+    background-image: url('../../static-files/icons/aside/accordion_arrow_plus.svg');
 }
 
 .accordion-button:not(.collapsed)::after {
-    background-image: url('../../static-files/icons/accordion_arrow_minus.svg');
+    background-image: url('../../static-files/icons/aside/accordion_arrow_minus.svg');
 }

@@ -1,14 +1,14 @@
 import './Footer.css'
-import icon_youtube from '../../static-files/icons/icon_youtube.svg'
-import icon_google from '../../static-files/icons/icon_google.svg'
-import icon_facebook from '../../static-files/icons/icon_facebook.svg'
-import icon_in from '../../static-files/icons/icon_in.svg'
-import icon_twitter from '../../static-files/icons/icon_twitter.svg'
-import icon_arrowUp from '../../static-files/icons/icon_arrowUp.svg'
-import icon_skype from "../../static-files/icons/icon_skype.svg"
-import icon_phone from "../../static-files/icons/icon_phone.svg"
-import icon_local from "../../static-files/icons/icon_local.svg"
-import icon_email from "../../static-files/icons/icon_email.svg"
+import icon_youtube from '../../static-files/icons/footer/youtube.svg'
+import icon_google from '../../static-files/icons/footer/google.svg'
+import icon_facebook from '../../static-files/icons/footer/facebook.svg'
+import icon_in from '../../static-files/icons/footer/in.svg'
+import icon_twitter from '../../static-files/icons/footer/twitter.svg'
+import icon_skype from "../../static-files/icons/footer/skype.svg"
+import icon_phone from "../../static-files/icons/footer/phone.svg"
+import icon_email from "../../static-files/icons/footer/email.svg"
+import icon_local from "../../static-files/icons/footer/local.svg"
+import icon_arrowUp from '../../static-files/icons/footer/arrowUp.svg'
 import { NavLink } from 'react-router-dom'
 
 export const Footer = () => {
@@ -22,7 +22,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className='footer-container bg-black  mt-5' id='contacts-section'>
+    <footer className='footer-container bg-black' id='contacts-section'>
       <div className="row d-flex flex-xl-row flex-column justify-content-evenly m-auto w-75 pt-4">
         <div className="col-xl-4 col-lg-12 p-0 pt-3 ps-xl-3 d-flex flex-column align-items-xl-baseline  align-items-lg-center ">
           <h2 className='contactUs_title'>Свяжитесь с нами</h2>

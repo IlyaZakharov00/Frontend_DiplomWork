@@ -37,7 +37,7 @@
     height: 95px;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid white;
+    border-top: 1px solid var(--text-color);
 }
 
 .footer_logo_text {
@@ -125,7 +125,7 @@
 }
 
 .footer_svg:active>.link_item_icon {
-    fill: white;
+    fill: var(--text-color);
     cursor: pointer;
 }
 

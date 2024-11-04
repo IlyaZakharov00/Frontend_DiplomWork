@@ -45,18 +45,18 @@
 :root {
   --text-color: white;
   --text-color-black: black;
-
   --active-color: white;
   --hover-color: #FFCA62;
-
   --main-color: #FFA800;
-
   --user-comment-color: #928F94;
   --background-color: #292929;
+  --background-color-2: #F7F6F6;
   --placeholder-color: #E5E5E5;
-
+  --ticket-section-color: #E4E0E9;
   --aside-background-color: #3E3C41;
-
+  --border-color: #C4C4C4;
+  --border-color-2: #292929;
+  --page-item: gray;
   -moz-user-select: -moz-none;
   -o-user-select: none;
   -khtml-user-select: none;

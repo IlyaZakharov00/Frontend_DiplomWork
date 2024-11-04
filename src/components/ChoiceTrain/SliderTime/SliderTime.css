@@ -3,7 +3,7 @@
 }
 
 .slider_time .css-1xcmt9q-MuiSlider-thumb {
-    background-color: white;
+    background-color: var(--text-color);
     width: 18px;
     height: 18px;
 }

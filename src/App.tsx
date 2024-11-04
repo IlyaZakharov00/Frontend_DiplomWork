@@ -6,6 +6,7 @@ import { Comments } from './components/Comments/Comments'
 import { Contacts } from './components/Contacts/Contacts'
 import { ChoiceTrain } from './components/ChoiceTrain/ChoiceTrain'
 import { Layout } from './components/Layout/Layout'
+import { ChoiceSeats } from './components/ChoiceSeats/ChoiceSeats'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/Frontend_DiplomWork/about-us' element={<AboutUs />} />
           <Route path='/Frontend_DiplomWork/contacts' element={<Contacts />} />
           <Route path='/Frontend_DiplomWork/choiceTrain' element={<ChoiceTrain />} />
+          <Route path='/Frontend_DiplomWork/choiceSeats/:id' element={<ChoiceSeats />} />
         </Route>
 
       </Routes>

@@ -1,6 +1,6 @@
 import './LastTicekt.css'
-import icon_sprite from '../../static-files/icons/icon_sprite_functions.svg'
-import icon_price from '../../static-files/icons/icon_rub.svg'
+import icon_sprite from '../../static-files/icons/ticket/sprite_functions.svg'
+import icon_price from '../../static-files/icons/ticket/rub.svg'
 
 export const LastTicket = (props: { ticket: any }) => {
     const ticket = props.ticket;
