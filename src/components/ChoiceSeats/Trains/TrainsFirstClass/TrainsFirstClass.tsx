@@ -4,8 +4,8 @@ import './TrainsFirstClass.css'
 export const TrainsFirstClass = () => {
 
     const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
-    const seats = searchSeatsState.choiceCoach.seats
-    const numberCoach = searchSeatsState.choiceNumberCoach
+    // const seats = searchSeatsState.choiceCoach.seats
+    // const numberCoach = searchSeatsState.choiceNumberCoach
 
     const choiceSeats = (e: React.MouseEvent<HTMLElement>) => {
         const btn = e.target as HTMLButtonElement;

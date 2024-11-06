@@ -5,8 +5,8 @@ import React from 'react';
 export const TrainsThirdClass = () => {
 
     const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
-    const seats = searchSeatsState.choiceCoach.seats
-    const numberCoach = searchSeatsState.choiceNumberCoach
+    // const seats = searchSeatsState.choiceCoach.seats
+    // const numberCoach = searchSeatsState.choiceNumberCoach
 
     const choiceSeats = (e: React.MouseEvent<HTMLElement>) => {
         const btn = e.target as HTMLButtonElement;
@@ -245,96 +245,6 @@ export const TrainsThirdClass = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="aside-seats-container flex-lg-row flex-column">
-                        <div className="aside seats-1">
-                            <div className="aside-seat-container aside-seat-1 flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className={searchSeatsState.choiceCoach.seats[32].available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id='33' disabled={!searchSeatsState.choiceCoach.seats[32].available} onClick={choiceSeats}>
-                                        33
-                                    </button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className={searchSeatsState.choiceCoach.seats[33].available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id='34' disabled={!searchSeatsState.choiceCoach.seats[33].available} onClick={choiceSeats}>
-                                        34
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="aside seats-2">
-                            <div className="aside-seat-container aside-seat-2  flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className={searchSeatsState.choiceCoach.seats[34].available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id='35' disabled={!searchSeatsState.choiceCoach.seats[34].available} onClick={choiceSeats}>
-                                        35
-                                    </button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className={searchSeatsState.choiceCoach.seats[35].available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id='36' disabled={!searchSeatsState.choiceCoach.seats[35].available} onClick={choiceSeats}>
-                                        36
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="aside seats-3">
-                            <div className="aside-seat-container aside-seat-3 flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className='btn-seat btn-notAvailable' id='37' disabled onClick={choiceSeats}>37</button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className='btn-seat btn-notAvailable' id='38' disabled onClick={choiceSeats}>38</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="aside seats-4">
-                            <div className="aside-seat-container aside-seat-4 flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className='btn-seat btn-notAvailable' id='39' disabled onClick={choiceSeats}>39</button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className='btn-seat btn-notAvailable' id='40' disabled onClick={choiceSeats}>40</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="aside seats-5">
-                            <div className="aside-seat-container aside-seat-5 flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className='btn-seat btn-notAvailable' id='41' disabled onClick={choiceSeats}>41</button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className='btn-seat btn-notAvailable' id='42' disabled onClick={choiceSeats}>42</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="aside seats-6">
-                            <div className="aside-seat-container aside-seat-6 flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className='btn-seat btn-notAvailable' id='43' disabled onClick={choiceSeats}>43</button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className='btn-seat btn-notAvailable' id='44' disabled onClick={choiceSeats}>44</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="aside seats-7">
-                            <div className="aside-seat-container aside-seat-7 flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className='btn-seat btn-notAvailable' id='45' disabled onClick={choiceSeats}>45</button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className='btn-seat btn-notAvailable' id='46' disabled onClick={choiceSeats}>46</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="aside seats-8">
-                            <div className="aside-seat-container aside-seat-8 flex-lg-row flex-column">
-                                <div className="seat-up">
-                                    <button className='btn-seat btn-notAvailable' id='47' disabled onClick={choiceSeats}>47</button>
-                                </div>
-                                <div className="seat-down">
-                                    <button className='btn-seat btn-notAvailable' id='48' disabled onClick={choiceSeats}>48</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div >

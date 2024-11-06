@@ -3,8 +3,8 @@ import './TraincFourthClass.css'
 
 export const TrainsFourthClass = () => {
     const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
-    const seats = searchSeatsState.choiceCoach.seats
-    const numberCoach = searchSeatsState.choiceNumberCoach
+    // const seats = searchSeatsState.choiceCoach.seats
+    // const numberCoach = searchSeatsState.choiceNumberCoach
 
     const choiceSeats = (e: React.MouseEvent<HTMLElement>) => {
         const btn = e.target as HTMLButtonElement;
