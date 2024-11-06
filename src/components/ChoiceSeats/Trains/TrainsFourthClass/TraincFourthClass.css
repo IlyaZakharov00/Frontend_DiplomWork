@@ -1,0 +1,24 @@
+.up,
+.dowm {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-lefgt,
+.row-right {
+    display: flex;
+}
+
+.row-first,
+.row-second,
+.row-third,
+.row-fourth,
+.row-five,
+.row-six,
+.row-seven,
+.row-eight {
+    display: flex;
+    flex-direction: column;
+    column-gap: 0.5vw;
+    row-gap: 1vw;
+}

@@ -1,0 +1,109 @@
+.aboutTravel {
+    background-color: var(--aside-background-color);
+}
+
+/* .choiceTrain_container {
+    margin-bottom: 123px;
+} */
+
+.detailsSection {
+    border-bottom: 1px solid;
+}
+
+.details_title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.travelStart_title,
+.travelBack_title {
+    font-size: 30px;
+    margin-bottom: 0;
+    margin-left: 10px;
+    color: var(--text-color);
+}
+
+.travelStart_date {
+    margin-left: 10px;
+}
+
+.numberTrain-text,
+.nameTrain-text {
+    color: var(--user-comment-color);
+    font-size: 18px;
+}
+
+.nameTrain {
+    text-align: end;
+    text-transform: capitalize;
+}
+
+.numberTrain,
+.nameTrain {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.cityStart-name,
+.cityStart-railwayStation,
+.cityEnd-name,
+.cityEnd-railwayStation {
+    text-transform: capitalize;
+}
+
+.cityStart-name,
+.cityEnd-name {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.cityStart-railwayStation,
+.cityEnd-railwayStation {
+    color: var(--user-comment-color);
+}
+
+.durationTime-text {
+    color: var(--user-comment-color);
+}
+
+.passengers_title {
+    font-size: 30px;
+    color: var(--text-color);
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.total-text {
+    font-size: 30px;
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.total-sum {
+    font-size: 48px;
+    color: var(--main-color);
+    font-weight: 700;
+}
+
+.accordion {
+    --bs-accordion-bg: transparent;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    background-image: url('../../../static-files/icons/aside/accordion_arrow_plus.svg');
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url('../../../static-files/icons/aside/accordion_arrow_minus.svg');
+}

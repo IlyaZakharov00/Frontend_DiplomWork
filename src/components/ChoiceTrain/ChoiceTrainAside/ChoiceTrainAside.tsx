@@ -133,7 +133,7 @@ export const ChoiceTrainAside = () => {
                         </div>
                     </div>
                 </div>
-                <div className='aboutTrain_cityFirst aboutTrainSection px-4 py-3'>
+                <div className='aboutTrain_cityFirst aboutTrainSection py-3'>
                     <div className="accordion accordion-flush" id="accordionFlushExample">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="flush-headingOne">
@@ -146,7 +146,7 @@ export const ChoiceTrainAside = () => {
                             </h2>
                             <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div className="sliderContainer w-100">
-                                    <div id="slider-time">
+                                    <div id="slider-time" className='px-4'>
                                         <SliderTimeDeparture />
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@ export const ChoiceTrainAside = () => {
                         </div>
                     </div>
                 </div>
-                <div className='aboutTrain_citySecond aboutTrainSection px-4 py-3'>
+                <div className='aboutTrain_citySecond aboutTrainSection py-3'>
                     <div className="accordion accordion-flush" id="accordionFlushExample_2">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="flush-headingOne_2">
@@ -167,7 +167,7 @@ export const ChoiceTrainAside = () => {
                             </h2>
                             <div id="flush-collapseOne_2" className="accordion-collapse collapse" aria-labelledby="flush-headingOne_2" data-bs-parent="#accordionFlushExample_2">
                                 <div className="sliderContainer w-100">
-                                    <div id="slider-time">
+                                    <div id="slider-time" className='px-4'>
                                         <SliderTimeArrival />
                                     </div>
                                 </div>

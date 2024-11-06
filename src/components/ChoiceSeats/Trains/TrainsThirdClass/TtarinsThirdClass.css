@@ -1,0 +1,66 @@
+.seat-container-plac {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    /* border: 5px solid gray; */
+    padding: 5px;
+}
+
+.plac {
+    display: flex;
+    padding: 3px;
+    border: 3px solid gray;
+    column-gap: 0.1vw;
+    row-gap: 2vw;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.plac-container {
+    display: flex;
+}
+
+.left,
+.right {
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 1vw;
+}
+
+.btn-seat {
+    background-color: var(--border-color);
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    border: none;
+}
+
+.btn-available {
+    color: var(--text-color-black);
+    background-color: var(--ticket-btn);
+}
+
+.btn-seat-choice {
+    background-color: var(--main-color);
+}
+
+.aside-seats-container {
+    display: flex;
+
+    margin: auto;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    padding: 5px;
+}
+
+
+.aside-seats-container {
+    column-gap: 0.8vw;
+}
+
+.aside-seat-container {
+    display: flex;
+    flex-direction: row;
+    row-gap: 1vw;
+}

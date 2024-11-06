@@ -27,6 +27,18 @@
     cursor: pointer;
 }
 
+.btn_findMore:hover {
+    border: 2px solid transparent;
+    background-color: var(--hover-color);
+    color: var(--text-color-black);
+}
+
+.btn_findMore:active {
+    border: 2px solid transparent;
+    color: var(--text-color-black);
+    background-color: var(--active-color);
+}
+
 .steps_container {
     list-style: none;
     margin-top: 97px;

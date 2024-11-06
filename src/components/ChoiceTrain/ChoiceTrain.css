@@ -216,6 +216,7 @@ select option {
 
 .accordion-button:not(.collapsed) {
     background-color: transparent;
+    box-shadow: none;
 }
 
 .cityFirst_title,
