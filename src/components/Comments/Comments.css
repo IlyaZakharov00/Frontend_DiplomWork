@@ -56,3 +56,23 @@
 .page_active:hover {
     opacity: 1
 }
+
+.carousel-indicators {
+    bottom: -10vw;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: var(--text-color-black);
+    width: 20px;
+    height: 20px;
+    content: "";
+    display: block;
+    border-radius: 100%;
+    background-color: var(--page-item);
+    opacity: 0.1;
+    cursor: pointer;
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+}

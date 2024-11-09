@@ -5,6 +5,7 @@ import searchTicketsSlice from "./slices/searchTicketsSlice";
 import sortedCitiesListSlice from "./slices/sortedCitiesList";
 import searchSeatsSlice from "./slices/searchSeatsSlice";
 import lastTickets from "./slices/lastTickets";
+import priceForTicketstsSlice from "./slices/priceForTickets";
 
 const ReactReduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   sortedCitiesList: sortedCitiesListSlice.reducer,
   searchSeatsState: searchSeatsSlice.reducer,
   lastTickets: lastTickets.reducer,
+  priceForTickets: priceForTicketstsSlice.reducer,
 })
 
 const myMiddleware = [compose(applyMiddleware(thunk), ReactReduxDevTools)];

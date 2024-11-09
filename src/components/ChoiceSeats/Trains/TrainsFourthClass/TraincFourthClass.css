@@ -1,5 +1,5 @@
 .up,
-.dowm {
+.down {
     display: flex;
     flex-direction: column;
 }
@@ -9,14 +9,14 @@
     display: flex;
 }
 
-.row-first,
-.row-second,
-.row-third,
-.row-fourth,
-.row-five,
-.row-six,
-.row-seven,
-.row-eight {
+.range-1,
+.range-2,
+.range-3,
+.range-4,
+.range-5,
+.range-6,
+.range-7,
+.range-8 {
     display: flex;
     flex-direction: column;
     column-gap: 0.5vw;

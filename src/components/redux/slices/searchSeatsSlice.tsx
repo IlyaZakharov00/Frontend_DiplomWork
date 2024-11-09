@@ -50,6 +50,8 @@ const searchSeatsSlice = createSlice({
             state.choiceCoach = action.payload
         }
 
+        
+
     },
 
     extraReducers: (builder) => {

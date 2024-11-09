@@ -266,3 +266,31 @@
 .path-active {
     fill: white;
 }
+
+.up-seat-text,
+.up-seat-count,
+.down-seat-text,
+.down-seat-count {
+    font-size: 24px;
+    color: var(--text-color-black);
+}
+
+.down-seat-count,
+.up-seat-count {
+    font-weight: 700;
+}
+
+.down-seat-price,
+.up-seat-price,
+.side-seat-price,
+.seatAndLux-seat-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color-black);
+}
+
+.price-total-ticket {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--main-color);
+}
