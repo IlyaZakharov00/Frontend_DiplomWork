@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { memo } from 'react';
 import './TrainsFirstClass.css'
 import priceForTicketstsSlice from '../../../redux/slices/priceForTickets';
-import { memo } from 'react';
 
 export const TrainsFirstClass = memo(() => {
 
-    const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
     const dispatch = useDispatch();
+    const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
+    const priceForTickets = useSelector((state: any) => state.priceForTickets);
+    const choicesSeats = priceForTickets.choiceSeats;
 
     const arraySeatsSize = 4;
     const arraySeatFourth = [];
@@ -21,11 +23,9 @@ export const TrainsFirstClass = memo(() => {
         const price = searchSeatsState.choiceCoach.coach.price as number;
 
         if (btn.classList.contains('btn-seat-choice')) {
-            btn.classList.remove("btn-seat-choice")
-            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.deleteSeat(price)) : dispatch(priceForTicketstsSlice.actions.deleteSeat(price))
+            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: price })) : dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: price }))
         } else {
-            btn.classList.add('btn-seat-choice')
-            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.addSeat(price)) : dispatch(priceForTicketstsSlice.actions.addSeat(price))
+            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: price })) : dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: price }))
         }
     }
 
@@ -37,7 +37,7 @@ export const TrainsFirstClass = memo(() => {
                         <div className={`lux lux-${indexCoupe + 1} gap-1`} key={Math.random().toString(36).substring(2)}>
                             {coupe.map((seat: any, indexSeat: number) => {
                                 return (
-                                    <button className={seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={indexSeat}>{seat.index}</button>
+                                    <button className={`${choicesSeats.find((i: any) => i.numberSeat === seat.index) ? "btn-seat-choice" : ""} ${seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'}`} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={indexSeat}>{seat.index}</button>
                                 )
                             })}
                         </div>

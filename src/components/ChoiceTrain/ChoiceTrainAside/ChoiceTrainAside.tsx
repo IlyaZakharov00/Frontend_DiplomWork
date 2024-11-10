@@ -6,7 +6,6 @@ import icon_first_class from '../../../static-files/icons/aside/first_class.svg'
 import icon_wifi from '../../../static-files/icons/aside/wifi.svg'
 import icon_express from '../../../static-files/icons/aside/express.svg'
 import accordion_arrow from '../../../static-files/icons/aside/accordion_arrow.svg'
-
 import SliderPrice from '../SliderPrice/SliderPrice';
 import SliderTimeArrival from '../SliderTime/SliderTimeArrival';
 import SliderTimeDeparture from '../SliderTime/SliderTimeDeparture';
@@ -20,7 +19,7 @@ export const ChoiceTrainAside = () => {
     const dispatch = useDispatch();
 
     const onChangeHdnler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const id = e.target.getAttribute('id')
+        const id = e.target.getAttribute('id');
         const data_option = e.target.getAttribute('data-option')
         const isChecked = e.target.checked;
 

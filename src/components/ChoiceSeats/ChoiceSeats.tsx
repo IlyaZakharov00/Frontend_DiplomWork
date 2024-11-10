@@ -30,8 +30,8 @@ export const ChoiceSeats = () => {
     const infoTrain = searchSeatsState.train;
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [availableCoach, setAvailableCoach] = useState<any[]>([])
-    const [_choiceCoach, setCoach] = useState<any>(null)
+    const [availableCoach, setAvailableCoach] = useState<any[]>([]);
+    const [_choiceCoach, setCoach] = useState<any>(null);
 
     const changeTypeCoachHendler = (e: React.MouseEvent<HTMLElement>) => {
         setAvailableCoach(['Вагонов нет']);
@@ -41,28 +41,28 @@ export const ChoiceSeats = () => {
         dispatch(priceForTicketstsSlice.actions.clearAll());
 
         const target = e.target as HTMLElement;
-        const typeCoachItem = target.closest('.typeCoach-item')
+        const typeCoachItem = target.closest('.typeCoach-item');
         const containerTypes = typeCoachItem?.closest(".typesCoach-container");
         const activeNow = containerTypes?.querySelectorAll('.type-active') as any;
-        const svg = typeCoachItem?.querySelector(".icon_class")
+        const svg = typeCoachItem?.querySelector(".icon_class");
         const itemsSVG = svg?.querySelectorAll(".icon_item") as any;
-        const typeCoach = typeCoachItem?.getAttribute("id")
-        const coachs = document.querySelector(".coachs")
-        const activeCoachsNow = coachs?.querySelector(".coach-number-active")
+        const typeCoach = typeCoachItem?.getAttribute("id");
+        const coachs = document.querySelector(".coachs");
+        const activeCoachsNow = coachs?.querySelector(".coach-number-active");
 
-        activeCoachsNow?.classList.remove('coach-number-active')
+        activeCoachsNow?.classList.remove('coach-number-active');
 
-        let coachNumber: {}[] = []
+        let coachNumber: {}[] = [];
 
         for (const item of activeNow) {
             item?.classList.remove('type-active');
         }
 
         for (const item of itemsSVG) {
-            item.classList.add('type-active')
+            item.classList.add('type-active');
         }
 
-        dispatch(searchSeatsSlice.actions.addChoiceTypeCoach(typeCoach))
+        dispatch(searchSeatsSlice.actions.addChoiceTypeCoach(typeCoach));
 
         for (const coachItem of searchSeatsState.responseFromServer.payload) {
             if (coachItem.coach.class_type === typeCoach) {
@@ -78,17 +78,17 @@ export const ChoiceSeats = () => {
 
     const clickCoachNumberHendler = (e: React.MouseEvent<HTMLElement>) => {
         const number = e.target as HTMLElement;
-        const idCoach = number.getAttribute('id')
-        const coachs = number.closest('.coachs')
-        const activeNow = coachs?.querySelector(".coach-number-active")
-        activeNow?.classList.remove('coach-number-active')
-        number.classList.add('coach-number-active')
+        const idCoach = number.getAttribute('id');
+        const coachs = number.closest('.coachs');
+        const activeNow = coachs?.querySelector(".coach-number-active");
+        activeNow?.classList.remove('coach-number-active');
+        number.classList.add('coach-number-active');
 
         const allCoachs = searchSeatsState.responseFromServer.payload;
         for (const item of allCoachs) {
             if (item.coach._id === idCoach) {
-                setCoach(item)
-                dispatch(searchSeatsSlice.actions.choiceCoach(item))
+                setCoach(item);
+                dispatch(searchSeatsSlice.actions.choiceCoach(item));
             }
         }
 
@@ -96,11 +96,11 @@ export const ChoiceSeats = () => {
     }
 
     const goBack = () => {
-        navigate(-1)
+        navigate(-1);
     }
 
     const nextBtnClickHendler = (_e: React.MouseEvent) => {
-        navigate('/Frontend_DiplomWork/addPassengers')
+        navigate('/Frontend_DiplomWork/addPassengers');
     }
 
     const choiceFunc = (e: React.MouseEvent<SVGElement>) => {
@@ -113,17 +113,17 @@ export const ChoiceSeats = () => {
 
         if (svg.classList.contains('svg-active')) {
             dispatch(priceForTicketstsSlice.actions.deleteFunction({ type: idTypeFunc, payload: { choice: false, price: searchSeatsState.choiceCoach.coach[`${idTypeFunc}_price`] } }))
-            svg.classList.remove('svg-active')
-            border?.classList.remove("border-active")
+            svg.classList.remove('svg-active');
+            border?.classList.remove("border-active");
             for (const path of paths) {
-                path?.classList.remove("path-active")
+                path?.classList.remove("path-active");
             }
         } else {
             dispatch(priceForTicketstsSlice.actions.addFunction({ type: idTypeFunc, payload: { choice: true, price: searchSeatsState.choiceCoach.coach[`${idTypeFunc}_price`] } }))
-            svg.classList.add('svg-active')
-            border?.classList.add("border-active")
+            svg.classList.add('svg-active');
+            border?.classList.add("border-active");
             for (const path of paths) {
-                path?.classList.add("path-active")
+                path?.classList.add("path-active");
             }
         }
     }

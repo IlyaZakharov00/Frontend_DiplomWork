@@ -5,7 +5,10 @@ import priceForTicketstsSlice from '../../../redux/slices/priceForTickets';
 
 export const TrainsThirdClass = memo(() => {
 
+    const dispatch = useDispatch();
     const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
+    const priceForTickets = useSelector((state: any) => state.priceForTickets);
+    const choicesSeats = priceForTickets.choiceSeats;
 
     const arraySeatsSize = 4;
     const arraySeatFourth = [];
@@ -20,8 +23,8 @@ export const TrainsThirdClass = memo(() => {
     for (const item of arraySeatFourth) {
         const arrSide = [];
         let arrCoupe = [];
-        let count = 0;
         let pair = [];
+        let count = 0;
 
         for (let i = indexSideSeat; i < searchSeatsState.choiceCoach.seats.length; i++) {
             if (count === 2) continue;
@@ -42,14 +45,12 @@ export const TrainsThirdClass = memo(() => {
         for (const itemArr of arrays[0]) {
             for (const item of itemArr) {
                 if (item.index > indexSideSeat_) {
-                    arraySeatFourthPair.splice(arraySeatFourthPair.indexOf(arrays))
+                    arraySeatFourthPair.splice(arraySeatFourthPair.indexOf(arrays));
                     break;
                 }
             }
         }
     }
-
-    const dispatch = useDispatch();
 
     const choiceSeats = (e: React.MouseEvent<HTMLElement>) => {
         const btn = e.target as HTMLButtonElement;
@@ -59,19 +60,17 @@ export const TrainsThirdClass = memo(() => {
         const priceSideSeat = searchSeatsState.choiceCoach.coach.side_price as number;
 
         if (btn.classList.contains('btn-seat-choice')) {
-            btn.classList.remove("btn-seat-choice")
             if (idSeat > indexSideSeat_) {
-                dispatch(priceForTicketstsSlice.actions.deleteSeat(priceSideSeat))
+                dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceSideSeat }));
                 return;
             }
-            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.deleteSeat(priceUpSeat)) : dispatch(priceForTicketstsSlice.actions.deleteSeat(priceDownSeat))
+            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceUpSeat })) : dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceDownSeat }))
         } else {
-            btn.classList.add('btn-seat-choice')
             if (idSeat > indexSideSeat_) {
-                dispatch(priceForTicketstsSlice.actions.addSeat(priceSideSeat))
+                dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceSideSeat }));
                 return;
             }
-            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.addSeat(priceUpSeat)) : dispatch(priceForTicketstsSlice.actions.addSeat(priceDownSeat))
+            idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceUpSeat })) : dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceDownSeat }))
         }
     }
 
@@ -80,7 +79,6 @@ export const TrainsThirdClass = memo(() => {
             <div className="btn-seat-container-plac p-0">
                 <div className="seat-container-plac d-flex flex-lg-column flex-row justify-content-between-lg justify-content-center">
                     <div className="plac-container d-flex flex-lg-row flex-column">
-
                         {arraySeatFourthPair.map((coupe: any, indexCoupe: number) => {
                             return (
                                 <div className={`plac plac-${indexCoupe + 1} flex-lg-column flex-row gap-5`} key={Math.random().toString(36).substring(2)}>
@@ -92,10 +90,12 @@ export const TrainsThirdClass = memo(() => {
                                                         return (
                                                             indexPair === 0 ?
                                                                 <div className="left" key={Math.random().toString(36).substring(2)}>
-                                                                    {pair.map((seat: any, seatIndex: number) => <button className={seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={seatIndex}>{seat.index}</button>)}
+                                                                    {pair.map((seat: any, seatIndex: number) =>
+                                                                        <button className={`${choicesSeats.find((i: any) => i.numberSeat === seat.index) ? "btn-seat-choice" : ""} ${seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'}`} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={seatIndex}>{seat.index}</button>
+                                                                    )}
                                                                 </div> :
                                                                 <div className="right" key={Math.random().toString(36).substring(2)}>
-                                                                    {pair.map((seat: any, seatIndex: number) => <button className={seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={seatIndex}>{seat.index}</button>)}
+                                                                    {pair.map((seat: any, seatIndex: number) => <button className={`${choicesSeats.find((i: any) => i.numberSeat === seat.index) ? "btn-seat-choice" : ""} ${seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'}`} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={seatIndex}>{seat.index}</button>)}
                                                                 </div>
                                                         )
                                                     })}
@@ -103,7 +103,7 @@ export const TrainsThirdClass = memo(() => {
                                                 <div className={`aside seats-${itemIndex}`} key={Math.random().toString(36).substring(2)}>
                                                     <div className="aside-seat-container aside-seat-1 flex-lg-row flex-column" key={Math.random().toString(36).substring(2)}>
                                                         <div className="seat-up d-flex flex-lg-row flex-column" key={Math.random().toString(36).substring(2)}>
-                                                            {item.map((seat: any, seatIndex: number) => <button className={seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={seatIndex}>{seat.index}</button>)}
+                                                            {item.map((seat: any, seatIndex: number) => <button className={`${choicesSeats.find((i: any) => i.numberSeat === seat.index) ? "btn-seat-choice" : ""} ${seat.available ? 'btn-seat btn-available' : 'btn-seat btn-notAvailable'}`} id={seat.index} onClick={choiceSeats} disabled={!seat.available} key={seatIndex}>{seat.index}</button>)}
                                                         </div>
                                                     </div>
                                                 </div>

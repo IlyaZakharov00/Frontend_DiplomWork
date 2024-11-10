@@ -5,13 +5,13 @@ import React from 'react'
 
 export const NavBar = () => {
 
-    const isOpenSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.isOpenSearchTicketsPage)
+    const isOpenSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.isOpenSearchTicketsPage);
 
     const scrollFromContainer = (e: React.MouseEvent<HTMLElement>) => {
         if (isOpenSearchTicketsPage) return;
         const section = e.target as HTMLElement;
         const id = section.getAttribute('data-id') as string;
-        const element = document.getElementById(id)
+        const element = document.getElementById(id);
 
         element?.scrollIntoView({
             behavior: 'smooth',

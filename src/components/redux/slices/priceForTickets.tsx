@@ -5,7 +5,7 @@ const initialState: any = {
     air_conditioning: undefined,
     wifi: { type: '', payload: { price: 0, choice: false, } },
     linens: { type: '', payload: { price: 0, choice: false, } },
-    countSeat: 0,
+    choiceSeats: [],
 }
 
 const priceForTicketstsSlice = createSlice({
@@ -14,19 +14,19 @@ const priceForTicketstsSlice = createSlice({
     reducers: {
 
         addSeat: (state, action: PayloadAction<any>) => {
-            if (state.wifi.payload.choice) action.payload += state.wifi.payload.price
-            if (state.linens.payload.choice) action.payload += state.linens.payload.price
-            console.log(action.payload, 'add')
-            state.sumPrice = state.sumPrice + action.payload;
-            state.countSeat++
+            console.log(action)
+            if (state.wifi.payload.choice) action.payload.price += state.wifi.payload.price;
+            if (state.linens.payload.choice) action.payload.price += state.linens.payload.price;
+            state.sumPrice = state.sumPrice + action.payload.price;
+            state.choiceSeats.push(action.payload);
         },
 
         deleteSeat: (state, action: PayloadAction<any>) => {
-            if (state.wifi.payload.choice) action.payload += state.wifi.payload.price
-            if (state.linens.payload.choice) action.payload += state.linens.payload.price
-            console.log(action.payload, 'delete')
-            state.sumPrice = state.sumPrice - action.payload
-            state.countSeat--
+            console.log(action)
+            if (state.wifi.payload.choice) action.payload.price += state.wifi.payload.price
+            if (state.linens.payload.choice) action.payload.price += state.linens.payload.price
+            state.sumPrice = state.sumPrice - action.payload.price;
+            state.choiceSeats = state.choiceSeats.filter((item: any) => item.numberSeat !== action.payload.numberSeat)
         },
 
         addFunction: (state, action: PayloadAction<any>) => {
@@ -34,12 +34,12 @@ const priceForTicketstsSlice = createSlice({
                 case 'wifi':
                     console.log(action)
                     state.wifi = action.payload
-                    state.sumPrice = state.sumPrice + state.countSeat * state.wifi.payload.price
+                    state.sumPrice = state.sumPrice + state.choiceSeats.length * state.wifi.payload.price
                     break;
                 case 'linens':
                     console.log(action)
                     state.linens = action.payload
-                    state.sumPrice = state.sumPrice + state.countSeat * state.linens.payload.price
+                    state.sumPrice = state.sumPrice + state.choiceSeats.length * state.linens.payload.price
                     break;
                 default:
                     break;
@@ -50,11 +50,11 @@ const priceForTicketstsSlice = createSlice({
             switch (action.payload.type) {
                 case 'wifi':
                     state.wifi = action.payload
-                    state.sumPrice = state.sumPrice - state.countSeat * state.wifi.payload.price
+                    state.sumPrice = state.sumPrice - state.choiceSeats.length * state.wifi.payload.price
                     break;
                 case 'linens':
                     state.linens = action.payload
-                    state.sumPrice = state.sumPrice - state.countSeat * state.linens.payload.price
+                    state.sumPrice = state.sumPrice - state.choiceSeats.length * state.linens.payload.price
                     break;
                 default:
                     break;
@@ -66,7 +66,7 @@ const priceForTicketstsSlice = createSlice({
             state.air_conditioning = undefined;
             state.wifi = { type: '', payload: { price: 0, choice: false, } };
             state.linens = { type: '', payload: { price: 0, choice: false, } };
-            state.countSeat = 0;
+            state.choiceSeats = [];
         }
     },
 });

@@ -129,6 +129,8 @@ select {
 
 select option {
     color: black;
+    /* border: 1px solid gray; */
+    background-color: #F7F5F9;
 }
 
 .sorting_by {

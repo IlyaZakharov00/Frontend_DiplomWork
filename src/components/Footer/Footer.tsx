@@ -10,15 +10,31 @@ import icon_email from "../../static-files/icons/footer/email.svg"
 import icon_local from "../../static-files/icons/footer/local.svg"
 import icon_arrowUp from '../../static-files/icons/footer/arrowUp.svg'
 import { NavLink } from 'react-router-dom'
+import { Modal_Info } from '../Modals/Modal_Info/Modal_Info'
+import modalWindowsSlice from '../redux/slices/modalWindows'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const Footer = () => {
+
+  const modalWindows = useSelector((state: any) => state.modalWindows);
+  const dispatch = useDispatch();
+
   const scrollUp = () => {
-    const navBar = document.querySelector('.navbar_container')
+    const navBar = document.querySelector('.navbar_container');
     navBar?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'nearest'
     });
+  }
+
+  const subsribeNews = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const email = formData.get('email');
+    if (email == "") return;
+    dispatch(modalWindowsSlice.actions.showModalWindow({ type: 'modal_info', content: 'Подписка оформлена! Спасибо!' }));
   }
 
   return (
@@ -57,9 +73,10 @@ export const Footer = () => {
         <div className="col-xl-6 col-lg-12 p-0 pt-4 ps-xl-5 d-flex flex-column align-items-lg-center align-items-xl-baseline">
           <h2 className='subscribe_title'>Подписка</h2>
           <h3 className='form_title mt-4'>Будьте в курсе событий</h3>
-          <form action="submit" className='form_submit d-lg-flex align-items-center flex-wrap w-100 gx-30' onSubmit={(e) => e.preventDefault()}>
-            <input type="text" placeholder='email' className='input_email flex-grow-1' />
-            <button className='btn_submit'>Отправить</button>
+          {modalWindows.showModalInfo.show ? <Modal_Info /> : <></>}
+          <form action="submit" className='form_submit d-lg-flex align-items-center flex-wrap w-100 gx-30' id='form_subscribe' onSubmit={subsribeNews}>
+            <input type="email" placeholder='email' name='email' className='input_email flex-grow-1' />
+            <button className='btn_submit' type='submit'>Отправить</button>
           </form>
           <div className='links_container d-flex flex-column align-items-lg-center align-items-xl-baseline'>
             <h2 className='subscribe_title'>Подписывайтесь на нас</h2>

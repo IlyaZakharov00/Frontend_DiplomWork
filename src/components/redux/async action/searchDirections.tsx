@@ -44,7 +44,7 @@ export const searchDirections: any = createAsyncThunk('searchDirections',
 
 		const response = await fetch(server)
 			.then(response => response.json())
-			.catch(error => console.log(error));
+			.catch(error => error.rejected());
 
 		return response;
 	}

@@ -7,11 +7,11 @@ import searchTicketsSlice from "../redux/slices/searchTicketsSlice"
 
 export const MainPage = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(searchTicketsSlice.actions.closeSearchTicketsPage());
-    })
+    });
 
     return (
         <>

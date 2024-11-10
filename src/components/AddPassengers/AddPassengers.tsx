@@ -2,6 +2,7 @@ import './AddPassengers.css'
 import { DetailsTravel } from './DetailsTravel/DetailsTravel'
 
 export const AddPassengers = () => {
+
     return (
         <div className='addPassangers-container'>
             <div className="row m-auto pt-5 d-flex justify-content-between w-75">
@@ -22,7 +23,7 @@ export const AddPassengers = () => {
                             </h2>
                             <div id="flush-collapseOne_3" className="accordion-collapse collapse show" aria-labelledby="flush-headingOne_3" data-bs-parent="#accordionFlushExample_3">
                                 <div className="aboutPassangers-container px-4">
-                                    <div className="">gfccg;bh</div>
+                                    <div className=""></div>
                                 </div>
                             </div>
                         </div>

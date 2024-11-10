@@ -8,7 +8,7 @@ export const searchLastTickets: any = createAsyncThunk('searchLastTickets',
 
         const response = await fetch(server)
             .then(response => response.json())
-            .catch(error => console.log(error));
+            .catch(error => error.rejected());
 
         return response;
     }

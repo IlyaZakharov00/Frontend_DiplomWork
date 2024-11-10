@@ -58,7 +58,9 @@
   --border-color-2: #292929;
   --page-item: gray;
   --ticket-btn: #918F94;
-  -moz-user-select: -moz-none;
+  --modalInfo-color: #FFF500;
+  --modalError-color: #FF3D00;
+   -moz-user-select: -moz-none;
   -o-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;

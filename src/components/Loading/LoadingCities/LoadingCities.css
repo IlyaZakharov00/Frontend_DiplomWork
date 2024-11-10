@@ -1,0 +1,8 @@
+.loading_gif_cities {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 1vw;
+    left: 15vw;
+    animation: infinite;
+}

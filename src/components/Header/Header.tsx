@@ -9,50 +9,48 @@ import { searchDirections } from "../redux/async action/searchDirections";
 import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
 import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
 import searchSeatsSlice from "../redux/slices/searchSeatsSlice";
+import { LoadingCities } from "../Loading/LoadingCities/LoadingCities";
+import { ErrorCities } from "../Error/ErrorCities/ErrorCities";
 
 export const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const isOpenSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.isOpenSearchTicketsPage)
+	const isOpenSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.isOpenSearchTicketsPage);
 
-	const sortedListFrom = useSelector((state: any) => state.sortedCitiesList.sortedListFrom)
-	const sortedListTo = useSelector((state: any) => state.sortedCitiesList.sortedListTo)
+	const isLoadingFromCity = useSelector((state: any) => state.sortedCitiesList.loading_fromCity);
+	const isErrorFromCity = useSelector((state: any) => state.sortedCitiesList.error_fromCity);
+	const isLoadingToCity = useSelector((state: any) => state.sortedCitiesList.loading_toCity);
+	const isErrorToCity = useSelector((state: any) => state.sortedCitiesList.error_toCity);
 
-	const from_city = useSelector((state: any) => state.sortedCitiesList.from_city)
-	const to_city = useSelector((state: any) => state.sortedCitiesList.to_city)
+	const sortedListFrom = useSelector((state: any) => state.sortedCitiesList.sortedListFrom);
+	const sortedListTo = useSelector((state: any) => state.sortedCitiesList.sortedListTo);
 
-	const state = useSelector((state: any) => state.searchTicketsState);
+	const from_city = useSelector((state: any) => state.sortedCitiesList.from_city);
+	const to_city = useSelector((state: any) => state.sortedCitiesList.to_city);
+
+	const state = useSelector((state: any) => state.searchTicketsState);;
 
 	const searchTickets = async (e: FormEvent) => {
 		e.preventDefault();
 		dispatch(searchDirections(state));
-		dispatch(searchSeatsSlice.actions.closeChoiceSeats())
+		dispatch(searchSeatsSlice.actions.closeChoiceSeats());
 		navigate("/Frontend_DiplomWork/choiceTrain");
 	};
 
-	const changeInputCityHendler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		const sortCityList: string[] = [];
+	const changeInputCityHendler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const typeAction = e.target.getAttribute('id') as string;
 
-		const cityListResponse = await dispatch(searchCities(e.target.value));
-
-		if (e.target.value == '') {
-			dispatch(sortedCitiesListSlice.actions.addCities({ type: typeAction, payload: sortCityList }))
+		if (e.target.value === '') {
+			dispatch(sortedCitiesListSlice.actions.addCities({ type: typeAction, payload: [] }))
 			return;
-		}
+		};
 
-		const reg = new RegExp('^' + e.target.value.toLowerCase(), 'g')
-
-		for (const city of cityListResponse.payload) {
-			if (city.name.match(reg)) sortCityList.push(city)
-		}
-
-		dispatch(sortedCitiesListSlice.actions.addCities({ type: typeAction, payload: sortCityList }))
+		dispatch(searchCities({ cityName: e.target.value, typeAction }));
 	}
 
 	const changeCitiesHedler = (e: React.MouseEvent) => {
-		e.preventDefault()
+		e.preventDefault();
 		dispatch(sortedCitiesListSlice.actions.changeCitites());
 		dispatch(searchTicketsSlice.actions.changeCitites());
 
@@ -66,7 +64,7 @@ export const Header = () => {
 
 	const choiceCityHedler = (e: React.MouseEvent<HTMLElement>) => {
 		const div_city = e.target as HTMLDivElement;
-		const input_with_dropdown = div_city.closest('.input-with-dropdown') as HTMLDivElement
+		const input_with_dropdown = div_city.closest('.input-with-dropdown') as HTMLDivElement;
 		const input = input_with_dropdown.querySelector('.input_local') as HTMLInputElement;
 		const idCity = div_city.getAttribute('id') as string;
 		const typeAction = input.getAttribute('id') as string;
@@ -91,10 +89,9 @@ export const Header = () => {
 	}
 
 	const hendlerChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const dataId = e.target.getAttribute('id')
-		const data = e.target.value
-		console.log(data)
-		dispatch(searchTicketsSlice.actions.addDates({ type: dataId, payload: data }))
+		const dataId = e.target.getAttribute('id');
+		const data = e.target.value;
+		dispatch(searchTicketsSlice.actions.addDates({ type: dataId, payload: data }));
 	}
 
 	return (
@@ -118,28 +115,28 @@ export const Header = () => {
 									<div className="input_container flex-lg-row flex-column">
 										<div className='input-with-dropdown from_city'>
 											<input type="text" id="from_city" className='input_form_tickets input_local' placeholder="Откуда" onChange={changeInputCityHendler} required autoComplete="off" />
-											{sortedListFrom.length !== 0 ?
-												<div className="dropdown-container">
-													{sortedListFrom.map((item: { _id: string, name: string }) => {
-														return (
-															<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
-														)
-													})}
-												</div> : <></>
-											}
+											{isLoadingFromCity ? <LoadingCities /> :
+												isErrorFromCity ? <ErrorCities /> :
+													<div className="dropdown-container">
+														{sortedListFrom.map((item: { _id: string, name: string }) => {
+															return (
+																<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
+															)
+														})}
+													</div>}
 										</div>
 										<button className="btn_local_change" onClick={changeCitiesHedler}></button>
 										<div className='input-with-dropdown to_city'>
 											<input type="text" id="to_city" className='input_form_tickets input_local' placeholder="Куда" onChange={changeInputCityHendler} required autoComplete="off" />
-											{sortedListTo.length !== 0 ?
-												<div className="dropdown-container">
-													{sortedListTo.map((item: { _id: string, name: string }) => {
-														return (
-															<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
-														)
-													})}
-												</div> : <></>
-											}
+											{isLoadingToCity ? <LoadingCities /> :
+												isErrorToCity ? <ErrorCities /> :
+													<div className="dropdown-container">
+														{sortedListTo.map((item: { _id: string, name: string }) => {
+															return (
+																<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
+															)
+														})}
+													</div>}
 										</div>
 									</div>
 								</div>
