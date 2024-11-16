@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TPriceState } from "../types/Price/PriceState";
 
-const initialState: any = {
+const initialState: TPriceState = {
     sumPrice: 0,
     air_conditioning: undefined,
     wifi: { type: '', payload: { price: 0, choice: false, } },
@@ -13,15 +14,14 @@ const priceForTicketstsSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        addSeat: (state, action: PayloadAction<any>) => {
-            console.log(action)
+        addSeat: (state: TPriceState, action: PayloadAction<any>) => {
             if (state.wifi.payload.choice) action.payload.price += state.wifi.payload.price;
             if (state.linens.payload.choice) action.payload.price += state.linens.payload.price;
             state.sumPrice = state.sumPrice + action.payload.price;
             state.choiceSeats.push(action.payload);
         },
 
-        deleteSeat: (state, action: PayloadAction<any>) => {
+        deleteSeat: (state: TPriceState, action: PayloadAction<any>) => {
             console.log(action)
             if (state.wifi.payload.choice) action.payload.price += state.wifi.payload.price
             if (state.linens.payload.choice) action.payload.price += state.linens.payload.price
@@ -29,7 +29,7 @@ const priceForTicketstsSlice = createSlice({
             state.choiceSeats = state.choiceSeats.filter((item: any) => item.numberSeat !== action.payload.numberSeat)
         },
 
-        addFunction: (state, action: PayloadAction<any>) => {
+        addFunction: (state: TPriceState, action: PayloadAction<any>) => {
             switch (action.payload.type) {
                 case 'wifi':
                     console.log(action)
@@ -46,7 +46,7 @@ const priceForTicketstsSlice = createSlice({
             }
         },
 
-        deleteFunction: (state, action: PayloadAction<any>) => {
+        deleteFunction: (state: TPriceState, action: PayloadAction<any>) => {
             switch (action.payload.type) {
                 case 'wifi':
                     state.wifi = action.payload
@@ -61,7 +61,7 @@ const priceForTicketstsSlice = createSlice({
             }
         },
 
-        clearAll: (state) => {
+        clearAll: (state: TPriceState) => {
             state.sumPrice = 0;
             state.air_conditioning = undefined;
             state.wifi = { type: '', payload: { price: 0, choice: false, } };

@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TLastTicketsState } from "../types/LastTickets/LastTicketsState";
 
-type TState = {
-    lastTickets: [];
-}
-
-const initialState: TState = {
+const initialState: TLastTicketsState = {
     lastTickets: []
 }
 
@@ -13,7 +10,7 @@ const lastTickets = createSlice({
     initialState: initialState,
     reducers: {
 
-        addTickets: (state, action: PayloadAction<any>) => {
+        addTickets: (state: TLastTicketsState, action: PayloadAction<any>) => {
             state.lastTickets = action.payload.payload
         },
 

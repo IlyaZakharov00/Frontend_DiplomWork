@@ -1,18 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { searchCities } from "../async action/searchCities";
+import { TCitiesState } from "../types/Cities/CitiesState";
 
-type TState = {
-    sortedListFrom: string[];
-    sortedListTo: string[];
-    from_city: {};
-    to_city: {};
-    loading_fromCity: boolean;
-    loading_toCity: boolean;
-    error_fromCity: boolean | null;
-    error_toCity: boolean | null;
-}
-
-const initialState: TState = {
+const initialState: TCitiesState = {
     sortedListFrom: [],
     sortedListTo: [],
     from_city: {},
@@ -28,7 +18,7 @@ const sortedCitiesListSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        addCities: (state, action: PayloadAction<any>) => {
+        addCities: (state: TCitiesState, action: PayloadAction<any>) => {
             switch (action.payload.type) {
                 case 'from_city':
                     state.sortedListFrom = action.payload.payload;
@@ -43,7 +33,7 @@ const sortedCitiesListSlice = createSlice({
             }
         },
 
-        choiceCity: (state, action: PayloadAction<any>) => {
+        choiceCity: (state: TCitiesState, action: PayloadAction<any>) => {
             switch (action.payload.type) {
                 case 'from_city':
                     state.from_city = action.payload.payload;
@@ -60,7 +50,7 @@ const sortedCitiesListSlice = createSlice({
             }
         },
 
-        changeCitites: (state) => {
+        changeCitites: (state: TCitiesState) => {
             let tmp = state.from_city;
             state.from_city = state.to_city
             state.to_city = tmp;
@@ -69,7 +59,7 @@ const sortedCitiesListSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(searchCities.pending, (state, action) => {
+            .addCase(searchCities.pending, (state: TCitiesState, action) => {
                 switch (action.meta.arg.typeAction) {
                     case "from_city":
                         state.loading_fromCity = true;
@@ -86,8 +76,8 @@ const sortedCitiesListSlice = createSlice({
                 }
             })
 
-            .addCase(searchCities.fulfilled, (state, action) => {
-                const sortCityList: string[] = [];
+            .addCase(searchCities.fulfilled, (state: TCitiesState, action) => {
+                const sortCityList: any = [];
                 const typeAction = action.meta.arg.typeAction
                 const letter = action.meta.arg.cityName
 
@@ -113,7 +103,7 @@ const sortedCitiesListSlice = createSlice({
                 }
             })
 
-            .addCase(searchCities.rejected, (state, action) => {
+            .addCase(searchCities.rejected, (state: TCitiesState, action) => {
                 switch (action.meta.arg.typeAction) {
                     case "from_city":
                         state.loading_fromCity = true;

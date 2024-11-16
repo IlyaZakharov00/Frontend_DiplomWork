@@ -8,7 +8,6 @@
     width: 20%;
     height: 98px;
     background-color: var(--background-color);
-    cursor: pointer;
 }
 
 .choiceTrain_menu_item:first-child,
@@ -25,14 +24,7 @@
     margin-bottom: 0;
 }
 
-.choiceTrain_menu_item:hover {
-    background: rgb(0 0 0 / 100%);
-}
-
-.active_item:hover {
-    background-color: var(--main-color);
-}
-
 .active_item {
+    border: 1px solid black;
     background-color: var(--main-color);
 }

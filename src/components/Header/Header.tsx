@@ -1,40 +1,42 @@
-import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { FormEvent } from "react";
+import "./Header.css";
 import { searchCities } from "../redux/async action/searchCities";
 import { NavBar } from "../NavBar/NavBar";
 import { ChoiceTrainMenu } from "../ChoiceTrainMenu/ChoiceTrainMenu";
 import { searchDirections } from "../redux/async action/searchDirections";
-import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
-import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
-import searchSeatsSlice from "../redux/slices/searchSeatsSlice";
 import { LoadingCities } from "../Loading/LoadingCities/LoadingCities";
 import { ErrorCities } from "../Error/ErrorCities/ErrorCities";
+import { TTicketsStateR } from "../redux/types/Tickets/state";
+import { TCitiesStateR } from "../redux/types/Cities/CitiesState";
+import { TMenuState } from "../redux/types/Menu/menu";
+import menuSlice from "../redux/slices/menuSlice";
+import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
+import searchSeatsSlice from "../redux/slices/searchSeatsSlice";
+import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
 
 export const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const isOpenSearchTicketsPage = useSelector((state: any) => state.searchTicketsState.isOpenSearchTicketsPage);
+	const menuState = useSelector((state: TMenuState) => state.menuState);
 
-	const isLoadingFromCity = useSelector((state: any) => state.sortedCitiesList.loading_fromCity);
-	const isErrorFromCity = useSelector((state: any) => state.sortedCitiesList.error_fromCity);
-	const isLoadingToCity = useSelector((state: any) => state.sortedCitiesList.loading_toCity);
-	const isErrorToCity = useSelector((state: any) => state.sortedCitiesList.error_toCity);
+	const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);;
 
-	const sortedListFrom = useSelector((state: any) => state.sortedCitiesList.sortedListFrom);
-	const sortedListTo = useSelector((state: any) => state.sortedCitiesList.sortedListTo);
+	const isLoadingFromCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.loading_fromCity);
+	const isErrorFromCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.error_fromCity);
+	const isLoadingToCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.loading_toCity);
+	const isErrorToCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.error_toCity);
+	const sortedListFrom = useSelector((state: TCitiesStateR) => state.sortedCitiesList.sortedListFrom);
+	const sortedListTo = useSelector((state: TCitiesStateR) => state.sortedCitiesList.sortedListTo);
+	const from_city = useSelector((state: TCitiesStateR) => state.sortedCitiesList.from_city);
+	const to_city = useSelector((state: TCitiesStateR) => state.sortedCitiesList.to_city);
 
-	const from_city = useSelector((state: any) => state.sortedCitiesList.from_city);
-	const to_city = useSelector((state: any) => state.sortedCitiesList.to_city);
-
-	const state = useSelector((state: any) => state.searchTicketsState);;
-
-	const searchTickets = async (e: FormEvent) => {
+	const searchTickets = async (e: React.FormEvent) => {
 		e.preventDefault();
 		dispatch(searchDirections(state));
 		dispatch(searchSeatsSlice.actions.closeChoiceSeats());
+		dispatch(menuSlice.actions.openTickets());
 		navigate("/Frontend_DiplomWork/choiceTrain");
 	};
 
@@ -95,12 +97,12 @@ export const Header = () => {
 	}
 
 	return (
-		<header className={isOpenSearchTicketsPage ? 'header-choiceTrain' : 'header'}>
+		<header className={menuState.ticekts ? 'header-choiceTrain' : 'header'}>
 			<NavBar />
-			<div className={isOpenSearchTicketsPage ? "header_container-choiceTrain" : "justify-content-lg-end justify-content-center header_container"}>
+			<div className={menuState.ticekts ? "header_container-choiceTrain" : "justify-content-lg-end justify-content-center header_container"}>
 				<div className="row m-0 d-flex">
 					<div className="d-flex justify-content-evenly wrapper-body p-0 align-items-center flex-lg-row flex-column ">
-						{isOpenSearchTicketsPage ? <></> :
+						{menuState.ticekts ? <></> :
 							<div className="col-lg-4 col-12 pt-lg-0 pt-5">
 								<h2 className="slogan">
 									<span className="light_text">Вся жизнь - </span>
@@ -108,9 +110,9 @@ export const Header = () => {
 								</h2>
 							</div>
 						}
-						<div className={isOpenSearchTicketsPage ? 'col-lg-9 col-12 m-auto col-7 mt-lg-5 mt-5 search_tickets_menu bg-black bg-opacity-75' : 'col-lg-5 col-7 mt-lg-5 mt-5 search_tickets_menu bg-black bg-opacity-75'}>
-							<form className={isOpenSearchTicketsPage ? "form_content d-flex justify-content-xl-between align-items-baseline gap-5 flex-xl-nowrap flex-lg-nowrap flex-wrap justify-content-center" : "form_content"} id="formSearch" onSubmit={searchTickets}>
-								<div className={isOpenSearchTicketsPage ? 'direction_ticket w-50' : 'direction_ticket'}>
+						<div className={menuState.ticekts ? 'col-lg-9 col-12 m-auto col-7 mt-lg-5 mt-5 search_tickets_menu bg-black bg-opacity-75' : 'col-lg-5 col-7 mt-lg-5 mt-5 search_tickets_menu bg-black bg-opacity-75'}>
+							<form className={menuState.ticekts ? "form_content d-flex justify-content-xl-between align-items-baseline gap-5 flex-xl-nowrap flex-lg-nowrap flex-wrap justify-content-center" : "form_content"} id="formSearch" onSubmit={searchTickets}>
+								<div className={menuState.ticekts ? 'direction_ticket w-50' : 'direction_ticket'}>
 									<div className="direction_title">Направление</div>
 									<div className="input_container flex-lg-row flex-column">
 										<div className='input-with-dropdown from_city'>
@@ -118,7 +120,7 @@ export const Header = () => {
 											{isLoadingFromCity ? <LoadingCities /> :
 												isErrorFromCity ? <ErrorCities /> :
 													<div className="dropdown-container">
-														{sortedListFrom.map((item: { _id: string, name: string }) => {
+														{sortedListFrom.map((item) => {
 															return (
 																<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
 															)
@@ -131,7 +133,7 @@ export const Header = () => {
 											{isLoadingToCity ? <LoadingCities /> :
 												isErrorToCity ? <ErrorCities /> :
 													<div className="dropdown-container">
-														{sortedListTo.map((item: { _id: string, name: string }) => {
+														{sortedListTo.map((item) => {
 															return (
 																<div className="dropdown-item" id={item._id} onClick={choiceCityHedler} key={item._id}>{item.name}</div>
 															)
@@ -140,7 +142,7 @@ export const Header = () => {
 										</div>
 									</div>
 								</div>
-								<div className={isOpenSearchTicketsPage ? "data_ticket w-50" : "data_ticket"}>
+								<div className={menuState.ticekts ? "data_ticket w-50" : "data_ticket"}>
 									<div className="data_title">Дата</div>
 									<div className='flex-lg-row flex-column input_container'>
 										<input type="date" id="data_start" className="input_form_tickets input_calendar" placeholder="ДД/ММ/ГГ" onChange={hendlerChangeDate} />
@@ -156,7 +158,7 @@ export const Header = () => {
 					</div>
 				</div>
 			</div >
-			{isOpenSearchTicketsPage ? <ChoiceTrainMenu /> : <></>}
+			{menuState.ticekts ? <ChoiceTrainMenu /> : <></>}
 		</header >
 	);
 };

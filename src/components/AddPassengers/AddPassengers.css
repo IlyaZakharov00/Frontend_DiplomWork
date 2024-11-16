@@ -1,0 +1,35 @@
+.passenger_title {
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--text-color-black);
+}
+
+.accordion-flush>.accordion-item>.accordion-header .accordion-button-passenger,
+.accordion-flush>.accordion-item>.accordion-header .accordion-button-passenger.collapsed {
+    background-color: #F9F9F9;
+}
+
+.accordion-button-passenger:not(.collapsed)::after {
+    background-image: url('../../static-files/icons/addPassengers/close.svg');
+}
+
+.accordion-button-passenger::after {
+    background-image: none;
+}
+
+.accordion-button-passenger.collapsed .icon_open-close {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 32px;
+    width: 32px;
+    background-image: url('../../static-files/icons/addPassengers/plus.svg');
+}
+
+.accordion-button-passenger:not(.collapsed) .icon_open-close {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 32px;
+    width: 32px;
+    background-image: url('../../static-files/icons/addPassengers/minus.svg');
+
+}

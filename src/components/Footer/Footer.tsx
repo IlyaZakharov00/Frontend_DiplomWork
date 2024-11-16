@@ -1,4 +1,7 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import './Footer.css'
+import { TModalStateR } from '../redux/types/Modals/ModalState'
 import icon_youtube from '../../static-files/icons/footer/youtube.svg'
 import icon_google from '../../static-files/icons/footer/google.svg'
 import icon_facebook from '../../static-files/icons/footer/facebook.svg'
@@ -9,14 +12,12 @@ import icon_phone from "../../static-files/icons/footer/phone.svg"
 import icon_email from "../../static-files/icons/footer/email.svg"
 import icon_local from "../../static-files/icons/footer/local.svg"
 import icon_arrowUp from '../../static-files/icons/footer/arrowUp.svg'
-import { NavLink } from 'react-router-dom'
-import { Modal_Info } from '../Modals/Modal_Info/Modal_Info'
 import modalWindowsSlice from '../redux/slices/modalWindows'
-import { useDispatch, useSelector } from 'react-redux'
+import { Modal_Info } from '../Modals/Modal_Info/Modal_Info'
 
 export const Footer = () => {
 
-  const modalWindows = useSelector((state: any) => state.modalWindows);
+  const modalWindows = useSelector((state: TModalStateR) => state.modalWindows);
   const dispatch = useDispatch();
 
   const scrollUp = () => {
@@ -75,7 +76,7 @@ export const Footer = () => {
           <h3 className='form_title mt-4'>Будьте в курсе событий</h3>
           {modalWindows.showModalInfo.show ? <Modal_Info /> : <></>}
           <form action="submit" className='form_submit d-lg-flex align-items-center flex-wrap w-100 gx-30' id='form_subscribe' onSubmit={subsribeNews}>
-            <input type="email" placeholder='email' name='email' className='input_email flex-grow-1' />
+            <input type="email" placeholder='email' name='email' className='input_email flex-grow-1' autoComplete='true' />
             <button className='btn_submit' type='submit'>Отправить</button>
           </form>
           <div className='links_container d-flex flex-column align-items-lg-center align-items-xl-baseline'>

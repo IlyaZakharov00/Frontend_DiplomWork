@@ -6,10 +6,11 @@ import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { TTicketsStateR } from '../../redux/types/Tickets/state';
 
 export default function SliderPrice() {
     const dispatch = useDispatch();
-    const state = useSelector((state: any) => state.searchTicketsState);
+    const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
 
     let initValue = [1920, 4500];
     const [value, setValue] = React.useState<number[]>(initValue);

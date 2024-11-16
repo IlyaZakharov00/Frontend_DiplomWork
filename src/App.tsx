@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import { AboutUs } from './components/AboutUs/AboutUs'
 import { MainPage } from './components/MainPage/MainPage'
 import { HowDoesThisWork } from './components/HowDoesThisWork/HowDoesThisWork'
@@ -7,11 +7,14 @@ import { ChoiceTrain } from './components/ChoiceTrain/ChoiceTrain'
 import { Layout } from './components/Layout/Layout'
 import { ChoiceSeats } from './components/ChoiceSeats/ChoiceSeats'
 import { AddPassengers } from './components/AddPassengers/AddPassengers'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import { PaymentPage } from './components/PaymentPage/PaymentPage'
 
 function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Layout />} >
           <Route path='/Frontend_DiplomWork' element={<MainPage />} />
@@ -21,10 +24,10 @@ function App() {
           <Route path='/Frontend_DiplomWork/choiceTrain' element={<ChoiceTrain />} />
           <Route path='/Frontend_DiplomWork/choiceSeats/:id' element={<ChoiceSeats />} />
           <Route path='/Frontend_DiplomWork/addPassengers' element={<AddPassengers />} />
+          <Route path='/Frontend_DiplomWork/paymentPage' element={<PaymentPage />} />
         </Route>
-
       </Routes>
-    </Router>
+    </Router >
   )
 }
 

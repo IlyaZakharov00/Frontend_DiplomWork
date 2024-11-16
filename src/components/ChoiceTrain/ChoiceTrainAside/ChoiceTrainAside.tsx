@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { TTicketsStateR } from '../../redux/types/Tickets/state';
+import { TLastTicket, TLastTicketsStateR } from '../../redux/types/LastTickets/LastTicketsState';
 import icon_second_class from '../../../static-files/icons/aside/second_class.svg'
 import icon_third_class from '../../../static-files/icons/aside/third_class.svg'
 import icon_fourth_class from '../../../static-files/icons/aside/fourth_class.svg'
@@ -9,13 +11,13 @@ import accordion_arrow from '../../../static-files/icons/aside/accordion_arrow.s
 import SliderPrice from '../SliderPrice/SliderPrice';
 import SliderTimeArrival from '../SliderTime/SliderTimeArrival';
 import SliderTimeDeparture from '../SliderTime/SliderTimeDeparture';
-import { LastTicket } from '../../LastTickets/LastTicket';
 import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
+import { LastTicket } from '../../LastTickets/LastTicket';
 
 export const ChoiceTrainAside = () => {
 
-    const state = useSelector((state: any) => state.searchTicketsState);
-    const stateLastTickets = useSelector((state: any) => state.lastTickets.lastTickets);
+    const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
+    const stateLastTickets = useSelector((state: TLastTicketsStateR) => state.lastTickets.lastTickets);
     const dispatch = useDispatch();
 
     const onChangeHdnler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -178,7 +180,7 @@ export const ChoiceTrainAside = () => {
             <div className="lastTickets mt-5">
                 <h2 className='lastTickets_title'>Последние билеты</h2>
                 <div className='lastTickets_container'>
-                    {stateLastTickets.length !== 0 ? stateLastTickets.map((ticket: {}, index: number) =>
+                    {stateLastTickets.length !== 0 ? stateLastTickets.map((ticket: TLastTicket, index: number) =>
                         <LastTicket ticket={ticket} key={index} />) : <></>}
                 </div>
             </div>
