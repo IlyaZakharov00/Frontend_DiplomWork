@@ -13,6 +13,8 @@ const initialState: TSeats = {
     error: null,
 }
 
+console.log(initialState)
+
 const searchSeatsSlice = createSlice({
     name: 'searchSeatsSlice',
     initialState: initialState,
