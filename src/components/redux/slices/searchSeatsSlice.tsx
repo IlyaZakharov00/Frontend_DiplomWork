@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { searchSeats } from "../async action/searchSeats";
+import { TSeats } from "../types/Seats/SeatsState";
 
-const initialState: any = {
+const initialState: TSeats = {
     responseFromServer: {},
     departureID: '',
     choiceTypeCoach: "",
@@ -17,15 +18,15 @@ const searchSeatsSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        choiceSeats: (state, action: PayloadAction<any>) => {
+        choiceSeats: (state: TSeats, action: PayloadAction<any>) => {
             state.responseFromServer = action.payload;
         },
 
-        addDepartureID: (state, action: PayloadAction<any>) => {
+        addDepartureID: (state: TSeats, action: PayloadAction<any>) => {
             state.departureID = action.payload
         },
 
-        closeChoiceSeats: (state) => {
+        closeChoiceSeats: (state: TSeats) => {
             state.responseFromServer = {};
             state.departureID = '';
             state.choiceTypeCoach = "";
@@ -34,37 +35,37 @@ const searchSeatsSlice = createSlice({
             state.train = null;
         },
 
-        addTrain: (state, action: PayloadAction<any>) => {
+        addTrain: (state: TSeats, action: PayloadAction<any>) => {
             state.train = action.payload
         },
 
-        addChoiceTypeCoach: (state, action: PayloadAction<any>) => {
+        addChoiceTypeCoach: (state: TSeats, action: PayloadAction<any>) => {
             state.choiceTypeCoach = action.payload
         },
 
-        choiceNumberCoach: (state, action: PayloadAction<any>) => {
+        choiceNumberCoach: (state: TSeats, action: PayloadAction<any>) => {
             state.choiceNumberCoach = action.payload
         },
 
-        choiceCoach: (state, action: PayloadAction<any>) => {
+        choiceCoach: (state: TSeats, action: PayloadAction<any>) => {
             state.choiceCoach = action.payload
         }
 
-        
+
 
     },
 
     extraReducers: (builder) => {
         builder
-            .addCase(searchSeats.pending, (state) => {
+            .addCase(searchSeats.pending, (state: TSeats) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(searchSeats.fulfilled, (state, action) => {
+            .addCase(searchSeats.fulfilled, (state: TSeats, action) => {
                 state.loading = false;
                 state.responseFromServer = action.payload;
             })
-            .addCase(searchSeats.rejected, (state) => {
+            .addCase(searchSeats.rejected, (state: TSeats) => {
                 state.loading = false;
                 state.error = true;
             })

@@ -2,11 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { memo } from 'react';
 import priceForTicketstsSlice from '../../../redux/slices/priceForTickets';
 import './TraincFourthClass.css'
+import modalWindowsSlice from '../../../redux/slices/modalWindows';
+import { Modal_Error } from '../../../Modals/Modal_Error/Modal_Error';
 
 export const TrainsFourthClass = memo(() => {
     const dispatch = useDispatch();
     const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
     const priceForTickets = useSelector((state: any) => state.priceForTickets);
+    const passangersState = useSelector((state: any) => state.passangersState);
     const choicesSeats = priceForTickets.choiceSeats;
 
     const arraySeatsSize = 8;
@@ -62,9 +65,14 @@ export const TrainsFourthClass = memo(() => {
         const priceUpSeat = searchSeatsState.choiceCoach.coach.top_price as number;
         const priceDownSeat = searchSeatsState.choiceCoach.coach.bottom_price as number;
 
+        if (passangersState.countAdult + passangersState.countChild === 0) {
+            dispatch(modalWindowsSlice.actions.showModalWindow({ type: "modal_error", content: "Заполните пожалуйста количество мест." }))
+            return;
+        }
         if (btn.classList.contains('btn-seat-choice')) {
             idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceUpSeat })) : dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceDownSeat }))
         } else {
+            if (priceForTickets.choiceSeats.length === (passangersState.countAdult + passangersState.countChild)) return;
             idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceUpSeat })) : dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceDownSeat }))
         }
     }
@@ -101,6 +109,7 @@ export const TrainsFourthClass = memo(() => {
                         </div>
                     )}
                 </div>
+                {(Number(passangersState.countAdult) + Number(passangersState.countChild)) === 0 ? <Modal_Error /> : <></>}
             </div>
         </div>
     )

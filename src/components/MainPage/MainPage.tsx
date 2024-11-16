@@ -1,17 +1,16 @@
-import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 import { AboutUs } from "../AboutUs/AboutUs"
 import { Comments } from "../Comments/Comments"
 import { HowDoesThisWork } from "../HowDoesThisWork/HowDoesThisWork"
-import searchTicketsSlice from "../redux/slices/searchTicketsSlice"
+import menuSlice from "../redux/slices/menuSlice"
 
 export const MainPage = () => {
-
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(searchTicketsSlice.actions.closeSearchTicketsPage());
-    });
+        dispatch(menuSlice.actions.closeAll());
+    }, []);
 
     return (
         <>

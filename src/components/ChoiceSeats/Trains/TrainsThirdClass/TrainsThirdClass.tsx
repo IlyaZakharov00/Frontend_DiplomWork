@@ -2,12 +2,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { memo } from 'react';
 import './TtarinsThirdClass.css'
 import priceForTicketstsSlice from '../../../redux/slices/priceForTickets';
+import modalWindowsSlice from '../../../redux/slices/modalWindows';
+import { Modal_Error } from '../../../Modals/Modal_Error/Modal_Error';
 
 export const TrainsThirdClass = memo(() => {
 
     const dispatch = useDispatch();
     const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
     const priceForTickets = useSelector((state: any) => state.priceForTickets);
+    const passangersState = useSelector((state: any) => state.passangersState);
+
     const choicesSeats = priceForTickets.choiceSeats;
 
     const arraySeatsSize = 4;
@@ -59,6 +63,11 @@ export const TrainsThirdClass = memo(() => {
         const priceDownSeat = searchSeatsState.choiceCoach.coach.bottom_price as number;
         const priceSideSeat = searchSeatsState.choiceCoach.coach.side_price as number;
 
+
+        if (passangersState.countAdult + passangersState.countChild === 0) {
+            dispatch(modalWindowsSlice.actions.showModalWindow({ type: "modal_error", content: "Заполните пожалуйста количество мест." }))
+            return;
+        }
         if (btn.classList.contains('btn-seat-choice')) {
             if (idSeat > indexSideSeat_) {
                 dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceSideSeat }));
@@ -67,9 +76,11 @@ export const TrainsThirdClass = memo(() => {
             idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceUpSeat })) : dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: priceDownSeat }))
         } else {
             if (idSeat > indexSideSeat_) {
+                if (priceForTickets.choiceSeats.length === (passangersState.countAdult + passangersState.countChild)) return;
                 dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceSideSeat }));
                 return;
             }
+            if (priceForTickets.choiceSeats.length === (passangersState.countAdult + passangersState.countChild)) return;
             idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceUpSeat })) : dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: priceDownSeat }))
         }
     }
@@ -113,6 +124,7 @@ export const TrainsThirdClass = memo(() => {
                             )
                         })}
                     </div>
+                    {(Number(passangersState.countAdult) + Number(passangersState.countChild)) === 0 ? <Modal_Error /> : <></>}
                 </div>
             </div>
         </div >

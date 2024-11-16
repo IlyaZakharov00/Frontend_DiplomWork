@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { ChoiceTrainAside } from '../ChoiceTrain/ChoiceTrainAside/ChoiceTrainAside';
 import './ChoiceSeats.css'
-import searchSeatsSlice from '../redux/slices/searchSeatsSlice';
+import { TrainsFirstClass } from './Trains/TrainsFirstClass/TrainsFirstClass';
+import { TrainsSecondClass } from './Trains/TrainsSecondClass/TrainsSecondClass';
+import { TrainsThirdClass } from './Trains/TrainsThirdClass/TrainsThirdClass';
+import { TrainsFourthClass } from './Trains/TrainsFourthClass/TrainsFourthClass';
 import icon_train from '../../static-files/icons/ticket/train.svg'
 import icon_arrow_travel from '../../static-files/icons/ticket/arrow_travel.svg'
 import icon_arrow_travel_city from '../../static-files/icons/ticket/arrow_travel_city.svg'
@@ -13,25 +16,30 @@ import icon_fourthClass from '../../static-files/icons/aside/fourth_class.svg'
 import icon_thirdClass from '../../static-files/icons/aside/third_class.svg'
 import icon_secondClass from '../../static-files/icons/aside/second_class.svg'
 import icon_firstClass from '../../static-files/icons/aside/first_class.svg'
-import { TrainsThirdClass } from './Trains/TrainsThirdClass/TrainsThirdClass';
-import { TrainsFirstClass } from './Trains/TrainsFirstClass/TrainsFirstClass';
-import { TrainsSecondClass } from './Trains/TrainsSecondClass/TrainsSecondClass';
-import { TrainsFourthClass } from './Trains/TrainsFourthClass/TrainsFourthClass';
 import icon_wifi from '../../static-files/icons/choiceSeatsIcons/wi-fi.svg'
 import icon_linens from '../../static-files/icons/choiceSeatsIcons/linens.svg'
 import icon_lunch from '../../static-files/icons/choiceSeatsIcons/lunch.svg'
 import icon_air_conditioning from '../../static-files/icons/choiceSeatsIcons/air_conditioning.svg'
 import icon_rub from '../../static-files/icons/ticket/rub.svg'
+import { TSeatsR } from '../redux/types/Seats/SeatsState';
+import { TPriceStateR } from '../redux/types/Price/PriceState';
+import { TPassangersStateR } from '../redux/types/Passengers/PassangersState';
+import addPassengersSlice from '../redux/slices/addPassengersSlice';
 import priceForTicketstsSlice from '../redux/slices/priceForTickets';
+import menuSlice from '../redux/slices/menuSlice';
+import searchSeatsSlice from '../redux/slices/searchSeatsSlice';
 
 export const ChoiceSeats = () => {
-    const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
-    const priceForTickets = useSelector((state: any) => state.priceForTickets);
+    const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
+    const priceForTickets = useSelector((state: TPriceStateR) => state.priceForTickets);
+    const passangersState = useSelector((state: TPassangersStateR) => state.passangersState);
+
+
     const infoTrain = searchSeatsState.train;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [availableCoach, setAvailableCoach] = useState<any[]>([]);
-    const [_choiceCoach, setCoach] = useState<any>(null);
+    const [_choiceCoach, setCoach] = useState(null);
 
     const changeTypeCoachHendler = (e: React.MouseEvent<HTMLElement>) => {
         setAvailableCoach(['Вагонов нет']);
@@ -99,10 +107,6 @@ export const ChoiceSeats = () => {
         navigate(-1);
     }
 
-    const nextBtnClickHendler = (_e: React.MouseEvent) => {
-        navigate('/Frontend_DiplomWork/addPassengers');
-    }
-
     const choiceFunc = (e: React.MouseEvent<SVGElement>) => {
         const svg = e.currentTarget as SVGAElement;
         const border = svg.querySelector(".border");
@@ -138,12 +142,50 @@ export const ChoiceSeats = () => {
             if (!seat.available) continue;
             allAvailableSeats++;
             seat.index % 2 === 0 ? upSeat++ : downSeat++;
-            if (seat.index > 33) sideSeat++
+            if (seat.index >= 33) sideSeat++
         }
         if (searchSeatsState.choiceTypeCoach === 'first' || searchSeatsState.choiceTypeCoach === 'fourth') {
 
         }
         return [upSeat, downSeat, allAvailableSeats, sideSeat]
+    }
+
+    const changeCountPassengers = (e: any) => {
+        const input = e.target as HTMLInputElement;
+        const type = input.getAttribute('name')
+        const countPassengers = Number(input.value);
+        dispatch(addPassengersSlice.actions.addCountPassengers({ type, countPassengers }))
+    }
+
+    const onSubmitForm = (e: FormEvent) => {
+        e.preventDefault();
+        if (priceForTickets.choiceSeats.length === 0) return;
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        const countAdult = Number(formData.get("countAdult"));
+        const countChild = Number(formData.get("countChild"));
+        const countChildWithoutSeat = Number(formData.get("countChildWithoutSeat"));
+
+        const infoAboutCountPassengers = [
+            {
+                type: 'countAdult',
+                count: countAdult,
+            },
+            {
+                type: 'countChild',
+                count: countChild,
+            },
+            {
+                type: 'countChildWithoutSeat',
+                count: countChildWithoutSeat,
+            }
+
+        ];
+
+        dispatch(addPassengersSlice.actions.addCountPassengers(infoAboutCountPassengers));
+        dispatch(menuSlice.actions.openPassangers());
+        navigate('/Frontend_DiplomWork/addPassengers');
     }
 
     return (
@@ -219,19 +261,19 @@ export const ChoiceSeats = () => {
                             </div>
                             <div className="countOfTickets w-100 py-4 mb-5">
                                 <h3 className='countOfTickets_title ps-4 mb-4'>Количество билетов</h3>
-                                <div className="available-tickets-container d-flex justify-content-between flex-column flex-lg-row">
+                                <form className="available-tickets-container d-flex justify-content-between flex-column flex-lg-row" id='passengers-form' onSubmit={onSubmitForm}>
                                     <div className="ticket-abailable d-flex flex-column col-4 ticket-adults pt-4 px-4 col-12 col-lg-4">
-                                        <input type="text" placeholder='Взрослых' className='input-ticket mb-3 p-2' />
+                                        <input type="text" placeholder='Взрослых' name='countAdult' className='input-ticket mb-3 p-2' required onChange={changeCountPassengers} />
                                         <label className='ticket-text mb-4'>Можно добавить еще 3 пассажиров</label>
                                     </div>
                                     <div className="ticket-abailable d-flex flex-column col-4 ticket-child pt-4 px-4 col-12 col-lg-4">
-                                        <input type="text" placeholder='Детских' className='input-ticket mb-3 p-2' />
+                                        <input type="text" placeholder='Детских' name='countChild' className='input-ticket mb-3 p-2' required onChange={changeCountPassengers} />
                                         <label className='ticket-text text-child mb-4'>Можно добавить еще 3 детей до 10 лет.Свое место в вагоне, как у взрослых, но дешевле в среднем на 50-65%</label>
                                     </div>
                                     <div className="ticket-abailable d-flex flex-column col-4 ticket-child-2 pt-4 px-4 col-12 col-lg-4">
-                                        <input type="text" placeholder='Детских «без места»' className='input-ticket mb-3 p-2' />
+                                        <input type="text" placeholder='Детских «без места»' name='countChildWithoutSeat' className='input-ticket mb-3 p-2' required onChange={changeCountPassengers} />
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <div className="typeCoach pt-5">
@@ -395,7 +437,7 @@ export const ChoiceSeats = () => {
                         </div>
                         <div className="row p-0 m-0 d-flex justify-content-end mt-5">
                             <div className="col-lg-3 col-5 m-0 p-0 ">
-                                <button className='btn-next w-100 px-3 py-2' onClick={nextBtnClickHendler}>Далее</button>
+                                <button className={'btn-next w-100 px-3 py-2 ' + `${priceForTickets.choiceSeats.length < (passangersState.countAdult + passangersState.countChild + passangersState.countChildWithoutSeat) ? "btn-disabled" : ""}`} type='submit' form='passengers-form' disabled={priceForTickets.choiceSeats.length < (passangersState.countAdult + passangersState.countChild + passangersState.countChildWithoutSeat)}>Далее</button>
                             </div>
                         </div>
                     </main>

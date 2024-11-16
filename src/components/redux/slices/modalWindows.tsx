@@ -1,17 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TModalState } from "../types/Modals/ModalState";
 
-type TState = {
-    showModalInfo: {
-        show: boolean;
-        content: '';
-    };
-    showModalError: {
-        show: boolean;
-        content: "";
-    };
-}
-
-const initialState: TState = {
+const initialState: TModalState = {
     showModalInfo: {
         show: false,
         content: "",
@@ -27,8 +17,7 @@ const modalWindowsSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        showModalWindow: (state, action: PayloadAction<any>) => {
-            console.log('type', action)
+        showModalWindow: (state: TModalState, action: PayloadAction<any>) => {
             switch (action.payload.type) {
                 case 'modal_info':
                     state.showModalInfo.show = true;
@@ -45,7 +34,7 @@ const modalWindowsSlice = createSlice({
             }
         },
 
-        closeModalWindow: (state, action: PayloadAction<any>) => {
+        closeModalWindow: (state: TModalState, action: PayloadAction<any>) => {
             switch (action.payload.type) {
                 case 'modal_info':
                     state.showModalInfo.show = false;

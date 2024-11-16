@@ -1,8 +1,9 @@
 import './LastTicekt.css'
 import icon_sprite from '../../static-files/icons/ticket/sprite_functions.svg'
 import icon_price from '../../static-files/icons/ticket/rub.svg'
+import { TLastTicketsProps } from '../redux/types/LastTickets/LastTicketsState'
 
-export const LastTicket = (props: { ticket: any }) => {
+export const LastTicket = (props: TLastTicketsProps) => {
     const ticket = props.ticket;
 
     return (

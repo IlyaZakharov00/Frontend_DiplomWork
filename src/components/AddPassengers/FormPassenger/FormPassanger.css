@@ -1,0 +1,139 @@
+.form-about-passanger {
+    position: relative;
+    border: 1px solid black;
+}
+
+.select-age-passenger {
+    border-radius: 5px;
+}
+
+.select-age-passenger,
+.age-passenger-option {
+    font-size: 24px;
+    color: var(--text-color-black);
+}
+
+/************/
+
+.label-text {
+    margin-bottom: 10px;
+}
+
+.input-text .input-surname,
+.input-lastname {
+    padding: 5px;
+}
+
+/*******/
+
+.input-birthday {
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--user-comment-color);
+    height: 100%;
+    padding-left: 20px;
+}
+
+.input-birthday::-webkit-input-placeholder {
+    font-size: 18px;
+    color: var(--user-comment-color);
+}
+
+/*******/
+.invalid-label {
+    font-size: 18px;
+    color: var(--text-color-black);
+}
+
+/*******/
+.type-document-select,
+.input-seria-document,
+.input-number-document {
+    border-radius: 5px;
+    border: 1px solid var(--user-comment-color);
+}
+
+.document-option,
+.type-document-select {
+    font-size: 18px;
+    color: var(--text-color-black);
+}
+
+.label-text {
+    color: var(--user-comment-color);
+}
+
+.input-text {
+    height: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--user-comment-color);
+    color: var(--text-color-black);
+    font-size: 24px;
+}
+
+.container-label-gender {
+    border: 2px solid var(--user-comment-color);
+    border-radius: 5px;
+}
+
+.checkbox-container {
+    width: 100%;
+    display: inline-block;
+    justify-content: center;
+
+    user-select: none;
+    position: relative;
+}
+
+.checkbox-container input[type=radio] {
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.checkbox-container span {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    width: 100%;
+    color: var(--text-color-black);
+    border-radius: 2.5px;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.checkbox-container input[type=radio]:checked+span {
+    background: var(--main-color);
+}
+
+.invalid-input[type=checkbox] {
+    width: 28px;
+    border-radius: 5px;
+    height: 28px;
+}
+
+.input-seria-document,
+.input-number-document {
+    font-size: 24px;
+    color: var(--text-color-black);
+}
+
+.input-error {
+    color: red;
+}
+
+.btn-disabled {
+    border: none;
+    background-color: var(--text-color-black);
+}
+
+.btn-disabled:hover {
+    border: none;
+    background-color: black;
+    color: white;
+}

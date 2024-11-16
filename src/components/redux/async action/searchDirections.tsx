@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IState } from "../types/state";
+import { TTicketsState } from "../types/Tickets/state";
 import { baseServer } from "./server";
 
 export const searchDirections: any = createAsyncThunk('searchDirections',
-	async (options: IState) => {
+	async (options: TTicketsState) => {
 
 		const server = new URL(baseServer + '/routes')
 

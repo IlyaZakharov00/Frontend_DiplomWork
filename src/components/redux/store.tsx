@@ -7,6 +7,10 @@ import searchSeatsSlice from "./slices/searchSeatsSlice";
 import lastTickets from "./slices/lastTickets";
 import priceForTicketstsSlice from "./slices/priceForTickets";
 import modalWindowsSlice from "./slices/modalWindows";
+import addPassengersSlice from "./slices/addPassengersSlice";
+import menuSlice from "./slices/menuSlice";
+import passangerDataSlice from "./slices/passangersDataSlice";
+import payInfoSlice from "./slices/payInfoSlice";
 
 const ReactReduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 
@@ -17,6 +21,10 @@ const rootReducer = combineReducers({
   lastTickets: lastTickets.reducer,
   priceForTickets: priceForTicketstsSlice.reducer,
   modalWindows: modalWindowsSlice.reducer,
+  passangersState: addPassengersSlice.reducer,
+  passangersDataState: passangerDataSlice.reducer,
+  menuState: menuSlice.reducer,
+  payInfo: payInfoSlice.reducer,
 })
 
 const myMiddleware = [compose(applyMiddleware(thunk), ReactReduxDevTools)];

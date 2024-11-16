@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { memo } from 'react';
 import './TrainsFirstClass.css'
 import priceForTicketstsSlice from '../../../redux/slices/priceForTickets';
+import modalWindowsSlice from '../../../redux/slices/modalWindows';
+import { Modal_Error } from '../../../Modals/Modal_Error/Modal_Error';
 
 export const TrainsFirstClass = memo(() => {
 
     const dispatch = useDispatch();
     const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
     const priceForTickets = useSelector((state: any) => state.priceForTickets);
+    const passangersState = useSelector((state: any) => state.passangersState);
     const choicesSeats = priceForTickets.choiceSeats;
 
     const arraySeatsSize = 4;
@@ -22,9 +25,14 @@ export const TrainsFirstClass = memo(() => {
         const idSeat = Number(btn.getAttribute('id'));
         const price = searchSeatsState.choiceCoach.coach.price as number;
 
+        if (passangersState.countAdult + passangersState.countChild === 0) {
+            dispatch(modalWindowsSlice.actions.showModalWindow({ type: "modal_error", content: "Заполните пожалуйста количество мест." }))
+            return;
+        }
         if (btn.classList.contains('btn-seat-choice')) {
             idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: price })) : dispatch(priceForTicketstsSlice.actions.deleteSeat({ numberSeat: idSeat, price: price }))
         } else {
+            if (priceForTickets.choiceSeats.length === (passangersState.countAdult + passangersState.countChild)) return;
             idSeat % 2 === 0 ? dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: price })) : dispatch(priceForTicketstsSlice.actions.addSeat({ numberSeat: idSeat, price: price }))
         }
     }
@@ -43,6 +51,7 @@ export const TrainsFirstClass = memo(() => {
                         </div>
                     )}
                 </div>
+                {(Number(passangersState.countAdult) + Number(passangersState.countChild)) === 0 ? <Modal_Error /> : <></>}
             </div>
         </div>
     )

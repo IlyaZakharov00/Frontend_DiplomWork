@@ -1,15 +1,16 @@
 import { Modal } from "@mui/material";
+import { useDispatch, useSelector } from 'react-redux';
+import { StyledEngineProvider } from "@mui/material";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import './Modal_Info.css'
+import { TModalStateR } from "../../redux/types/Modals/ModalState";
 import icon from '../../../static-files/icons/modal/modal_error.svg'
-import { useDispatch, useSelector } from 'react-redux';
 import modalWindowsSlice from '../../redux/slices/modalWindows';
-import { StyledEngineProvider } from "@mui/material";
+import './Modal_Error.css'
 
 export const Modal_Error = () => {
 
-    const modalWindows = useSelector((state: any) => state.modalWindows);
+    const modalWindows = useSelector((state: TModalStateR) => state.modalWindows);
     const dispatch = useDispatch();
     const handleClose = () => dispatch(modalWindowsSlice.actions.closeModalWindow({ type: 'modal_error' }));
 
@@ -32,6 +33,7 @@ export const Modal_Error = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                className="modal_error"
 
             >
                 <Box sx={style}>

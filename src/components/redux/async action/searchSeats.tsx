@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IState } from "../types/state";
+import { TTicketsState } from "../types/Tickets/state";
 import { baseServer } from "./server";
 
 export const searchSeats: any = createAsyncThunk('searchSeats',
-    async (options: { state: IState, departureID: string }) => {
+    async (options: { state: TTicketsState, departureID: string }) => {
 
         // const { state, departureID } = options
         const { departureID } = options

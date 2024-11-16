@@ -1,4 +1,8 @@
 import { useSelector } from 'react-redux'
+import { TPassangersStateR } from '../../redux/types/Passengers/PassangersState'
+import { TPriceStateR } from '../../redux/types/Price/PriceState'
+import { TTicketsStateR } from '../../redux/types/Tickets/state'
+import { TSeatsR } from '../../redux/types/Seats/SeatsState'
 import icon_accordion_arrow from '../../../static-files/icons/aside/accordion_arrow.svg'
 import icon_passengers from '../../../static-files/icons/aside/passengers.svg'
 import icon_rub from '../../../static-files/icons/ticket/rub.svg'
@@ -6,9 +10,10 @@ import icon_arrow from '../../../static-files/icons/ticket/arrow_travel.svg'
 import './DetailsTravel.css'
 
 export const DetailsTravel = () => {
-    const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
-    const searchTicketsState = useSelector((state: any) => state.searchTicketsState);
-    const priceForTickets = useSelector((state: any) => state.priceForTickets);
+    const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
+    const searchTicketsState = useSelector((state: TTicketsStateR) => state.searchTicketsState);
+    const priceForTickets = useSelector((state: TPriceStateR) => state.priceForTickets);
+    const passangersState = useSelector((state: TPassangersStateR) => state.passangersState);
 
     return (
         <aside className="choiceTrain_aside">
@@ -151,7 +156,7 @@ export const DetailsTravel = () => {
                 <div className='aboutTrain_citySecond aboutTrainSection px-4 py-3'>
                     <div className="accordion accordion-flush" id="accordionFlushExample_3">
                         <div className="accordion-item">
-                            <h2 className="accordion-header" id="flush-headingOne_3">
+                            <h2 className="accordion-header mb-3" id="flush-headingOne_3">
                                 <button className="accordion-button p-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne_3" aria-expanded="false" aria-controls="flush-collapseOne_3">
                                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns={icon_passengers}>
                                         <path d="M25.9721 26C17.2752 26 8.72031 26 0.165369 26C-0.219806 21.9313 -0.260351 20.3648 3.83467 18.4118C9.91638 15.5229 16.0792 15.5839 22.2014 18.4118C22.9921 18.7779 23.7219 19.2865 24.4111 19.8358C25.5058 20.7106 26.0735 21.8499 25.9924 23.2943C25.9518 24.1487 25.9721 25.0235 25.9721 26Z" fill="#FFA800" />
@@ -162,7 +167,9 @@ export const DetailsTravel = () => {
                             </h2>
                             <div id="flush-collapseOne_3" className="accordion-collapse collapse show" aria-labelledby="flush-headingOne_3" data-bs-parent="#accordionFlushExample_3">
                                 <div className="aboutPassangers-container px-4">
-                                    <div className="">gfccg;bh</div>
+                                    <div className="">{passangersState.countAdult ? `Взрослые: ${passangersState.countAdult}` : ""}</div>
+                                    <div className="">{passangersState.countChild ? `Дети: ${passangersState.countChild}` : ""}</div>
+                                    <div className="">{passangersState.countChildWithoutSeat ? `Дети "без места": ${passangersState.countChildWithoutSeat}` : ""}</div>
                                 </div>
                             </div>
                         </div>

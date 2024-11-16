@@ -1,0 +1,59 @@
+.accordion-flush>.accordion-item>.accordion-header .accordion-button-paymentPage,
+.accordion-flush>.accordion-item>.accordion-header .accordion-button-paymentPage.collapsed {
+    background-color: #F9F9F9;
+}
+
+.personal_info {
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--text-color-black);
+    background-color: #F9F9F9;
+}
+
+.payMethod-label {
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--text-color-black);
+}
+
+.payCash-label,
+.payOnline-label {
+    font-size: 24px;
+    color: var(--user-comment-color);
+    margin-left: 10px;
+}
+
+.methodsPay-online {
+    list-style: none;
+}
+
+.methods-item {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color-black);
+}
+
+.payOnline,
+.payCash {
+    padding: 10px 0;
+    border-top: 3px dotted gray;
+}
+
+.form-check-input[type=radio] {
+    border-radius: 5px;
+    width: 28px;
+    height: 28px;
+    border-color: black;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: white;
+    background-image: url('../../static-files/icons/galochka.svg');
+}
+
+.form-check-input:focus {
+    border-color: black;
+    outline: 0;
+    box-shadow: none;
+}

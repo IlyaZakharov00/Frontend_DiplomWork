@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IState } from "../types/state";
+import { TTicketsState } from "../types/Tickets/state";
 import { searchDirections } from "../async action/searchDirections";
 
-const initialState: IState = {
+const initialState: TTicketsState = {
     cities: {
         from_city: {
             _id: '',
@@ -53,7 +53,6 @@ const initialState: IState = {
     limit: "",
     offset: "",
     sort: "",
-    isOpenSearchTicketsPage: false,
 
     responseFromServer: {
         total_count: 0,
@@ -70,7 +69,7 @@ const searchTicketsSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        addCities: (state, action: PayloadAction<any>) => {
+        addCities: (state: TTicketsState, action: PayloadAction<any>) => {
             switch (action.payload.type) {
                 case 'from_city':
                     state.cities.from_city = action.payload.payload;
@@ -85,7 +84,7 @@ const searchTicketsSlice = createSlice({
             }
         },
 
-        addDates: (state, action: PayloadAction<any>) => {
+        addDates: (state: TTicketsState, action: PayloadAction<any>) => {
             console.log(action)
             switch (action.payload.type) {
                 case 'data_start':
@@ -109,7 +108,7 @@ const searchTicketsSlice = createSlice({
             }
         },
 
-        addClass: (state, action: PayloadAction<any>) => {
+        addClass: (state: TTicketsState, action: PayloadAction<any>) => {
             const keys = Object.keys(state.class);
             const obj = state.class as any;
 
@@ -118,7 +117,7 @@ const searchTicketsSlice = createSlice({
             })
         },
 
-        addComfortOptions: (state, action: PayloadAction<any>) => {
+        addComfortOptions: (state: TTicketsState, action: PayloadAction<any>) => {
             const keys = Object.keys(state.comfortOptions);
             const obj = state.comfortOptions as any;
 
@@ -127,12 +126,12 @@ const searchTicketsSlice = createSlice({
             })
         },
 
-        addPrices: (state, action: PayloadAction<any>) => {
+        addPrices: (state: TTicketsState, action: PayloadAction<any>) => {
             state.prices.price_from = action.payload[0]
             state.prices.price_to = action.payload[1]
         },
 
-        addTimes: (state, action: PayloadAction<any>) => {
+        addTimes: (state: TTicketsState, action: PayloadAction<any>) => {
             console.log(action)
             switch (action.payload.type) {
                 case 'start_departure':
@@ -160,43 +159,33 @@ const searchTicketsSlice = createSlice({
             }
         },
 
-        addLimit: (state, action: PayloadAction<any>) => {
+        addLimit: (state: TTicketsState, action: PayloadAction<any>) => {
             state.limit = action.payload
         },
 
-        addOffset: (state, action: PayloadAction<any>) => {
+        addOffset: (state: TTicketsState, action: PayloadAction<any>) => {
             state.offset = action.payload
         },
 
-        addSort: (state, action: PayloadAction<any>) => {
+        addSort: (state: TTicketsState, action: PayloadAction<any>) => {
             state.sort = action.payload
         },
 
-        closeSearchTicketsPage: (state) => {
-            state.isOpenSearchTicketsPage = false;
-
-        },
-
-        openSearchTicketsPage: (state) => {
-            state.isOpenSearchTicketsPage = true;
-
-        },
-
-        changeCitites: (state) => {
+        changeCitites: (state: TTicketsState) => {
             let tmp = state.cities.from_city;
             state.cities.from_city = state.cities.to_city
             state.cities.to_city = tmp;
         },
 
-        addActivePage: (state, action: PayloadAction<any>) => {
+        addActivePage: (state: TTicketsState, action: PayloadAction<any>) => {
             state.activePage = action.payload
         },
 
-        nextPage: (state) => {
+        nextPage: (state: TTicketsState) => {
             state.activePage++
         },
 
-        prevPage: (state) => {
+        prevPage: (state: TTicketsState) => {
             if (state.activePage == 1) return;
             state.activePage--
         }
@@ -204,15 +193,15 @@ const searchTicketsSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(searchDirections.pending, (state) => {
+            .addCase(searchDirections.pending, (state: TTicketsState) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(searchDirections.fulfilled, (state, action) => {
+            .addCase(searchDirections.fulfilled, (state: TTicketsState, action) => {
                 state.loading = false;
                 state.responseFromServer = action.payload;
             })
-            .addCase(searchDirections.rejected, (state) => {
+            .addCase(searchDirections.rejected, (state: TTicketsState) => {
                 state.loading = false;
                 state.error = true;
             })

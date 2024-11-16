@@ -1,4 +1,4 @@
-import { TCity } from "./city";
+import { TCity } from "./city" 
 
 export type TCities = {
     from_city: TCity,
