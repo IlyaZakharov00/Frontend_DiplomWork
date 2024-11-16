@@ -6,7 +6,7 @@ export type TSeats = {
     choiceCoach: any,
     train: any,
     loading: boolean,
-    error: boolean,
+    error: boolean | null,
 }
 export type TSeatsR = {
     searchSeatsState:TSeats
