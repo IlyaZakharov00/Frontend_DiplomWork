@@ -18,10 +18,10 @@ export default function SliderTimeArrival() {
     const [value_end, setValueEnd] = React.useState<number[]>(initValue);
 
     useEffect(() => {
-        if (state.times.start_arrival_hour_from >= 0 && state.times.start_arrival_hour_to) {
+        if (state.times.start_arrival_hour_from && state.times.start_arrival_hour_from >= 0 && state.times.start_arrival_hour_to) {
             setValueStart([state.times.start_arrival_hour_from, state.times.start_arrival_hour_to]);
         }
-        if (state.times.end_arrival_hour_from >= 0 && state.times.end_arrival_hour_to) {
+        if (state.times.end_arrival_hour_from && state.times.end_arrival_hour_from >= 0 && state.times.end_arrival_hour_to) {
             setValueEnd([state.times.end_arrival_hour_from, state.times.end_arrival_hour_to]);
         }
     }, [])

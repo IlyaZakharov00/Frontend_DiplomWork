@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { AboutUs } from './components/AboutUs/AboutUs'
 import { MainPage } from './components/MainPage/MainPage'
 import { HowDoesThisWork } from './components/HowDoesThisWork/HowDoesThisWork'
