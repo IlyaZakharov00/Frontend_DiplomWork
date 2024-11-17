@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { FormEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { ChoiceTrainAside } from '../ChoiceTrain/ChoiceTrainAside/ChoiceTrainAside';
 import './ChoiceSeats.css'
 import { TrainsFirstClass } from './Trains/TrainsFirstClass/TrainsFirstClass';
@@ -28,12 +28,12 @@ import addPassengersSlice from '../redux/slices/addPassengersSlice';
 import priceForTicketstsSlice from '../redux/slices/priceForTickets';
 import menuSlice from '../redux/slices/menuSlice';
 import searchSeatsSlice from '../redux/slices/searchSeatsSlice';
+import moment from 'moment';
 
 export const ChoiceSeats = () => {
     const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
     const priceForTickets = useSelector((state: TPriceStateR) => state.priceForTickets);
     const passangersState = useSelector((state: TPassangersStateR) => state.passangersState);
-
 
     const infoTrain = searchSeatsState.train;
     const navigate = useNavigate();
@@ -150,7 +150,7 @@ export const ChoiceSeats = () => {
         return [upSeat, downSeat, allAvailableSeats, sideSeat]
     }
 
-    const changeCountPassengers = (e: any) => {
+    const changeCountPassengers = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target as HTMLInputElement;
         const type = input.getAttribute('name')
         const countPassengers = Number(input.value);
@@ -184,7 +184,6 @@ export const ChoiceSeats = () => {
         ];
 
         dispatch(addPassengersSlice.actions.addCountPassengers(infoAboutCountPassengers));
-        dispatch(menuSlice.actions.openPassangers());
         navigate('/Frontend_DiplomWork/addPassengers');
     }
 
@@ -213,22 +212,22 @@ export const ChoiceSeats = () => {
                                         <circle cx="43" cy="43" r="42" stroke="#FFA800" strokeWidth="2" />
                                     </svg>
                                     <div className="train_diraction d-flex flex-column">
-                                        <div className="train_number ticket_text">{infoTrain.trainNumber}</div>
+                                        <div className="train_number ticket_text">{infoTrain.departure.train.name}</div>
                                         <div className="train_direction_from_city  ticket_text">
-                                            {infoTrain.fromCity}
+                                            {infoTrain.departure.from.city.name}
                                             <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns={icon_arrow_travel_city} className='icon_arrow_travel_city'>
                                                 <path d="M13.3536 4.35355C13.5488 4.15829 13.5488 3.84171 13.3536 3.64645L10.1716 0.464466C9.97631 0.269204 9.65973 0.269204 9.46447 0.464466C9.2692 0.659728 9.2692 0.976311 9.46447 1.17157L12.2929 4L9.46447 6.82843C9.2692 7.02369 9.2692 7.34027 9.46447 7.53553C9.65973 7.7308 9.97631 7.7308 10.1716 7.53553L13.3536 4.35355ZM0 4.5L13 4.5V3.5L0 3.5L0 4.5Z" fill="#292929" />
                                             </svg>
                                         </div>
-                                        <div className="train_direction_to_city ticket_text">{infoTrain.toCity}</div>
+                                        <div className="train_direction_to_city ticket_text">{infoTrain.departure.to.city.name}</div>
                                     </div>
                                 </div>
                                 <div className='choiceSeats-timeTravel flex-grow-1 px-4'>
                                     <div className='departure d-flex flex-xl-row flex-lg-row flex-column w-100 justify-content-evenly w-100' >
                                         <div className='departure_from_info d-flex flex-xl-column flex-lg-column flex-row justify-content-evenly gap-2'>
-                                            <div className="departure_time ticket_time">{infoTrain.departureTimeStart}</div>
-                                            <div className="departure_city ticket_city_name">{infoTrain.fromCity}</div>
-                                            <div className="departure_station ticket_railway_station">{infoTrain.departureFromRailwayStation}</div>
+                                            <div className="departure_time ticket_time">{moment.unix(infoTrain.departure.from.datetime).format('HH:mm')}</div>
+                                            <div className="departure_city ticket_city_name">{infoTrain.departure.from.city.name}</div>
+                                            <div className="departure_station ticket_railway_station">{infoTrain.departure.from.railway_station_name}</div>
                                         </div>
 
                                         <div className='time_travel'>
@@ -238,9 +237,9 @@ export const ChoiceSeats = () => {
                                             </svg>
                                         </div>
                                         <div className='departure_to_info d-flex flex-xl-column flex-lg-column flex-row justify-content-evenly gap-2'>
-                                            <div className="departure_time ticket_time">{infoTrain.departureTimeEnd}</div>
-                                            <div className="departure_city ticket_city_name">{infoTrain.toCity}</div>
-                                            <div className="departure_station ticket_railway_station">{infoTrain.departureToRailwayStation}</div>
+                                            <div className="departure_time ticket_time">{moment.unix(infoTrain.departure.to.datetime).format('HH:mm')}</div>
+                                            <div className="departure_city ticket_city_name">{infoTrain.departure.to.city.name}</div>
+                                            <div className="departure_station ticket_railway_station">{infoTrain.departure.to.railway_station_name}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -251,10 +250,10 @@ export const ChoiceSeats = () => {
                                     </svg>
                                     <div className="duration-time d-flex flex-column">
                                         <div className="duration-time-hours">
-                                            {`${infoTrain.durationTime.split(':')[0]} часов`}
+                                            {`${moment.unix(infoTrain.departure.duration).format('HH:mm').split(':')[0]} часов`}
                                         </div>
                                         <div className="duration-time-minutes">
-                                            {`${infoTrain.durationTime.split(':')[1]} минут`}
+                                            {`${moment.unix(infoTrain.departure.duration).format('HH:mm').split(':')[1]} минут`}
                                         </div>
                                     </div>
                                 </div>
@@ -278,7 +277,7 @@ export const ChoiceSeats = () => {
                         </div>
                         <div className="typeCoach pt-5">
                             <h3 className='typeCoach_title ps-4 mb-4'>Тип вагона</h3>
-                            <div className="typesCoach-container d-flex justify-content-evenly flex-column flex-lg-row">
+                            <div className="typesCoach-container d-flex justify-content-evenly flex-column flex-lg-row gap-5">
                                 <div className="typeCoach-item d-flex flex-column align-items-center" id='fourth' onClick={changeTypeCoachHendler}>
                                     <svg className='icon_class' width="30.43" height="50" viewBox="0 0 14 23" fill="none" xmlns={icon_thirdClass}>
                                         <path className='icon_item' d="M0 8.75326C0.141674 8.57335 0.25759 8.35002 0.437903 8.21975C1.03036 7.7979 1.79669 8.08947 1.97056 8.80288C2.12512 9.44806 2.25391 10.0994 2.38914 10.7508C2.62741 11.8737 2.85925 13.0027 3.10396 14.1256C3.42594 15.5834 4.41122 16.3527 5.9632 16.3589C7.07084 16.3651 8.17203 16.3527 9.27967 16.3651C9.93008 16.3713 10.2971 16.6566 10.4002 17.2025C10.5032 17.7919 10.0846 18.3378 9.46642 18.344C8.03036 18.3564 6.5943 18.3936 5.15823 18.3316C3.39374 18.2572 1.75161 16.8551 1.29439 15.0809C0.99816 13.9208 0.779209 12.7422 0.521619 11.5759C0.354186 10.8004 0.173873 10.0312 0 9.25575C0 9.08825 0 8.92075 0 8.75326Z" fill="#E5E5E5" />
@@ -322,7 +321,7 @@ export const ChoiceSeats = () => {
                                             </div>
                                         </div>
                                         <div className="col-lg-9 col-12">
-                                            <div className="aboutCoachInfo-container d-flex justify-content-lg-between px-3 pt-4 flex-column flex-md-row flex-lg-row align-items-start">
+                                            <div className="aboutCoachInfo-container gap-5 d-flex justify-content-lg-between px-3 pt-4 flex-column flex-md-row flex-lg-row align-items-start">
                                                 <div className='typeCoach-seats d-flex align-items-start gap-2 flex-column'>
                                                     <div className="seat-all-count d-flex gap-2 align-items-center">
                                                         <h3 className="seats-title m-0 p-0">Места</h3>

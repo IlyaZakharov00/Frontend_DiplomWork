@@ -31,7 +31,7 @@ export default function SliderPrice() {
 
     return (
         <StyledEngineProvider injectFirst>
-            <Box sx={{ width: 300 }}>
+            <Box>
                 <div className="label-container d-flex justify-content-between">
                     <label >от</label>
                     <label >до</label>

@@ -9,6 +9,7 @@ import { ChoiceSeats } from './components/ChoiceSeats/ChoiceSeats'
 import { AddPassengers } from './components/AddPassengers/AddPassengers'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import { PaymentPage } from './components/PaymentPage/PaymentPage'
+import { CheckPage } from './components/CheckPage/CheckPage'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/Frontend_DiplomWork/choiceSeats/:id' element={<ChoiceSeats />} />
           <Route path='/Frontend_DiplomWork/addPassengers' element={<AddPassengers />} />
           <Route path='/Frontend_DiplomWork/paymentPage' element={<PaymentPage />} />
+          <Route path='/Frontend_DiplomWork/checkPage' element={<CheckPage />} />
         </Route>
       </Routes>
     </Router >

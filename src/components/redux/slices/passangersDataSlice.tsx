@@ -11,8 +11,12 @@ const passangerDataSlice = createSlice({
     reducers: {
 
         addPassenger: (state: TPassangersDataState, action: PayloadAction<any>) => {
-            state.allPassanger.push(action.payload)
+            state.allPassanger.push(action.payload);
         },
+
+        clearAll: (state: TPassangersDataState) => {
+            state.allPassanger = [];
+        }
 
     },
 });

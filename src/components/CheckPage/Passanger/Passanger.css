@@ -1,0 +1,16 @@
+.passanger{
+    border-bottom: 1px dotted var(--user-comment-color);
+}
+
+.passanger-age,
+.passanger-name {
+    font-size: 18px;
+    color: var(--text-color-black);
+}
+
+.passanger-dateBirthday,
+.passanger-document,
+.passanger-gender {
+    font-size: 18px;
+    color: var(--user-comment-color);
+}

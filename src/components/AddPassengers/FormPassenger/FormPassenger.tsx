@@ -13,8 +13,8 @@ export const FormPassenger = (props: IFormProps) => {
     const { register, handleSubmit, formState, watch, reset, setValue } = useForm<IForm>({
         mode: 'onChange',
         defaultValues: {
-            'document_type': 'passport',
-            'age': "adult",
+            'document_type': 'Паспорт РФ',
+            'age': "Взрослый",
         },
     })
 
@@ -52,9 +52,9 @@ export const FormPassenger = (props: IFormProps) => {
 
             <div className="age-passenger mb-5" >
                 <select className='select-age-passenger col-lg-5 col-12 p-2' {...register('age')} >
-                    <option className='age-passenger-option' value="adult" >Взрослый</option>
-                    <option className='age-passenger-option' value="child" >Детский</option>
-                    <option className='age-passenger-option' value="childWithoutSeat">Детский без места</option>
+                    <option className='age-passenger-option' value="Взрослый" >Взрослый</option>
+                    <option className='age-passenger-option' value="Ребенок" >Детский</option>
+                    <option className='age-passenger-option' value="Ребенок без места">Детский без места</option>
                 </select>
             </div>
 
@@ -101,7 +101,7 @@ export const FormPassenger = (props: IFormProps) => {
                         <label className="checkbox-container d-flex ">
                             <input className='checkbox-input'
                                 type="radio"
-                                value={"М"}
+                                value={"Мужской"}
                                 {...register('gender', {
                                     required: "Это поле обязательно для заполнения."
                                 })} />
@@ -111,7 +111,7 @@ export const FormPassenger = (props: IFormProps) => {
                         <label className="checkbox-container d-flex ">
                             <input className='checkbox-input'
                                 type="radio"
-                                value={"Ж"}
+                                value={"Женский"}
                                 {...register('gender', {
                                     required: 'Это поле обязательно для заполнения.'
                                 })} />
@@ -144,15 +144,15 @@ export const FormPassenger = (props: IFormProps) => {
 
             <div className="document-passenger d-flex justify-content-center mb-5 gap-3 d-flex flex-column flex-lg-row">
 
-                <div className={documentType === 'passport' ? "select-container col-lg-4 col-12" : "select-container col-lg-5 col-12"} >
+                <div className={documentType === 'Паспорт РФ' ? "select-container col-lg-4 col-12" : "select-container col-lg-5 col-12"} >
                     <label className='label-text'>Тип документа</label>
                     <select className="type-document-select w-100 p-2" {...register("document_type")}>
-                        <option className='document-option' value="passport">Паспорт РФ</option>
-                        <option className='document-option' value="document_birthday">Свидетельсвто о рождении</option>
+                        <option className='document-option' value="Паспорт РФ">Паспорт РФ</option>
+                        <option className='document-option' value="Свидетельство о рождении">Свидетельсвто о рождении</option>
                     </select>
                 </div>
 
-                {documentType === 'passport' ?
+                {documentType === 'Паспорт РФ' ?
                     <div className="seria-document-container d-flex flex-column col-lg-4 col-12" >
                         <label className='label-text'>Серия</label>
                         <input className='input-seria-document m-0 p-2'
@@ -180,11 +180,11 @@ export const FormPassenger = (props: IFormProps) => {
                         {...register("number_document", {
                             required: "Это поле обязательно для заполнения.",
                             maxLength: {
-                                value: documentType === 'passport' ? 6 : 12,
+                                value: documentType === 'Паспорт РФ' ? 6 : 12,
                                 message: 'Неверный номер документа'
                             },
                             pattern: {
-                                value: documentType === 'passport' ? /\d{6}/ : /[A-Za-zА-Я]{6}\d{6}/gm,
+                                value: documentType === 'Паспорт РФ' ? /\d{6}/ : /[A-Za-zА-Я]{6}\d{6}/gm,
                                 message: "Номер документа введен в неверном формате."
                             }
                         })} />

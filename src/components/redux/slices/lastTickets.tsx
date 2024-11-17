@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { searchLastTickets } from "../async action/searchLastTickets";
 import { TLastTicketsState } from "../types/LastTickets/LastTicketsState";
 
 const initialState: TLastTicketsState = {
-    lastTickets: []
+    lastTickets: [],
+    loading: false,
+    error: null,
 }
 
 const lastTickets = createSlice({
@@ -15,6 +18,21 @@ const lastTickets = createSlice({
         },
 
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(searchLastTickets.pending, (state: TLastTicketsState) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(searchLastTickets.fulfilled, (state: TLastTicketsState, action) => {
+                state.loading = false;
+                state.lastTickets = action.payload;
+            })
+            .addCase(searchLastTickets.rejected, (state: TLastTicketsState) => {
+                state.loading = false;
+                state.error = true;
+            })
+    }
 });
 
 export default lastTickets

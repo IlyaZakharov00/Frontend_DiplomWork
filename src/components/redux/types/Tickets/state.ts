@@ -12,7 +12,7 @@ export type TTicketsState = {
     comfortOptions: TComfortOptions,
     prices: TPrice,
     times: TTimes,
-    limit: string,
+    limit: number,
     offset: string,
     sort: string,
     responseFromServer: {total_count: number, items:any},

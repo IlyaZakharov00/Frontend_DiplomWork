@@ -8,6 +8,7 @@ import icon_passengers from '../../../static-files/icons/aside/passengers.svg'
 import icon_rub from '../../../static-files/icons/ticket/rub.svg'
 import icon_arrow from '../../../static-files/icons/ticket/arrow_travel.svg'
 import './DetailsTravel.css'
+import moment from 'moment'
 
 export const DetailsTravel = () => {
     const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
@@ -25,7 +26,7 @@ export const DetailsTravel = () => {
                     <div className="accordion accordion-flush" id="accordionFlushExample">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="flush-headingOne">
-                                <button className="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <button className="accordion-button p-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                     <div className="info-container d-flex align-items-center">
                                         <svg width="32" height="26" viewBox="0 0 32 26" fill="none" xmlns={icon_accordion_arrow}>
                                             <path fillRule="evenodd" clipRule="evenodd" d="M5 0C2.23877 0 0 2.23853 0 5V21C0 23.7615 2.23877 26 5 26H27C29.7612 26 32 23.7615 32 21V5C32 2.23853 29.7612 0 27 0H5ZM17.8369 14.2236V17.3333C19.3442 15.8793 20.8667 14.4108 22.3154 13.0288C20.8521 11.6035 19.3442 10.135 17.8223 8.66663V11.949H9.68408V14.2236H17.8369Z" fill="#FFA800" />
@@ -40,45 +41,45 @@ export const DetailsTravel = () => {
                                     <div id="aboutTrain-info" className='mt-3'>
                                         <div className="info_about_choice_train d-flex justify-content-between">
                                             <div className="numberTrain-text">№ Поезда</div>
-                                            <div className="numberTrain">{searchSeatsState.train.trainNumber}</div>
+                                            <div className="numberTrain">{searchSeatsState.train.departure.train.name}</div>
                                         </div>
                                         <div className="info_about_choice_train d-flex justify-content-between">
                                             <div className="nameTrain-text">Название</div>
-                                            <div className="nameTrain">{searchSeatsState.train.fromCity} <br></br>{searchSeatsState.train.toCity}</div>
+                                            <div className="nameTrain">{searchSeatsState.train.departure.from.city.name} <br></br>{searchSeatsState.train.departure.to.city.name}</div>
                                         </div>
                                     </div>
                                     <div id="aboutTrain-times-info" className='mt-5'>
                                         <div className="info_about_choice_train d-flex justify-content-between align-items-center">
-                                            <div className="dates-times-start d-flex">
-                                                <div className="time-start">{searchSeatsState.train.departureTimeStart}</div>
+                                            <div className="dates-times-start d-flex flex-column">
+                                                <div className="time-start">{moment.unix(searchSeatsState.train.departure.from.datetime).format('HH:mm')}</div>
                                                 <div className="date-start">{searchTicketsState.dates.date_start}</div>
                                             </div>
                                             <div className="duration-time">
-                                                <div className="durationTime-text">{searchSeatsState.train.durationTime}</div>
+                                                <div className="durationTime-text">{moment.unix(searchSeatsState.train.departure.duration).format("HH:mm")}</div>
                                                 <svg className='durationTime_arrow' width="30" height="20" viewBox="0 0 30 20" fill="none" xmlns={icon_arrow}>
                                                     <path d="M19.3627 20C19.3627 17.8073 19.3627 15.3821 19.3627 12.8239C12.8621 12.8239 6.46582 12.8239 0 12.8239C0 11.0299 0 9.36877 0 7.57475C6.32677 7.57475 12.7231 7.57475 19.3279 7.57475C19.3279 4.91694 19.3279 2.42525 19.3279 0C22.9432 3.3887 26.5238 6.77741 30 10.0664C26.5585 13.2558 22.9432 16.6445 19.3627 20Z" fill="#FFA800" fillOpacity="0.79" />
                                                 </svg>
                                             </div>
-                                            <div className="dates-times-end d-flex">
-                                                <div className="time-end">{searchSeatsState.train.departureTimeEnd}</div>
+                                            <div className="dates-times-end d-flex flex-column">
+                                                <div className="time-end">{moment.unix(searchSeatsState.train.departure.to.datetime).format("HH:mm")}</div>
                                                 <div className="date-end">{searchTicketsState.dates.date_end}</div>
                                             </div>
                                         </div>
                                         <div className="cities d-flex justify-content-between mt-3">
                                             <div className="cityStart">
                                                 <div className="cityStart-name">
-                                                    {searchSeatsState.train.fromCity}
+                                                    {searchSeatsState.train.departure.from.city.name}
                                                 </div>
                                                 <div className="cityStart-railwayStation">
-                                                    {searchSeatsState.train.departureFromRailwayStation} вокзал
+                                                    {searchSeatsState.train.departure.from.railway_station_name} вокзал
                                                 </div>
                                             </div>
                                             <div className="cityEnd text-end">
                                                 <div className="cityEnd-name">
-                                                    {searchSeatsState.train.toCity}
+                                                    {searchSeatsState.train.departure.to.city.name}
                                                 </div>
                                                 <div className="cityEnd-railwayStation">
-                                                    {searchSeatsState.train.departureToRailwayStation} вокзал
+                                                    {searchSeatsState.train.departure.to.railway_station_name} вокзал
                                                 </div>
                                             </div>
                                         </div>
@@ -92,12 +93,12 @@ export const DetailsTravel = () => {
                     <div className="accordion accordion-flush" id="accordionFlushExample_2">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="flush-headingOne_2">
-                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne_2" aria-expanded="false" aria-controls="flush-collapseOne_2">
+                                <button className="accordion-button p-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne_2" aria-expanded="false" aria-controls="flush-collapseOne_2">
                                     <svg width="32" height="26" viewBox="0 0 32 26" fill="none" xmlns={icon_accordion_arrow}>
                                         <path fillRule="evenodd" clipRule="evenodd" d="M5 0C2.23877 0 0 2.23853 0 5V21C0 23.7615 2.23877 26 5 26H27C29.7612 26 32 23.7615 32 21V5C32 2.23853 29.7612 0 27 0H5ZM17.8369 14.2236V17.3333C19.3442 15.8793 20.8667 14.4108 22.3154 13.0288C20.8521 11.6035 19.3442 10.135 17.8223 8.66663V11.949H9.68408V14.2236H17.8369Z" fill="#FFA800" />
                                     </svg>
                                     <h2 className='travelBack_title'>Обратно</h2>
-                                    <div className="travelBack_date">{searchTicketsState.dates.date_start}</div>
+                                    <div className="travelBack_date">{searchTicketsState.dates.date_end}</div>
                                 </button>
                             </h2>
                             <div id="flush-collapseOne_2" className="accordion-collapse collapse show" aria-labelledby="flush-headingOne_2" data-bs-parent="#accordionFlushExample_2">
@@ -105,45 +106,45 @@ export const DetailsTravel = () => {
                                     <div id="aboutTrain-info" className='mt-3'>
                                         <div className="info_about_choice_train d-flex justify-content-between">
                                             <div className="numberTrain-text">№ Поезда</div>
-                                            <div className="numberTrain">{searchSeatsState.train.trainNumber}</div>
+                                            <div className="numberTrain">{searchSeatsState.train.departure.train.name}</div>
                                         </div>
                                         <div className="info_about_choice_train d-flex justify-content-between">
                                             <div className="nameTrain-text">Название</div>
-                                            <div className="nameTrain">{searchSeatsState.train.fromCity} <br></br>{searchSeatsState.train.toCity}</div>
+                                            <div className="nameTrain">{searchSeatsState.train.departure.to.city.name} <br></br>{searchSeatsState.train.departure.from.city.name}</div>
                                         </div>
                                     </div>
                                     <div id="aboutTrain-times-info" className='mt-5'>
                                         <div className="info_about_choice_train d-flex justify-content-between align-items-center">
-                                            <div className="dates-times-start d-flex">
-                                                <div className="time-start">{searchSeatsState.train.departureTimeStart}</div>
-                                                <div className="date-start">{searchTicketsState.dates.date_start}</div>
+                                            <div className="dates-times-start d-flex flex-column">
+                                                <div className="time-start">{moment.unix(searchSeatsState.train.departure.to.datetime).format("HH:mm")}</div>
+                                                <div className="date-start">{searchTicketsState.dates.date_end}</div>
                                             </div>
                                             <div className="duration-time">
-                                                <div className="durationTime-text">{searchSeatsState.train.durationTime}</div>
+                                                <div className="durationTime-text">{moment.unix(searchSeatsState.train.departure.duration).format("HH:mm")}</div>
                                                 <svg className='durationTime_arrow' width="30" height="20" viewBox="0 0 30 20" fill="none" xmlns={icon_arrow}>
                                                     <path d="M19.3627 20C19.3627 17.8073 19.3627 15.3821 19.3627 12.8239C12.8621 12.8239 6.46582 12.8239 0 12.8239C0 11.0299 0 9.36877 0 7.57475C6.32677 7.57475 12.7231 7.57475 19.3279 7.57475C19.3279 4.91694 19.3279 2.42525 19.3279 0C22.9432 3.3887 26.5238 6.77741 30 10.0664C26.5585 13.2558 22.9432 16.6445 19.3627 20Z" fill="#FFA800" fillOpacity="0.79" />
                                                 </svg>
                                             </div>
-                                            <div className="dates-times-end d-flex">
-                                                <div className="time-end">{searchSeatsState.train.departureTimeEnd}</div>
-                                                <div className="date-end">{searchTicketsState.dates.date_end}</div>
+                                            <div className="dates-times-end d-flex flex-column">
+                                                <div className="time-end">{moment.unix(searchSeatsState.train.departure.from.datetime).format("HH:mm")}</div>
+                                                <div className="date-end">{searchTicketsState.dates.date_start}</div>
                                             </div>
                                         </div>
                                         <div className="cities d-flex justify-content-between mt-3">
                                             <div className="cityStart">
                                                 <div className="cityStart-name">
-                                                    {searchSeatsState.train.fromCity}
+                                                    {searchSeatsState.train.departure.to.city.name}
                                                 </div>
                                                 <div className="cityStart-railwayStation">
-                                                    {searchSeatsState.train.departureFromRailwayStation} вокзал
+                                                    {searchSeatsState.train.departure.to.railway_station_name} вокзал
                                                 </div>
                                             </div>
                                             <div className="cityEnd text-end">
                                                 <div className="cityEnd-name">
-                                                    {searchSeatsState.train.toCity}
+                                                    {searchSeatsState.train.departure.from.city.name}
                                                 </div>
                                                 <div className="cityEnd-railwayStation">
-                                                    {searchSeatsState.train.departureToRailwayStation} вокзал
+                                                    {searchSeatsState.train.departure.from.railway_station_name} вокзал
                                                 </div>
                                             </div>
                                         </div>

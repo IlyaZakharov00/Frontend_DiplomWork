@@ -3,6 +3,9 @@ export type TMenu = {
     passangers: boolean;
     pay: boolean;
     check: boolean;
+    changeTrain: boolean;
+    changePassengers: boolean;
+    changePayMethod:boolean;
 }
 
 export type TMenuState ={

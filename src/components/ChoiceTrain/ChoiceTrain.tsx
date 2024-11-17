@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import './ChoiceTrain.css'
 import icon_arrow_right from '../../static-files/icons/icon_pages_arrow_right.svg'
 import icon_arrow_left from '../../static-files/icons/icon_pages_arrow_left.svg'
@@ -7,32 +7,31 @@ import { Ticket } from '../Ticket/Ticket'
 import { Loading } from '../Loading/Loading'
 import { NothingSearched } from './NothingSearched/NothingSearched'
 import { ChoiceTrainAside } from './ChoiceTrainAside/ChoiceTrainAside'
-import { searchLastTickets } from '../redux/async action/searchLastTickets'
-import { addTickets } from '../redux/slices/lastTickets'
 import { Error } from '../Error/Error'
 import searchTicketsSlice from '../redux/slices/searchTicketsSlice'
 import searchSeatsSlice from '../redux/slices/searchSeatsSlice'
 import { searchDirections } from '../redux/async action/searchDirections'
+import menuSlice from '../redux/slices/menuSlice'
+import { TSeatsR } from '../redux/types/Seats/SeatsState'
+import { TTicketsStateR } from '../redux/types/Tickets/state'
 
 export const ChoiceTrain = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state: any) => state.searchTicketsState);
-    const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
+
+    const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
+    const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
     const isLoading = state.loading || searchSeatsState.loading;
     const isError = state.error || searchSeatsState.error;
 
     useEffect(() => {
-        const fetchLastTickets = async () => {
-            const lastTickets = await dispatch(searchLastTickets());
-            dispatch(addTickets(lastTickets));
-        }
-        fetchLastTickets();
+        dispatch(searchDirections(state));
+        dispatch(menuSlice.actions.openTickets());
     }, []);
 
     useEffect(() => {
         dispatch(searchDirections(state));
         dispatch(searchSeatsSlice.actions.closeChoiceSeats());
-    }, [state.comfortOptions, state.class, state.limit, state.offset, state.sort, state.prices, state.times]);
+    }, [state.class.have_first_class, state.class.have_fourth_class, state.class.have_second_class, state.class.have_third_class, state.comfortOptions.have_air_conditioning, state.comfortOptions.have_express, state.comfortOptions.have_wifi, state.limit, state.offset, state.sort, state.prices.price_from, state.prices.price_to, state.times.end_arrival_hour_from, state.times.end_arrival_hour_to, state.times.end_departure_hour_from, state.times.end_departure_hour_to, state.times.start_arrival_hour_from, state.times.start_arrival_hour_to, state.times.start_departure_hour_from, state.times.start_departure_hour_to])
 
     const countNumberOfPages = () => Array(Math.ceil(state.responseFromServer.total_count / (state.limit ? state.limit : 5))).fill('');
 

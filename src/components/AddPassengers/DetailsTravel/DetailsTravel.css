@@ -19,12 +19,16 @@
 .travelBack_title {
     font-size: 30px;
     margin-bottom: 0;
-    margin-left: 10px;
+    margin-left: 5px;
     color: var(--text-color);
 }
 
 .travelStart_date {
-    margin-left: 10px;
+    margin-left: 25px;
+}
+
+.travelBack_date {
+    margin-left: 5px;
 }
 
 .numberTrain-text,

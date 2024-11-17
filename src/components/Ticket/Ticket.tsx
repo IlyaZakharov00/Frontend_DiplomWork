@@ -9,34 +9,33 @@ import icon_rub from '../../static-files/icons/ticket/rub.svg'
 import icon_sprite_functions from '../../static-files/icons/ticket/sprite_functions.svg'
 import { searchSeats } from '../redux/async action/searchSeats';
 import searchSeatsSlice from '../redux/slices/searchSeatsSlice';
+import { TTicketsStateR } from '../redux/types/Tickets/state';
+import { TTrainMainProps } from '../redux/types/Train/Train';
+import menuSlice from '../redux/slices/menuSlice';
+import { TMenuState } from '../redux/types/Menu/menu';
 
-export const Ticket = (props: any) => {
+export const Ticket = (props: TTrainMainProps) => {
     const { item } = props;
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const state = useSelector((state: any) => state.searchTicketsState);
+    const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
+    const menuState = useSelector((state: TMenuState) => state.menuState)
 
     const choiceSeatsHendler = async (e: React.MouseEvent<HTMLElement>) => {
         const button = e.target as HTMLButtonElement;
         const ticket = button.closest('.ticket_container');
         const departureID = ticket?.getAttribute('id');
-
-        const infoAboutTrain = {
-            trainNumber: item.departure.train.name,
-            fromCity: item.departure.from.city.name,
-            toCity: item.departure.to.city.name,
-            departureTimeStart: moment.unix(item.departure.from.datetime).format('HH:mm'),
-            durationTime: moment.utc(item.departure.duration * 1000).format('HH:mm'),
-            departureTimeEnd: moment.unix(item.departure.to.datetime).format('HH:mm'),
-            departureFromRailwayStation: item.departure.from.railway_station_name,
-            departureToRailwayStation: item.departure.to.railway_station_name,
-        }
-
         const resp = await dispatch(searchSeats({ state, departureID }))
         dispatch(searchSeatsSlice.actions.choiceSeats(resp))
         dispatch(searchSeatsSlice.actions.addDepartureID(departureID))
-        dispatch(searchSeatsSlice.actions.addTrain(infoAboutTrain))
+        dispatch(searchSeatsSlice.actions.addTrain(item))
+        dispatch(menuSlice.actions.openTickets())
         navigate(`/Frontend_DiplomWork/choiceSeats/${departureID}`);
+    }
+
+    const changeTrain = () => {
+        // dispatch()
+        navigate("/Frontend_DiplomWork/choiceTrain")
     }
 
     return (
@@ -144,7 +143,7 @@ export const Ticket = (props: any) => {
                             <path className="sprite_food" d="M89.955 17.0709C89.955 17.7223 89.955 18.3486 89.955 18.9999C83.9616 18.9999 77.9933 18.9999 72 18.9999C72 18.3486 72 17.7348 72 17.0709C77.9683 17.0709 83.9366 17.0709 89.955 17.0709Z" fill="#C4C4C4" />
                         </svg>
                     </div>
-                    <button className='choiceSeatsBtn' onClick={choiceSeatsHendler}>Выбрать места</button>
+                    {menuState.check ? <button className='choiceSeatsBtn' onClick={changeTrain}>Изменить</button> : <button className='choiceSeatsBtn' onClick={choiceSeatsHendler}>Выбрать места</button>}
                 </div>
             </div>
         </div>

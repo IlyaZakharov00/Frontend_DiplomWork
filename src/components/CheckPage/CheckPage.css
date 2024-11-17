@@ -1,0 +1,46 @@
+.check-passangers-title,
+.check-passangers-container,
+.check-train-title {
+    font-size: 30px;
+    color: var(--text-color-black);
+    font-weight: 400;
+    border: 1px solid var(--user-comment-color);
+}
+
+.check-passangers-aside {
+    border-left: 1px dotted var(--user-comment-color);
+}
+
+.btn-change-passangers,
+.btn-change-payMethod {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color-black);
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 3px 50px;
+}
+
+.check-passangers-sum-text,
+.check-sum-price {
+    font-size: 30px;
+    color: var(--text-color-black);
+}
+
+.check-sum-price {
+    font-weight: 700;
+}
+
+.check-methodPay {
+    font-size: 24px;
+    color: var(--text-color-black);
+}
+
+.check-payMethod-container {
+    border: 1px dotted var(--user-comment-color);
+}
+
+.btn-checkSuccess{
+    font-size: 24px;
+    padding: 5px 10px;
+}

@@ -1,5 +1,7 @@
 export type TLastTicketsState = {
     lastTickets: [];
+    loading: boolean;
+    error: boolean | null;
 }
 export type TLastTicketsStateR={
     lastTickets: TLastTicketsState;

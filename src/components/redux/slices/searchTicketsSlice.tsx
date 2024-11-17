@@ -85,7 +85,6 @@ const searchTicketsSlice = createSlice({
         },
 
         addDates: (state: TTicketsState, action: PayloadAction<any>) => {
-            console.log(action)
             switch (action.payload.type) {
                 case 'data_start':
                     state.dates.date_start = action.payload.payload
@@ -132,7 +131,6 @@ const searchTicketsSlice = createSlice({
         },
 
         addTimes: (state: TTicketsState, action: PayloadAction<any>) => {
-            console.log(action)
             switch (action.payload.type) {
                 case 'start_departure':
                     state.times.start_departure_hour_from = action.payload.payload[0];

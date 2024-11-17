@@ -1,5 +1,5 @@
 .passenger_title {
-    font-size: 30px;
+    font-size: calc(20px + 10 * (100vw - 360px) / 1560);
     font-weight: 400;
     color: var(--text-color-black);
 }

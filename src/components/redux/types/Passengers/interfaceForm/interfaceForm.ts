@@ -14,3 +14,7 @@ export interface IForm {
 export interface IFormProps {
     defaultPassangers: IForm
 }
+
+export type TPassangerProps = {
+    passanger: IForm
+}

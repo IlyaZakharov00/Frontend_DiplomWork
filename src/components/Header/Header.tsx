@@ -21,7 +21,7 @@ export const Header = () => {
 
 	const menuState = useSelector((state: TMenuState) => state.menuState);
 
-	const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);;
+	// const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);;
 
 	const isLoadingFromCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.loading_fromCity);
 	const isErrorFromCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.error_fromCity);
@@ -34,9 +34,7 @@ export const Header = () => {
 
 	const searchTickets = async (e: React.FormEvent) => {
 		e.preventDefault();
-		dispatch(searchDirections(state));
 		dispatch(searchSeatsSlice.actions.closeChoiceSeats());
-		dispatch(menuSlice.actions.openTickets());
 		navigate("/Frontend_DiplomWork/choiceTrain");
 	};
 
@@ -103,7 +101,7 @@ export const Header = () => {
 				<div className="row m-0 d-flex">
 					<div className="d-flex justify-content-evenly wrapper-body p-0 align-items-center flex-lg-row flex-column ">
 						{menuState.ticekts ? <></> :
-							<div className="col-lg-4 col-12 pt-lg-0 pt-5">
+							<div className="col-lg-4 col-6 pt-lg-0 pt-5">
 								<h2 className="slogan">
 									<span className="light_text">Вся жизнь - </span>
 									<span className="bold_text">путешествие!</span>

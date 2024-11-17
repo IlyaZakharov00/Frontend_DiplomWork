@@ -6,3 +6,7 @@ export type TPayInfoPerson={
     surname:string;
     telNumber:string
 }
+
+export type TPayInfoPersonR={
+    payInfo: TPayInfoPerson
+}

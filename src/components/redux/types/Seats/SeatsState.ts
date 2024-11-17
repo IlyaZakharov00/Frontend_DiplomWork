@@ -1,13 +1,17 @@
+import { TTrainMain } from "../Train/Train"
+
 export type TSeats = {
     responseFromServer: any,
     departureID: string,
     choiceTypeCoach: string,
     choiceNumberCoach: string,
     choiceCoach: any,
-    train: any,
+    train: TTrainMain,
     loading: boolean,
     error: boolean | null,
 }
+
+
 export type TSeatsR = {
-    searchSeatsState:TSeats
+    searchSeatsState: TSeats
 }

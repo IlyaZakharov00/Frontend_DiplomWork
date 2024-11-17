@@ -6,6 +6,9 @@ const initialState: TMenu = {
     passangers: false,
     pay: false,
     check: false,
+    changePassengers: false,
+    changePayMethod: false,
+    changeTrain: false,
 }
 
 const menuSlice = createSlice({
@@ -22,15 +25,18 @@ const menuSlice = createSlice({
 
         openPassangers: (state: TMenu) => {
             state.ticekts = true;
-            state.passangers = true
-            state.pay = false
-            state.check = false
+            state.passangers = true;
+            state.pay = false;
+            state.check = false;
+            state.changeTrain = false;
         },
+
         openPay: (state: TMenu) => {
             state.ticekts = true;
             state.passangers = true;
             state.pay = true;
             state.check = false;
+            state.changePassengers = false;
         },
 
         openCheck: (state: TMenu) => {
@@ -38,6 +44,7 @@ const menuSlice = createSlice({
             state.passangers = true;
             state.pay = true;
             state.check = true;
+            state.changePayMethod = false;
         },
 
         closeAll: (state: TMenu) => {
@@ -45,6 +52,21 @@ const menuSlice = createSlice({
             state.passangers = false;
             state.pay = false;
             state.check = false;
+            state.changePassengers = false;
+            state.changePayMethod = false;
+            state.changeTrain = false;
+        },
+
+        changeTrain: (state: TMenu) => {
+            state.changeTrain = true;
+        },
+
+        changePassenger: (state: TMenu) => {
+            state.changePassengers = true;
+        },
+
+        changePayMethod: (state: TMenu) => {
+            state.changePayMethod = true;
         }
     }
 })

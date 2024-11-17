@@ -13,12 +13,18 @@ import SliderTimeArrival from '../SliderTime/SliderTimeArrival';
 import SliderTimeDeparture from '../SliderTime/SliderTimeDeparture';
 import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
 import { LastTicket } from '../../LastTickets/LastTicket';
+import { useEffect } from 'react';
+import { searchLastTickets } from '../../redux/async action/searchLastTickets';
 
 export const ChoiceTrainAside = () => {
 
     const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
     const stateLastTickets = useSelector((state: TLastTicketsStateR) => state.lastTickets.lastTickets);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(searchLastTickets())
+    }, [])
 
     const onChangeHdnler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const id = e.target.getAttribute('id');

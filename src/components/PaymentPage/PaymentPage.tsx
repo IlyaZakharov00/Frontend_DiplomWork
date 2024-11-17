@@ -8,29 +8,35 @@ import { IPayFrorm } from '../redux/types/PayForm/PayForm'
 import { Modal_Error } from '../Modals/Modal_Error/Modal_Error'
 import modalWindowsSlice from '../redux/slices/modalWindows'
 import payInfoSlice from '../redux/slices/payInfoSlice'
+import { useNavigate } from 'react-router-dom'
+import menuSlice from '../redux/slices/menuSlice'
 
 export const PaymentPage = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const { register, handleSubmit, formState, watch } = useForm<IPayFrorm>({
         mode: 'onChange',
     })
 
+    useEffect(() => {
+        dispatch(menuSlice.actions.openPay())
+    }, [])
+
     const methodPay = watch('payMethod')
     useEffect(() => {
-        console.log(methodPay)
-        methodPay === 'online' ? dispatch(modalWindowsSlice.actions.showModalWindow({ type: 'modal_error', content: 'К сожалению, сейчас оплата онлайн не работает. Выберите, пожалуйста, другой способ оплаты.' })) : <></>
+        methodPay === 'Онлайн' ? dispatch(modalWindowsSlice.actions.showModalWindow({ type: 'modal_error', content: 'К сожалению, сейчас оплата онлайн не работает. Выберите, пожалуйста, другой способ оплаты.' })) : <></>
     }, [methodPay])
 
     const onSubmit: SubmitHandler<IPayFrorm> = (data) => {
         dispatch(payInfoSlice.actions.addPerson(data))
-        console.log(data)
+        navigate('/Frontend_DiplomWork/checkPage')
     }
 
     return (
         <div className='addPassangers-container mb-5'>
-            <div className="row m-auto pt-5 d-flex justify-content-between w-75">
+            <div className="row m-auto pt-5 d-flex justify-content-between w-75 gap-5">
                 <div className="col-xl-3 col-lg-12 p-0">
                     <DetailsTravel />
                 </div>
@@ -120,7 +126,7 @@ export const PaymentPage = () => {
                                         <div className="payOnline">
                                             <div className="input-container d-flex flex-row align-items-center mb-3">
                                                 <input className='payMethod-input form-check-input'
-                                                    value={'online'} type="radio" id='payMethod-online'
+                                                    value={'Онлайн'} type="radio" id='payMethod-online'
                                                     {...register('payMethod', {
                                                         required: "Это поле обязательно для заполнения."
                                                     })} />
@@ -128,7 +134,7 @@ export const PaymentPage = () => {
                                                 {formState.errors.payMethod ? <div className='input-error'>{formState.errors['payMethod']?.message}</div> : <></>}
                                             </div>
 
-                                            <ul className="methodsPay-online d-flex gap-5 mb-3 p-0 justify-content-between">
+                                            <ul className="methodsPay-online d-flex gap-5 mb-3 p-0 justify-content-between flex-lg-row flex-column">
                                                 <li className='methods-item'>Банковской картой</li>
                                                 <li className='methods-item'>PayPal</li>
                                                 <li className='methods-item'>Visa Qiwi Wallet</li>
@@ -136,7 +142,7 @@ export const PaymentPage = () => {
                                         </div>
                                         <div className="payCash d-flex flex-row align-items-center">
                                             <input className='payMethod-input form-check-input'
-                                                value='cash' type="radio" id='payMethod-cash'
+                                                value='Наличными' type="radio" id='payMethod-cash'
                                                 {...register('payMethod', {
                                                     required: "Это поле обязательно для заполнения."
                                                 })} />
@@ -148,8 +154,8 @@ export const PaymentPage = () => {
                                 </form >
                             </div>
                         </div>
-                        {methodPay === 'online' ? <Modal_Error /> : <></>}
-                        <button type='submit' form='personal-info' className={'btn-next p-2 col-4 align-self-end'} >Купить билеты</button>
+                        {methodPay === 'Онлайн' ? <Modal_Error /> : <></>}
+                        <button type='submit' form='personal-info' className={'btn-next p-2 col-lg-4 col-6 align-self-end ' + `${methodPay === 'Онлайн' ? "btn-disabled" : ""}`} disabled={methodPay === 'Онлайн'} >Купить билеты</button>
                     </div>
                 </div>
             </div >

@@ -5,6 +5,7 @@ import './AddPassengers.css'
 import { FormPassenger } from './FormPassenger/FormPassenger';
 import { TPassangersDataStateR, TPassangersStateR } from '../redux/types/Passengers/PassangersState';
 import menuSlice from '../redux/slices/menuSlice';
+import { useEffect } from 'react';
 
 export const AddPassengers = () => {
     const passangersState = useSelector((state: TPassangersStateR) => state.passangersState);
@@ -13,14 +14,17 @@ export const AddPassengers = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(menuSlice.actions.openPassangers())
+    }, [])
+
     const nextPage = () => {
-        dispatch(menuSlice.actions.openPay())
         navigate('/Frontend_DiplomWork/paymentPage')
     }
 
     return (
         <div className='addPassangers-container mb-5'>
-            <div className="row m-auto pt-5 d-flex justify-content-between w-75">
+            <div className="row m-auto pt-5 d-flex justify-content-between w-75 gap-5">
                 <div className="col-xl-3 col-lg-12 p-0">
                     <DetailsTravel />
                 </div>

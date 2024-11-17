@@ -18,7 +18,6 @@ export default function SliderTimeDeparture() {
     const [value_end, setValueEnd] = React.useState<number[]>(initValue);
 
     useEffect(() => {
-        console.log(state.times.start_departure_hour_from, state.times.start_departure_hour_to)
         if (state.times.start_departure_hour_from !== undefined && state.times.start_departure_hour_to) {
             setValueStart([state.times.start_departure_hour_from, state.times.start_departure_hour_to]);
         }
