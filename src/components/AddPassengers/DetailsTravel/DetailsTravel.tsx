@@ -16,6 +16,8 @@ export const DetailsTravel = () => {
     const priceForTickets = useSelector((state: TPriceStateR) => state.priceForTickets);
     const passangersState = useSelector((state: TPassangersStateR) => state.passangersState);
 
+    if (!searchSeatsState.train) return;
+
     return (
         <aside className="choiceTrain_aside">
             <div className="aboutTravel">
