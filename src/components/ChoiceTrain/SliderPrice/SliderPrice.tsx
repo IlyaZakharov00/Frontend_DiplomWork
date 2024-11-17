@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Slider, { SliderThumb } from '@mui/material/Slider';
+import Slider from '@mui/material/Slider';
 import styles from './SliderPrice.module.css'
 import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
 import { StyledEngineProvider } from '@mui/material/styles';
