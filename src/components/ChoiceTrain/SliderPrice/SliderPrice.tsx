@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
-import './SliderPrice.css'
+import Slider, { SliderThumb } from '@mui/material/Slider';
+import styles from './SliderPrice.module.css'
 import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +37,7 @@ export default function SliderPrice() {
                     <label >до</label>
                 </div>
                 <Slider
+                    classes={{ thumb: styles.thumb, track: styles.track, rail: styles.rail, }}
                     value={value}
                     onChange={handleChange}
                     onChangeCommitted={changeCommittedHenlder}

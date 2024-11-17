@@ -1,0 +1,9 @@
+.btnCloseModal {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 10px 20px;
+    background-color: var(--text-color);
+    border: 1px solid var(--text-color-black);
+    border-radius: 5px;
+    color: var(--text-color-black);
+}

@@ -1,25 +1,17 @@
-.css-1v5z18m {
-    width: 100%;
-}
-
-.slider_price .css-1xcmt9q-MuiSlider-thumb {
+.thumb {
     background-color: var(--text-color);
     width: 24px;
     height: 24px;
 }
 
-.slider_price .css-r64h58-MuiSlider-rail {
-    height: 10px;
-}
-
-.slider_price .css-xvk2i-MuiSlider-track {
+.track {
     border: 10px;
     background-color: var(--main-color);
     height: 19px;
     border-radius: 8px;
 }
 
-.slider_price .css-r64h58-MuiSlider-rail {
+.rail {
     background-color: transparent;
     border: 1px solid;
     height: 19px;

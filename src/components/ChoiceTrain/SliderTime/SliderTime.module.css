@@ -1,25 +1,18 @@
-.css-1v5z18m {
-    width: 100%;
-}
-
-.slider_time .css-1xcmt9q-MuiSlider-thumb {
+.thumb {
     background-color: var(--text-color);
     width: 18px;
     height: 18px;
 }
 
-.slider_time .css-r64h58-MuiSlider-rail {
-    height: 10px;
-}
-
-.slider_time .css-xvk2i-MuiSlider-track {
+.track {
     border: 10px;
     background-color: var(--main-color);
     height: 10px;
     border-radius: 8px;
+    width: 100%;
 }
 
-.slider_time .css-r64h58-MuiSlider-rail {
+.rail {
     background-color: transparent;
     border: 1px solid;
     height: 10px;

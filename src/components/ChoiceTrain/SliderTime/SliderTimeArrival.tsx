@@ -5,8 +5,8 @@ import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledEngineProvider } from '@mui/material';
 import { useEffect } from 'react';
-import './SliderTime.css'
 import { TTicketsStateR } from '../../redux/types/Tickets/state';
+import styles from './SliderTime.module.css'
 
 export default function SliderTimeArrival() {
     const dispatch = useDispatch();
@@ -42,12 +42,13 @@ export default function SliderTimeArrival() {
     return (
         <>
             <StyledEngineProvider injectFirst>
-                <Box sx={{ width: 300 }}>
+                <Box>
                     <div className="container-departure-time">
                         <div className="label-container d-flex justify-content-between">
                             <label >Время отбытия</label>
                         </div>
                         <Slider
+                            classes={{ thumb: styles.thumb, track: styles.track, rail: styles.rail }}
                             value={value_start}
                             onChange={handleChangeStart}
                             onChangeCommitted={changeCommittedHenlder}
@@ -71,6 +72,7 @@ export default function SliderTimeArrival() {
                             <label >Время прибытия</label>
                         </div>
                         <Slider
+                            classes={{ thumb: styles.thumb, track: styles.track, rail: styles.rail }}
                             value={value_end}
                             onChange={handleChangeEnd}
                             onChangeCommitted={changeCommittedHenlder}
