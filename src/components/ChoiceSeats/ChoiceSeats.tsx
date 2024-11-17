@@ -26,7 +26,6 @@ import { TPriceStateR } from '../redux/types/Price/PriceState';
 import { TPassangersStateR } from '../redux/types/Passengers/PassangersState';
 import addPassengersSlice from '../redux/slices/addPassengersSlice';
 import priceForTicketstsSlice from '../redux/slices/priceForTickets';
-import menuSlice from '../redux/slices/menuSlice';
 import searchSeatsSlice from '../redux/slices/searchSeatsSlice';
 import moment from 'moment';
 
@@ -35,11 +34,14 @@ export const ChoiceSeats = () => {
     const priceForTickets = useSelector((state: TPriceStateR) => state.priceForTickets);
     const passangersState = useSelector((state: TPassangersStateR) => state.passangersState);
 
-    const infoTrain = searchSeatsState.train;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [availableCoach, setAvailableCoach] = useState<any[]>([]);
     const [_choiceCoach, setCoach] = useState(null);
+
+    const infoTrain = searchSeatsState.train;
+    
+    if (!infoTrain) return;
 
     const changeTypeCoachHendler = (e: React.MouseEvent<HTMLElement>) => {
         setAvailableCoach(['Вагонов нет']);

@@ -33,6 +33,8 @@ export const Ticket = (props: TTrainMainProps) => {
         navigate(`/Frontend_DiplomWork/choiceSeats/${departureID}`);
     }
 
+    if (!item) return;
+
     const changeTrain = () => {
         // dispatch()
         navigate("/Frontend_DiplomWork/choiceTrain")

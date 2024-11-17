@@ -4,13 +4,10 @@ import "./Header.css";
 import { searchCities } from "../redux/async action/searchCities";
 import { NavBar } from "../NavBar/NavBar";
 import { ChoiceTrainMenu } from "../ChoiceTrainMenu/ChoiceTrainMenu";
-import { searchDirections } from "../redux/async action/searchDirections";
 import { LoadingCities } from "../Loading/LoadingCities/LoadingCities";
 import { ErrorCities } from "../Error/ErrorCities/ErrorCities";
-import { TTicketsStateR } from "../redux/types/Tickets/state";
 import { TCitiesStateR } from "../redux/types/Cities/CitiesState";
 import { TMenuState } from "../redux/types/Menu/menu";
-import menuSlice from "../redux/slices/menuSlice";
 import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
 import searchSeatsSlice from "../redux/slices/searchSeatsSlice";
 import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
@@ -20,9 +17,6 @@ export const Header = () => {
 	const navigate = useNavigate();
 
 	const menuState = useSelector((state: TMenuState) => state.menuState);
-
-	// const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);;
-
 	const isLoadingFromCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.loading_fromCity);
 	const isErrorFromCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.error_fromCity);
 	const isLoadingToCity = useSelector((state: TCitiesStateR) => state.sortedCitiesList.loading_toCity);

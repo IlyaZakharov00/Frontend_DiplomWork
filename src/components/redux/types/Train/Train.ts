@@ -1,6 +1,6 @@
 
 export type TTrainMainProps = {
-    item: TTrainMain
+    item: TTrainMain | null
 }
 
 export type TTrainMain = {

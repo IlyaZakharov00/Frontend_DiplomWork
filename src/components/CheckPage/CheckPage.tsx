@@ -16,7 +16,7 @@ import { TPayInfoPersonR } from '../redux/types/PayInfo/PayInfo'
 export const CheckPage = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
     const allPassangersState = useSelector((state: TPassangersDataStateR) => state.passangersDataState);
     const priceForTicketsState = useSelector((state: TPriceStateR) => state.priceForTickets);
@@ -26,10 +26,10 @@ export const CheckPage = () => {
         dispatch(menuSlice.actions.openCheck())
     }, []);
 
-    const changePassangers = () => {
-        // dispatch()
-        navigate("/Frontend_DiplomWork/addPassengers")
-    }
+    // const changePassangers = () => {
+    //     dispatch()
+    //     navigate("/Frontend_DiplomWork/addPassengers")
+    // }
 
     return (
         <div className='addPassangers-container mb-5'>

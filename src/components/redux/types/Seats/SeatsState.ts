@@ -6,7 +6,7 @@ export type TSeats = {
     choiceTypeCoach: string,
     choiceNumberCoach: string,
     choiceCoach: any,
-    train: TTrainMain,
+    train: TTrainMain | null,
     loading: boolean,
     error: boolean | null,
 }

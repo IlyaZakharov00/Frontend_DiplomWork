@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import './ChoiceTrain.css'
 import icon_arrow_right from '../../static-files/icons/icon_pages_arrow_right.svg'
 import icon_arrow_left from '../../static-files/icons/icon_pages_arrow_left.svg'
@@ -33,7 +33,7 @@ export const ChoiceTrain = () => {
         dispatch(searchSeatsSlice.actions.closeChoiceSeats());
     }, [state.class.have_first_class, state.class.have_fourth_class, state.class.have_second_class, state.class.have_third_class, state.comfortOptions.have_air_conditioning, state.comfortOptions.have_express, state.comfortOptions.have_wifi, state.limit, state.offset, state.sort, state.prices.price_from, state.prices.price_to, state.times.end_arrival_hour_from, state.times.end_arrival_hour_to, state.times.end_departure_hour_from, state.times.end_departure_hour_to, state.times.start_arrival_hour_from, state.times.start_arrival_hour_to, state.times.start_departure_hour_from, state.times.start_departure_hour_to])
 
-    const countNumberOfPages = () => Array(Math.ceil(state.responseFromServer.total_count / (state.limit ? state.limit : 5))).fill('');
+    const countNumberOfPages = () => Array(Math.ceil(state.responseFromServer.total_count / (Number(state.limit) ? Number(state.limit) : 5))).fill('');
 
     const changeActiveShowNumber = (e: React.MouseEvent) => {
         const activeNow = document.querySelector(".active_showNumber")
