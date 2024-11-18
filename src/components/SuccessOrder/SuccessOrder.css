@@ -1,0 +1,109 @@
+.succesOrder-container {
+    min-height: 500px;
+}
+
+.content-container {
+    /* position: relative;
+    margin-top: -15vw; */
+}
+
+.order-title {
+    font-size: calc(35px + 52 * (100vw - 360px) / 1560);
+    font-weight: 700;
+    color: var(--text-color-black);
+}
+
+.success-order-header {
+    /* border-bottom: 1px solid gray; */
+    background-color: white;
+    border-left: 2px solid #c4c4c4;
+    border-top: 2px solid #c4c4c4;
+    border-right: 2px solid #c4c4c4;
+}
+
+.number-order {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-color-black);
+}
+
+.price-text {
+    font-size: 36px;
+    color: var(--user-comment-color);
+}
+
+.price-sum {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-color-black);
+}
+
+/***************************************/
+.reminder-list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    background-color: #F4F3F6;
+    border-left: 2px solid #c4c4c4;
+    border-right: 2px solid #c4c4c4;
+}
+
+.remind-item {
+    /* width: 25%; */
+    row-gap: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.remind-text {
+    font-size: 18px;
+    color: var(--text-color-black);
+    text-align: center;
+}
+
+/*********************************/
+
+.order-appeal {
+    background-color: white;
+    border-left: 2px solid #c4c4c4;
+    border-right: 2px solid #c4c4c4;
+}
+
+.appeal-name,
+.appeal-info,
+.appeal-thanks {
+    font-size: 24px;
+    color: var(--text-color-black);
+}
+
+.appeal-name {
+    font-size: calc(30px + 6 * (100vw - 360px) / 1560);
+    font-weight: 700;
+}
+
+.appeal-thanks {
+    font-weight: 700;
+}
+
+/*****************/
+
+.order-footer {
+    /* min-height: 161px; */
+    background-color: var(--main-color);
+}
+
+.rate-service-text {
+    font-size: 24px;
+    color: var(--text-color-black);
+}
+
+.backToMain-btn {
+    font-size: 24px;
+    font-weight: 700;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: var(--text-color-black);
+}

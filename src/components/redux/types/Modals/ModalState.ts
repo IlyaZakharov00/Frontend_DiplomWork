@@ -8,7 +8,3 @@ export type TModalState = {
         content: "";
     };
 }
-
-export type TModalStateR={
-    modalWindows:TModalState
-}

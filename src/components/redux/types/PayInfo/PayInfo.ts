@@ -4,9 +4,6 @@ export type TPayInfoPerson={
     name:string;
     payMethod:string;
     surname:string;
-    telNumber:string
-}
-
-export type TPayInfoPersonR={
-    payInfo: TPayInfoPerson
+    telNumber:string;
+    id: string;
 }

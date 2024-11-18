@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './NavBar.css'
-import { TMenuState } from '../redux/types/Menu/menu'
+import { TState } from '../redux/types/State/State'
 
 export const NavBar = () => {
-    const menuState = useSelector((state: TMenuState) => state.menuState);
+    const menuState = useSelector((state: TState) => state.menuState);
     const navigate = useNavigate()
 
     const scrollFromContainer = (e: React.MouseEvent<HTMLElement>) => {

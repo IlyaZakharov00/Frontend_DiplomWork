@@ -1,7 +1,7 @@
 import './PaymentPage.css'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { DetailsTravel } from '../AddPassengers/DetailsTravel/DetailsTravel'
 import { Modal_Info } from '../Modals/Modal_Info/Modal_Info'
 import { IPayFrorm } from '../redux/types/PayForm/PayForm'
@@ -10,15 +10,30 @@ import modalWindowsSlice from '../redux/slices/modalWindows'
 import payInfoSlice from '../redux/slices/payInfoSlice'
 import { useNavigate } from 'react-router-dom'
 import menuSlice from '../redux/slices/menuSlice'
+import { TState } from '../redux/types/State/State'
 
 export const PaymentPage = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const statePayInfo = useSelector((state: TState) => state.payInfo)
+    const menuState = useSelector((state: TState) => state.menuState)
 
-    const { register, handleSubmit, formState, watch } = useForm<IPayFrorm>({
+    const { register, handleSubmit, formState, watch, reset } = useForm<IPayFrorm>({
         mode: 'onChange',
     })
+
+    useEffect(() => {
+        if (statePayInfo)
+            reset({
+                'email': statePayInfo.email,
+                'lastname': statePayInfo.lastname,
+                'name': statePayInfo.name,
+                'payMethod': statePayInfo.payMethod,
+                'surname': statePayInfo.surname,
+                'telNumber': statePayInfo.telNumber,
+            })
+    }, [reset])
 
     useEffect(() => {
         dispatch(menuSlice.actions.openPay())
@@ -30,7 +45,11 @@ export const PaymentPage = () => {
     }, [methodPay])
 
     const onSubmit: SubmitHandler<IPayFrorm> = (data) => {
-        dispatch(payInfoSlice.actions.addPerson(data))
+        if (menuState.changePassengers) {
+
+        } else {
+            dispatch(payInfoSlice.actions.addPerson(data))
+        }
         navigate('/Frontend_DiplomWork/checkPage')
     }
 

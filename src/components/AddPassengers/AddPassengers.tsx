@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DetailsTravel } from './DetailsTravel/DetailsTravel'
 import './AddPassengers.css'
 import { FormPassenger } from './FormPassenger/FormPassenger';
-import { TPassangersDataStateR, TPassangersStateR } from '../redux/types/Passengers/PassangersState';
 import menuSlice from '../redux/slices/menuSlice';
 import { useEffect } from 'react';
+import { TState } from '../redux/types/State/State';
 
 export const AddPassengers = () => {
-    const passangersState = useSelector((state: TPassangersStateR) => state.passangersState);
-    const passangersDataState = useSelector((state: TPassangersDataStateR) => state.passangersDataState);
+    const passangersState = useSelector((state: TState) => state.passangersState);
+    const passangersDataState = useSelector((state: TState) => state.passangersDataState);
     const passangerArray = new Array(passangersState.countAdult + passangersState.countChild + passangersState.countChildWithoutSeat).fill("");
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -46,7 +46,7 @@ export const AddPassengers = () => {
                             )
                         })}
                     </div>
-                    <button type='button' className={'btn-next col-lg-4 col-6 align-self-end mb-5 ' + `${passangersDataState.allPassanger.length < (passangersState.countAdult + passangersState.countChild + passangersState.countChildWithoutSeat) ? "btn-disabled" : ""}`} onClick={nextPage} disabled={passangersDataState.allPassanger.length < (passangersState.countAdult + passangersState.countChild + passangersState.countChildWithoutSeat)}>Далее</button>
+                    <button type='button' className={'btn-next col-lg-4 col-6 align-self-end mb-5 p-2 ' + `${passangersDataState.allPassanger.length < (passangersState.countAdult + passangersState.countChild + passangersState.countChildWithoutSeat) ? "btn-disabled" : ""}`} onClick={nextPage} disabled={passangersDataState.allPassanger.length < (passangersState.countAdult + passangersState.countChild + passangersState.countChildWithoutSeat)}>Далее</button>
                 </div>
             </div >
         </div >

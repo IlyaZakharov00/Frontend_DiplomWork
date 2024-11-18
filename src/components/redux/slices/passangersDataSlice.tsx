@@ -16,6 +16,14 @@ const passangerDataSlice = createSlice({
 
         clearAll: (state: TPassangersDataState) => {
             state.allPassanger = [];
+        },
+
+        changePassangers: (state: TPassangersDataState, action: PayloadAction<any>) => {
+            for (let i = 0; i < state.allPassanger.length; i++) {
+                if (state.allPassanger[i].id === action.payload.id) {
+                    state.allPassanger[i] = action.payload
+                }
+            }
         }
 
     },

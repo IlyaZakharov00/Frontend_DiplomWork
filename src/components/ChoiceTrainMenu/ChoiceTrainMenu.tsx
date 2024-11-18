@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { TMenuState } from '../redux/types/Menu/menu';
 import './ChoiceTrainMenu.css'
+import { TState } from '../redux/types/State/State';
 // import icon_vector from '../../static-files/icons/icon_vector.svg'
 
 export const ChoiceTrainMenu = () => {
-    const menuState = useSelector((state: TMenuState) => state.menuState);
+    const menuState = useSelector((state: TState) => state.menuState);
 
     return (
         <div className="col-12">

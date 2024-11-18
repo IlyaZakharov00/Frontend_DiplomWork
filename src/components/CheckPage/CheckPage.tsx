@@ -1,26 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { DetailsTravel } from '../AddPassengers/DetailsTravel/DetailsTravel'
-import './CheckPage.css'
-import { TSeatsR } from '../redux/types/Seats/SeatsState'
-import { Ticket } from '../Ticket/Ticket'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import './CheckPage.css'
 import menuSlice from '../redux/slices/menuSlice'
-import { TPassangersDataStateR } from '../redux/types/Passengers/PassangersState'
+import { Ticket } from '../Ticket/Ticket'
 import { Passanger } from './Passanger/Passanger'
+import { TState } from '../redux/types/State/State'
 import { IForm } from '../redux/types/Passengers/interfaceForm/interfaceForm'
-import { TPriceStateR } from '../redux/types/Price/PriceState'
+import { DetailsTravel } from '../AddPassengers/DetailsTravel/DetailsTravel'
 import icon_rub from '../../static-files/icons/ticket/rub.svg'
-import { TPayInfoPersonR } from '../redux/types/PayInfo/PayInfo'
+// import modalWindowsSlice from '../redux/slices/modalWindows'
+// import { Modal_CheckSuccess } from '../Modals/Modal_CheckSuccess/Modal_CheckSuccess'
 
 export const CheckPage = () => {
 
     const dispatch = useDispatch();
-    // const navigate = useNavigate()
-    const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
-    const allPassangersState = useSelector((state: TPassangersDataStateR) => state.passangersDataState);
-    const priceForTicketsState = useSelector((state: TPriceStateR) => state.priceForTickets);
-    const payInfoState = useSelector((state: TPayInfoPersonR) => state.payInfo);
+    const navigate = useNavigate()
+    const searchSeatsState = useSelector((state: TState) => state.searchSeatsState);
+    const allPassangersState = useSelector((state: TState) => state.passangersDataState);
+    const priceForTicketsState = useSelector((state: TState) => state.priceForTickets);
+    const payInfoState = useSelector((state: TState) => state.payInfo);
+    // const modalState = useSelector((state: TState) => state.modalWindows);
 
     useEffect(() => {
         dispatch(menuSlice.actions.openCheck())
@@ -30,6 +30,19 @@ export const CheckPage = () => {
     //     dispatch()
     //     navigate("/Frontend_DiplomWork/addPassengers")
     // }
+
+    const confirmHendler = () => {
+        navigate("/Frontend_DiplomWork/successOrder")
+        // dispatch(modalWindowsSlice.actions.showModalWindow({ type: 'modal_confirm' }))
+    }
+
+    const changePayMehtod = () => {
+        navigate(-1);
+    }
+
+    const changePassangers = () => {
+        navigate(-2)
+    }
 
     return (
         <div className='addPassangers-container mb-5'>
@@ -48,8 +61,8 @@ export const CheckPage = () => {
                             {allPassangersState.allPassanger.map((item: IForm, index: number) => <Passanger passanger={item} key={index} />)}
                         </ul>
                         <div className="check-passangers-aside h-100 d-flex flex-column-reverse pb-3 px-4">
-                            <button className="btn-change-passangers">Изменить</button>
-                            <div className="check-sum-price-container d-flex align-items-center justify-content-between">
+                            <button className="btn-change-passangers" onClick={changePassangers}>Изменить</button>
+                            <div className="check-sum-price-container d-flex align-items-center justify-content-between mb-4">
                                 <div className="check-passangers-sum-text">Всего</div>
                                 <div className="icon_valute-container d-flex align-items-center">
                                     <div className="check-sum-price pe-3">{priceForTicketsState.sumPrice}</div>
@@ -61,13 +74,13 @@ export const CheckPage = () => {
                         </div>
                     </div>
                     <h2 className="check-passangers-title mt-5 py-4 mb-0 ps-5">Способ оплаты</h2>
-                    <div className="check-payMethod-container d-flex justify-content-between align-items-center pt-5 mb-5">
+                    <div className="check-payMethod-container d-flex justify-content-between align-items-center mb-5">
                         <div className="check-methodPay ms-5 py-5">{payInfoState.payMethod}</div>
                         <div className="check-passangers-aside h-100 d-flex flex-column-reverse px-4 pb-3">
-                            <button className="btn-change-payMethod">Изменить</button>
+                            <button className="btn-change-payMethod" onClick={changePayMehtod}>Изменить</button>
                         </div>
                     </div>
-                    <button className="btn-checkSuccess col-4 mt-5">Подтвердить</button>
+                    <button className="btn-checkSuccess col-4 mt-5" onClick={confirmHendler}>Подтвердить</button>
                 </div>
             </div >
         </div >

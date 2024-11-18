@@ -2,7 +2,7 @@ export interface IPayFrorm {
     lastname: string;
     name: string;
     surname: string;
-    telNumber:number;
+    telNumber:number | string;
     email: string;
     payMethod: string;
 }

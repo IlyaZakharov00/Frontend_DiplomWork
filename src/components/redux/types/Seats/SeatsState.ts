@@ -10,8 +10,3 @@ export type TSeats = {
     loading: boolean,
     error: boolean | null,
 }
-
-
-export type TSeatsR = {
-    searchSeatsState: TSeats
-}

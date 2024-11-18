@@ -141,13 +141,24 @@
     padding: 6px 14px 9px 10px;
 }
 
-.choiceSeatsBtn:hover {
+.changeTrainBtn {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color-black);
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 3px 50px;
+}
+
+.choiceSeatsBtn:hover,
+.changeTrainBtn:hover {
     border: 2px solid transparent;
     background-color: var(--main-color);
     color: var(--text-color);
 }
 
-.choiceSeatsBtn:active {
+.choiceSeatsBtn:active,
+.changeTrainBtn:active {
     border: 2px solid transparent;
     background-color: var(--main-color);
     color: var(--text-color);

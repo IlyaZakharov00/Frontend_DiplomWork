@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StyledEngineProvider } from "@mui/material";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { TModalStateR } from "../../redux/types/Modals/ModalState";
 import icon from '../../../static-files/icons/modal/modal_error.svg'
 import modalWindowsSlice from '../../redux/slices/modalWindows';
 import styles from './Modal_Error.module.css'
+import { TState } from "../../redux/types/State/State";
 
 export const Modal_Error = () => {
 
-    const modalWindows = useSelector((state: TModalStateR) => state.modalWindows);
+    const modalWindows = useSelector((state: TState) => state.modalWindows);
     const dispatch = useDispatch();
     const handleClose = () => dispatch(modalWindowsSlice.actions.closeModalWindow({ type: 'modal_error' }));
 

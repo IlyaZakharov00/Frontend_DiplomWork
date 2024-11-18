@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { TTicketsStateR } from '../../redux/types/Tickets/state';
-import { TLastTicket, TLastTicketsStateR } from '../../redux/types/LastTickets/LastTicketsState';
+import { TLastTicket } from '../../redux/types/LastTickets/LastTicketsState';
 import icon_second_class from '../../../static-files/icons/aside/second_class.svg'
 import icon_third_class from '../../../static-files/icons/aside/third_class.svg'
 import icon_fourth_class from '../../../static-files/icons/aside/fourth_class.svg'
@@ -15,11 +14,12 @@ import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
 import { LastTicket } from '../../LastTickets/LastTicket';
 import { useEffect } from 'react';
 import { searchLastTickets } from '../../redux/async action/searchLastTickets';
+import { TState } from '../../redux/types/State/State';
 
 export const ChoiceTrainAside = () => {
 
-    const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
-    const stateLastTickets = useSelector((state: TLastTicketsStateR) => state.lastTickets.lastTickets);
+    const state = useSelector((state: TState) => state.searchTicketsState);
+    const stateLastTickets = useSelector((state: TState) => state.lastTickets.lastTickets);
     const dispatch = useDispatch();
 
     useEffect(() => {

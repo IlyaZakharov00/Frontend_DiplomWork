@@ -5,12 +5,12 @@ import { TCitiesState } from "../types/Cities/CitiesState";
 const initialState: TCitiesState = {
     sortedListFrom: [],
     sortedListTo: [],
-    from_city: {},
-    to_city: {},
+    from_city: { _id: "", name: "" },
+    to_city: { _id: "", name: "" },
     loading_fromCity: false,
-    error_fromCity: null,
+    error_fromCity: false,
     loading_toCity: false,
-    error_toCity: null,
+    error_toCity: false,
 }
 
 const sortedCitiesListSlice = createSlice({
@@ -63,12 +63,12 @@ const sortedCitiesListSlice = createSlice({
                 switch (action.meta.arg.typeAction) {
                     case "from_city":
                         state.loading_fromCity = true;
-                        state.error_fromCity = null;
+                        state.error_fromCity = false;
                         break;
 
                     case "to_city":
                         state.loading_toCity = true;
-                        state.error_toCity = null;
+                        state.error_toCity = false;
                         break;
 
                     default:
@@ -107,12 +107,12 @@ const sortedCitiesListSlice = createSlice({
                 switch (action.meta.arg.typeAction) {
                     case "from_city":
                         state.loading_fromCity = true;
-                        state.error_fromCity = null;
+                        state.error_fromCity = false;
                         break;
 
                     case "to_city":
                         state.loading_toCity = true;
-                        state.error_toCity = null;
+                        state.error_toCity = false;
                         break;
 
                     default:

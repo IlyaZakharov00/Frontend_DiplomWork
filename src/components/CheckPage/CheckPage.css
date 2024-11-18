@@ -21,6 +21,20 @@
     padding: 3px 50px;
 }
 
+.btn-change-passangers:hover,
+.btn-change-payMethod:hover {
+    border: 2px solid transparent;
+    background-color: var(--main-color);
+    color: var(--text-color);
+}
+
+.btn-change-passangers:active,
+.btn-change-payMethod:active {
+    border: 2px solid var(--main-color);
+    color: var(--text-color-black);
+    background-color: var(--active-color);
+}
+
 .check-passangers-sum-text,
 .check-sum-price {
     font-size: 30px;
@@ -40,7 +54,13 @@
     border: 1px dotted var(--user-comment-color);
 }
 
-.btn-checkSuccess{
+.btn-checkSuccess {
     font-size: 24px;
-    padding: 5px 10px;
+    font-weight: 700;
+    align-self: flex-end;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--main-color);
 }

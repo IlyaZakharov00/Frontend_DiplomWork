@@ -4,13 +4,14 @@ import './TrainsFirstClass.css'
 import priceForTicketstsSlice from '../../../redux/slices/priceForTickets';
 import modalWindowsSlice from '../../../redux/slices/modalWindows';
 import { Modal_Error } from '../../../Modals/Modal_Error/Modal_Error';
+import { TState } from '../../../redux/types/State/State';
 
 export const TrainsFirstClass = memo(() => {
 
     const dispatch = useDispatch();
-    const searchSeatsState = useSelector((state: any) => state.searchSeatsState);
-    const priceForTickets = useSelector((state: any) => state.priceForTickets);
-    const passangersState = useSelector((state: any) => state.passangersState);
+    const searchSeatsState = useSelector((state: TState) => state.searchSeatsState);
+    const priceForTickets = useSelector((state: TState) => state.priceForTickets);
+    const passangersState = useSelector((state: TState) => state.passangersState);
     const choicesSeats = priceForTickets.choiceSeats;
 
     const arraySeatsSize = 4;

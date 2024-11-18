@@ -5,12 +5,12 @@ import searchTicketsSlice from '../../redux/slices/searchTicketsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledEngineProvider } from '@mui/material';
 import { useEffect } from 'react';
-import { TTicketsStateR } from '../../redux/types/Tickets/state';
 import styles from './SliderTime.module.css'
+import { TState } from '../../redux/types/State/State';
 
 export default function SliderTimeDeparture() {
     const dispatch = useDispatch();
-    const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
+    const state = useSelector((state: TState) => state.searchTicketsState);
 
     let initValue: number[] = [0, 11];
 

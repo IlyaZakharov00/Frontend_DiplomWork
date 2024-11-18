@@ -10,6 +10,7 @@ import { AddPassengers } from './components/AddPassengers/AddPassengers'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import { PaymentPage } from './components/PaymentPage/PaymentPage'
 import { CheckPage } from './components/CheckPage/CheckPage'
+import { SuccesOrder } from './components/SuccessOrder/SuccesOrder'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/Frontend_DiplomWork/addPassengers' element={<AddPassengers />} />
           <Route path='/Frontend_DiplomWork/paymentPage' element={<PaymentPage />} />
           <Route path='/Frontend_DiplomWork/checkPage' element={<CheckPage />} />
+          <Route path='/Frontend_DiplomWork/successOrder' element={<SuccesOrder />} />
         </Route>
       </Routes>
     </Router >

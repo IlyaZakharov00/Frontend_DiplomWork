@@ -8,6 +8,7 @@ const initialState: TPayInfoPerson = {
     payMethod: "",
     surname: "",
     telNumber: "",
+    id: "",
 }
 
 const payInfoSlice = createSlice({
@@ -22,6 +23,7 @@ const payInfoSlice = createSlice({
             state.payMethod = action.payload.payMethod;
             state.surname = action.payload.surname;
             state.telNumber = action.payload.telNumber;
+            state.id = Math.random().toString(36).substring(2);
         },
 
     },

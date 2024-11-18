@@ -1,14 +1,16 @@
-import { useEffect } from 'react'
+import { FormEvent, useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { IForm, IFormProps } from '../../redux/types/Passengers/interfaceForm/interfaceForm'
 import { Modal_Info } from '../../Modals/Modal_Info/Modal_Info'
 import modalWindowsSlice from '../../redux/slices/modalWindows'
 import passangerDataSlice from '../../redux/slices/passangersDataSlice'
 import './FormPassanger.css'
+import { TState } from '../../redux/types/State/State'
 
 export const FormPassenger = (props: IFormProps) => {
     const dispatch = useDispatch();
+    const passangersDataState = useSelector((state: TState) => state.passangersDataState)
 
     const { register, handleSubmit, formState, watch, reset, setValue } = useForm<IForm>({
         mode: 'onChange',
@@ -42,13 +44,25 @@ export const FormPassenger = (props: IFormProps) => {
     }, [watch('document_type')])
 
 
-    const onSubmit: SubmitHandler<IForm> = (data) => {
+    const onSubmit: (SubmitHandler<IForm> | FormEvent) = (data, e) => {
+        const form = e?.target as HTMLFormElement;
+        const formID = form.getAttribute("id")
+        formID ? data.id = formID : ""
+
+        for (let i = 0; i < passangersDataState.allPassanger.length; i++) {
+            if (passangersDataState.allPassanger[i].id === formID) {
+                dispatch(passangerDataSlice.actions.changePassangers(data))
+                dispatch(modalWindowsSlice.actions.showModalWindow({ type: 'modal_info', content: 'Данные пассажира успешно изменены!' }))
+                return
+            }
+        }
+
         dispatch(modalWindowsSlice.actions.showModalWindow({ type: 'modal_info', content: 'Пассажир успешно добавлен!' }))
         dispatch(passangerDataSlice.actions.addPassenger(data))
     }
 
     return (
-        <form className='w-100 form-about-passanger px-4 py-5' onSubmit={handleSubmit(onSubmit)}>
+        <form className='w-100 form-about-passanger px-4 py-5' onSubmit={handleSubmit(onSubmit)} id={props.defaultPassangers ? props.defaultPassangers.id : Math.random().toString(36).substring(2)} >
 
             <div className="age-passenger mb-5" >
                 <select className='select-age-passenger col-lg-5 col-12 p-2' {...register('age')} >
@@ -191,7 +205,8 @@ export const FormPassenger = (props: IFormProps) => {
                     {formState.errors.number_document ? <div className='input-error'>{formState.errors['number_document']?.message}</div> : <></>}
                 </div>
             </div>
-            <button className={formState.isSubmitSuccessful ? "btn-disabled p-2" : "btn-next p-2"} disabled={formState.isSubmitSuccessful}>Подтвердить пассажира</button>
+            {/* <button className={formState.isSubmitSuccessful ? "btn-disabled p-2" : "btn-next p-2"} disabled={formState.isSubmitSuccessful}>Подтвердить пассажира</button> */}
+            <button className={"btn-next p-2"}>Подтвердить пассажира</button>
             {formState.isSubmitSuccessful ? <Modal_Info /> : <></>}
         </form >
     )

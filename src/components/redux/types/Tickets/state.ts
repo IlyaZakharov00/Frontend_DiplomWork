@@ -1,4 +1,4 @@
-import { TCities } from "./citiy";
+import { TCities } from "./cities";
 import { TDates } from "./dates";
 import { TClass } from "../Tickets/class";
 import { TComfortOptions } from "./comfortOptions";
@@ -20,9 +20,3 @@ export type TTicketsState = {
     loading: boolean,
     error: boolean | null,
 }
-
-
-export type TTicketsStateR = {
-    searchTicketsState:TTicketsState
-}
-

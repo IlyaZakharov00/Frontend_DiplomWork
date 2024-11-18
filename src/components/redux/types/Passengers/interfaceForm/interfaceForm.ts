@@ -9,12 +9,14 @@ export interface IForm {
     number_document: string;
     seria_document: string;
     invalid: boolean;
+    id: string;
+    e:any
 }
 
 export interface IFormProps {
-    defaultPassangers: IForm
+    defaultPassangers: IForm;
 }
 
 export type TPassangerProps = {
-    passanger: IForm
+    passanger: IForm;
 }

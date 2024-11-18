@@ -3,9 +3,6 @@ export type TLastTicketsState = {
     loading: boolean;
     error: boolean | null;
 }
-export type TLastTicketsStateR={
-    lastTickets: TLastTicketsState;
-}
 
 export type TLastTicket={
     available_seats:number,

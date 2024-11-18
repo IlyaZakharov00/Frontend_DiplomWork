@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import './Footer.css'
-import { TModalStateR } from '../redux/types/Modals/ModalState'
 import icon_youtube from '../../static-files/icons/footer/youtube.svg'
 import icon_google from '../../static-files/icons/footer/google.svg'
 import icon_facebook from '../../static-files/icons/footer/facebook.svg'
@@ -14,10 +13,11 @@ import icon_local from "../../static-files/icons/footer/local.svg"
 import icon_arrowUp from '../../static-files/icons/footer/arrowUp.svg'
 import modalWindowsSlice from '../redux/slices/modalWindows'
 import { Modal_Info } from '../Modals/Modal_Info/Modal_Info'
+import { TState } from '../redux/types/State/State'
 
 export const Footer = () => {
 
-  const modalWindows = useSelector((state: TModalStateR) => state.modalWindows);
+  const modalWindows = useSelector((state: TState) => state.modalWindows);
   const dispatch = useDispatch();
 
   const scrollUp = () => {

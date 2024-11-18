@@ -5,7 +5,3 @@ export type TPriceState = {
     linens: { type: string, payload: { price: number, choice: boolean, } },
     choiceSeats: any[],
 }
-
-export type TPriceStateR = {
-    priceForTickets: TPriceState
-}

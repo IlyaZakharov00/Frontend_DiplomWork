@@ -12,14 +12,13 @@ import searchTicketsSlice from '../redux/slices/searchTicketsSlice'
 import searchSeatsSlice from '../redux/slices/searchSeatsSlice'
 import { searchDirections } from '../redux/async action/searchDirections'
 import menuSlice from '../redux/slices/menuSlice'
-import { TSeatsR } from '../redux/types/Seats/SeatsState'
-import { TTicketsStateR } from '../redux/types/Tickets/state'
+import { TState } from '../redux/types/State/State'
 
 export const ChoiceTrain = () => {
     const dispatch = useDispatch();
 
-    const state = useSelector((state: TTicketsStateR) => state.searchTicketsState);
-    const searchSeatsState = useSelector((state: TSeatsR) => state.searchSeatsState);
+    const state = useSelector((state: TState) => state.searchTicketsState);
+    const searchSeatsState = useSelector((state: TState) => state.searchSeatsState);
     const isLoading = state.loading || searchSeatsState.loading;
     const isError = state.error || searchSeatsState.error;
 

@@ -3,14 +3,14 @@ import { StyledEngineProvider } from "@mui/material";
 import { Modal } from "@mui/material";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { TModalStateR } from '../../redux/types/Modals/ModalState';
 import styles from './Modal_Info.module.css'
 import icon from '../../../static-files/icons/modal/modal_info.svg'
 import modalWindowsSlice from '../../redux/slices/modalWindows';
+import { TState } from '../../redux/types/State/State';
 
 export const Modal_Info = () => {
 
-    const modalWindows = useSelector((state: TModalStateR) => state.modalWindows);
+    const modalWindows = useSelector((state: TState) => state.modalWindows);
     const dispatch = useDispatch();
     const handleClose = () => dispatch(modalWindowsSlice.actions.closeModalWindow({ type: 'modal_info' }));
 
