@@ -103,7 +103,16 @@
     font-size: 24px;
     font-weight: 700;
     background-color: transparent;
+    text-transform: uppercase;
     border: 1px solid black;
     border-radius: 5px;
     color: var(--text-color-black);
+}
+
+.backToMain-btn:hover {
+    background-color: var(--text-color);
+}
+
+.backToMain-btn:active {
+    background-color: var(--main-color);
 }

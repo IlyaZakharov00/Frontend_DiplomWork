@@ -306,7 +306,14 @@ export const ChoiceSeats = () => {
                                         </div>
                                     </div>
                                     <div className="coahchs-container d-flex justify-content-between px-5 mt-5 gap-5 flex-column flex-lg-row">
-                                        <div className="coachs d-flex gap-3 align-items-center">Вагоны {availableCoach.map((item, index) => <div className='coach-number' key={index} id={item.idCoach} onClick={clickCoachNumberHendler}>{item.number}</div>)}</div>
+                                        <div className="coachs d-flex gap-3 align-items-center">Вагоны
+                                            {availableCoach[0] !== 'Вагонов нет' ?
+                                                <>
+                                                    {availableCoach.map((item, index) => <div className='coach-number' key={index} id={item.idCoach} onClick={clickCoachNumberHendler}>{item.number}</div>)}
+                                                </> :
+                                                <div className='coach-number'>{availableCoach[0]}</div>
+                                            }
+                                        </div>
                                         {searchSeatsState.choiceNumberCoach ? <div className="coachs-startCount">Нумерация вагонов начинается с головы поезда</div> : <></>}
                                     </div>
                                     {searchSeatsState.choiceNumberCoach ?

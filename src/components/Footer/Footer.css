@@ -68,7 +68,7 @@
 }
 
 .input_email:focus-visible {
-    outline: solid var(--main-color);
+    outline: none;
 }
 
 .input_email::placeholder {

@@ -129,7 +129,6 @@ select {
 
 select option {
     color: black;
-    /* border: 1px solid gray; */
     background-color: #F7F5F9;
 }
 
@@ -154,7 +153,7 @@ select option {
 }
 
 .select_option_input {
-    color: black;
+    color: var(--text-color-black);
     background-color: transparent;
     border: 0;
     font-weight: bold;
@@ -234,6 +233,15 @@ select option {
     background-image: url('../../static-files/icons/aside/accordion_arrow_plus.svg');
 }
 
+.accordion-button:hover::after {
+    background-image: url('../../static-files/icons/aside/accordion_arrow_plus_hover.svg');
+}
+
 .accordion-button:not(.collapsed)::after {
     background-image: url('../../static-files/icons/aside/accordion_arrow_minus.svg');
+}
+
+.accordion-button:not(.collapsed):hover::after {
+    opacity: 0.5;
+    /* background-image: url('../../static-files/icons/aside/accordion_arrow_minus.svg'); */
 }

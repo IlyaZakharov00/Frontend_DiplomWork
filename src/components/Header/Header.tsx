@@ -10,16 +10,23 @@ import sortedCitiesListSlice from "../redux/slices/sortedCitiesList";
 import searchSeatsSlice from "../redux/slices/searchSeatsSlice";
 import searchTicketsSlice from "../redux/slices/searchTicketsSlice";
 import { TState } from "../redux/types/State/State";
+import { searchDirections } from "../redux/async action/searchDirections";
 
 export const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const menuState = useSelector((state: TState) => state.menuState);
+	const state = useSelector((state: TState) => state.searchTicketsState);
+
 	const { loading_fromCity, error_fromCity, loading_toCity, error_toCity, sortedListFrom, sortedListTo, from_city, to_city } = useSelector((state: TState) => state.sortedCitiesList)
 
 	const searchTickets = async (e: React.FormEvent) => {
 		e.preventDefault();
+		if (menuState.ticekts) {
+			dispatch(searchDirections(state));
+			return;
+		}
 		dispatch(searchSeatsSlice.actions.closeChoiceSeats());
 		navigate("/Frontend_DiplomWork/choiceTrain");
 	};

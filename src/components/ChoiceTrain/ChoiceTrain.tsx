@@ -95,7 +95,7 @@ export const ChoiceTrain = () => {
                                             </div>
                                         </div>
                                         <div className="tickets_container">
-                                            {state.responseFromServer.items && state.responseFromServer.items.length !== 0 ? state.responseFromServer.items.map((item: any, index: number) => <Ticket item={item} key={index} />) : <></>}
+                                            {state.responseFromServer.items.map((item: any, index: number) => <Ticket item={item} key={index} />)}
                                         </div>
                                         {state.responseFromServer.items && state.responseFromServer.items.length !== 0 ?
                                             <div className="pages d-flex align-items-center text-center justify-content-end my-5 gap-2">
