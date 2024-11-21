@@ -1,5 +1,5 @@
 import './Passanger.css'
-import passanger_icon from '../../../static-files/icons/passanger_icon.svg'
+import passanger_icon from '../../../static-files/icons/checkPage/passanger_icon.svg'
 import { TPassangerProps } from '../../redux/types/Passengers/interfaceForm/interfaceForm'
 
 export const Passanger = (props: TPassangerProps) => {
@@ -17,6 +17,7 @@ export const Passanger = (props: TPassangerProps) => {
                 <div className="passanger-gender mb-2">Пол {passanger.gender}</div>
                 <div className="passanger-dateBirthday mb-2">Дата рождения {passanger.date_birthday}</div>
                 <div className="passanger-document">{passanger.document_type} {passanger.seria_document} {passanger.number_document}</div>
+                {passanger.invalid ? <div className='passanger-invalid'>Пассажир с ограниченной подвижностью</div> : <></>}
             </div>
         </div>
     )

@@ -9,8 +9,6 @@ import { TState } from '../redux/types/State/State'
 import { IForm } from '../redux/types/Passengers/interfaceForm/interfaceForm'
 import { DetailsTravel } from '../AddPassengers/DetailsTravel/DetailsTravel'
 import icon_rub from '../../static-files/icons/ticket/rub.svg'
-// import modalWindowsSlice from '../redux/slices/modalWindows'
-// import { Modal_CheckSuccess } from '../Modals/Modal_CheckSuccess/Modal_CheckSuccess'
 
 export const CheckPage = () => {
 
@@ -20,20 +18,13 @@ export const CheckPage = () => {
     const allPassangersState = useSelector((state: TState) => state.passangersDataState);
     const priceForTicketsState = useSelector((state: TState) => state.priceForTickets);
     const payInfoState = useSelector((state: TState) => state.payInfo);
-    // const modalState = useSelector((state: TState) => state.modalWindows);
 
     useEffect(() => {
         dispatch(menuSlice.actions.openCheck())
     }, []);
 
-    // const changePassangers = () => {
-    //     dispatch()
-    //     navigate("/Frontend_DiplomWork/addPassengers")
-    // }
-
     const confirmHendler = () => {
         navigate("/Frontend_DiplomWork/successOrder")
-        // dispatch(modalWindowsSlice.actions.showModalWindow({ type: 'modal_confirm' }))
     }
 
     const changePayMehtod = () => {
@@ -56,7 +47,7 @@ export const CheckPage = () => {
                         <Ticket item={searchSeatsState.train} />
                     </div>
                     <h2 className="check-passangers-title mt-5 py-4 mb-0 ps-5">Пассажиры</h2>
-                    <div className="check-passangers-container d-flex justify-content-between ">
+                    <div className="check-passangers-container d-flex justify-content-between flex-column flex-lg-row">
                         <ul className='check-passangers-list mt-5 p-0 w-100'>
                             {allPassangersState.allPassanger.map((item: IForm, index: number) => <Passanger passanger={item} key={index} />)}
                         </ul>
@@ -74,13 +65,13 @@ export const CheckPage = () => {
                         </div>
                     </div>
                     <h2 className="check-passangers-title mt-5 py-4 mb-0 ps-5">Способ оплаты</h2>
-                    <div className="check-payMethod-container d-flex justify-content-between align-items-center mb-5">
-                        <div className="check-methodPay ms-5 py-5">{payInfoState.payMethod}</div>
+                    <div className="check-payMethod-container d-flex justify-content-between align-items-center mb-5 flex-lg-row flex-column">
+                        <div className="check-methodPay ms-lg-5 ms-0 py-5">{payInfoState.payMethod}</div>
                         <div className="check-passangers-aside h-100 d-flex flex-column-reverse px-4 pb-3">
                             <button className="btn-change-payMethod" onClick={changePayMehtod}>Изменить</button>
                         </div>
                     </div>
-                    <button className="btn-checkSuccess col-4 mt-5" onClick={confirmHendler}>Подтвердить</button>
+                    <button className="btn-checkSuccess col-12 mt-5 col-lg-4" onClick={confirmHendler}>Подтвердить</button>
                 </div>
             </div >
         </div >

@@ -1,4 +1,4 @@
-.passanger{
+.passanger {
     border-bottom: 1px dotted var(--user-comment-color);
 }
 
@@ -10,7 +10,8 @@
 
 .passanger-dateBirthday,
 .passanger-document,
-.passanger-gender {
+.passanger-gender,
+.passanger-invalid {
     font-size: 18px;
     color: var(--user-comment-color);
 }

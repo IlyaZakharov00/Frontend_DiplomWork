@@ -123,4 +123,4 @@ const sortedCitiesListSlice = createSlice({
 });
 
 export default sortedCitiesListSlice
-export const { addCities } = sortedCitiesListSlice.actions;
+export const { addCities, changeCitites, choiceCity } = sortedCitiesListSlice.actions;

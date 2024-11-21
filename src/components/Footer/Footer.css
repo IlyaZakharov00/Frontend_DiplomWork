@@ -130,9 +130,29 @@
 }
 
 .footer_svg:hover>.svg_arrowUp_arrow {
-    fill: var(--main-color);
+    fill: var(--text-color);
 }
 
 .footer_svg:hover>.svg_arrowUp_circle {
     stroke: var(--hover-color);
+}
+
+.footer_svg:active>.svg_arrowUp_arrow {
+    fill: var(--main-color);
+}
+
+.contact_item:hover>a>span {
+    color: var(--main-color);
+}
+
+.contact_item:hover>a>svg>path {
+    fill: var(--main-color);
+}
+
+.contact_item:active>a>span {
+    color: var(--text-color);
+}
+
+.contact_item:active>a>svg>path {
+    fill: var(--text-color);
 }

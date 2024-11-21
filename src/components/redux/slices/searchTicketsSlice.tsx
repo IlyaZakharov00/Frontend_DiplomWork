@@ -108,6 +108,7 @@ const searchTicketsSlice = createSlice({
         },
 
         addClass: (state: TTicketsState, action: PayloadAction<any>) => {
+            console.log(action, 'class')
             const keys = Object.keys(state.class);
             const obj = state.class as any;
 
@@ -119,7 +120,7 @@ const searchTicketsSlice = createSlice({
         addComfortOptions: (state: TTicketsState, action: PayloadAction<any>) => {
             const keys = Object.keys(state.comfortOptions);
             const obj = state.comfortOptions as any;
-
+            console.log(obj)
             keys.forEach((key) => {
                 if (key === action.payload.id) obj[key] = action.payload.isChecked
             })
@@ -162,6 +163,7 @@ const searchTicketsSlice = createSlice({
         },
 
         addOffset: (state: TTicketsState, action: PayloadAction<any>) => {
+            console.log(action, 'offset')
             state.offset = action.payload
         },
 
@@ -208,4 +210,4 @@ const searchTicketsSlice = createSlice({
 );
 
 export default searchTicketsSlice
-export const { addCities, addDates } = searchTicketsSlice.actions;
+export const { addCities, addDates, addActivePage, addClass, addComfortOptions, addLimit, addOffset, addPrices, addSort, addTimes, nextPage, prevPage, changeCitites } = searchTicketsSlice.actions;

@@ -88,7 +88,7 @@ export const SuccesOrder = () => {
                 </div>
 
                 <div className="order-footer p-5 d-flex justify-content-between flex-lg-row flex-column gap-5">
-                    <div className="rate-service-container d-flex align-items-center gap-3">
+                    <div className="rate-service-container d-flex align-items-center gap-3 flex-column flex-lg-row">
                         <div className="rate-service-text">Оцените сервис</div>
                         <div className="rate">
                             <RatingStars />

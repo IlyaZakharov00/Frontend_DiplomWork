@@ -16,11 +16,13 @@ export const NavBar = () => {
         const section = e.target as HTMLElement;
         const id = section.getAttribute('data-id') as string;
         const element = document.getElementById(id);
+
         element?.scrollIntoView({
             behavior: 'smooth',
             block: 'start',
             inline: 'nearest'
         });
+
     }
 
     return (

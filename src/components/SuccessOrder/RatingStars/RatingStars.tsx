@@ -22,28 +22,27 @@ export default function RatingStars() {
 
     return (
         <Stack spacing={1}>
-
-            <Box sx={{ width: "200px", display: 'flex', alignItems: 'center' }}>
-                <Rating
-                    name="hover-feedback"
-                    value={value}
-                    getLabelText={getLabelText}
-                    sx={{
-                        fontSize: "4rem"
-                    }}
-                    onChange={(_event, newValue) => {
-                        setValue(newValue);
-                    }}
-                    onChangeActive={(_event, newHover) => {
-                        setHover(newHover);
-                    }}
-                    icon={<StarIcon style={{ width: "32px", height: "32px" }}></StarIcon>}
-                    emptyIcon={<StarIcon style={{ opacity: 0.55, width: "32px", height: "32px" }} />}
-                />
-                {value !== null && (
-                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-                )}
-            </Box>
+            <div className='d-flex flex-column flex-lg-row align-items-center gap-3'>
+                    <Rating
+                        name="hover-feedback"
+                        value={value}
+                        getLabelText={getLabelText}
+                        sx={{
+                            fontSize: "4rem"
+                        }}
+                        onChange={(_event, newValue) => {
+                            setValue(newValue);
+                        }}
+                        onChangeActive={(_event, newHover) => {
+                            setHover(newHover);
+                        }}
+                        icon={<StarIcon style={{ width: "32px", height: "32px" }}></StarIcon>}
+                        emptyIcon={<StarIcon style={{ opacity: 0.55, width: "32px", height: "32px" }} />}
+                    />
+                    {value !== null && (
+                        <Box>{labels[hover !== -1 ? hover : value]}</Box>
+                    )}
+            </div>
         </Stack>
     );
 }

@@ -12,7 +12,7 @@ export const FormPassenger = (props: IFormProps) => {
     const dispatch = useDispatch();
     const passangersDataState = useSelector((state: TState) => state.passangersDataState)
 
-    const { register, handleSubmit, formState, watch, reset, setValue } = useForm<IForm>({
+    const { register, handleSubmit, formState, watch, reset, setValue, getValues } = useForm<IForm>({
         mode: 'onChange',
         defaultValues: {
             'document_type': 'Паспорт РФ',
@@ -39,8 +39,10 @@ export const FormPassenger = (props: IFormProps) => {
     }, [reset])
 
     useEffect(() => {
-        setValue('number_document', "")
-        setValue('seria_document', "")
+        if (props.defaultPassangers && (getValues('document_type') !== props.defaultPassangers.document_type)) {
+            setValue('number_document', "")
+            setValue('seria_document', "")
+        }
     }, [watch('document_type')])
 
 

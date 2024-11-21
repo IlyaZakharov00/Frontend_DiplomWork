@@ -49,7 +49,7 @@
 
 .form-check-input:checked {
     background-color: white;
-    background-image: url('../../static-files/icons/galochka.svg');
+    background-image: url('../../static-files/icons/formRadio/galochka.svg');
 }
 
 .form-check-input:focus {

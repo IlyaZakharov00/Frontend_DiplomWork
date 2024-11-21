@@ -49,16 +49,6 @@ const searchSeatsSlice = createSlice({
         choiceCoach: (state: TSeats, action: PayloadAction<any>) => {
             state.choiceCoach = action.payload
         },
-
-        // clearAll: (state: TSeats) => {
-        //     state.choiceCoach = "";
-        //     state.choiceNumberCoach = "";
-        //     state.choiceTypeCoach = "";
-        //     state.departureID = "";
-        //     state.train = null;
-        //     state.error = null;
-        //     state.loading = false;
-        // },
     },
 
     extraReducers: (builder) => {

@@ -2,10 +2,10 @@
     min-height: 500px;
 }
 
-.content-container {
-    /* position: relative;
-    margin-top: -15vw; */
-}
+/* .content-container {
+    position: relative;
+    margin-top: -15vw;
+} */
 
 .order-title {
     font-size: calc(35px + 52 * (100vw - 360px) / 1560);
@@ -14,7 +14,6 @@
 }
 
 .success-order-header {
-    /* border-bottom: 1px solid gray; */
     background-color: white;
     border-left: 2px solid #c4c4c4;
     border-top: 2px solid #c4c4c4;
@@ -90,7 +89,6 @@
 /*****************/
 
 .order-footer {
-    /* min-height: 161px; */
     background-color: var(--main-color);
 }
 
@@ -100,7 +98,7 @@
 }
 
 .backToMain-btn {
-    font-size: 24px;
+    font-size: calc(20px + 4 * (100vw - 360px) / 1560);
     font-weight: 700;
     background-color: transparent;
     text-transform: uppercase;

@@ -10,7 +10,6 @@ export interface IForm {
     seria_document: string;
     invalid: boolean;
     id: string;
-    e:any
 }
 
 export interface IFormProps {
